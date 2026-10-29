@@ -1,0 +1,1 @@
+{"name":"gde-dalshe","version":"1.0.0","private":true,"description":"Честный визуальный каталог переезда для граждан РФ","scripts":{"dev":"node scripts/serve.mjs","test":"node --test scripts/check.test.mjs"},"type":"module"}

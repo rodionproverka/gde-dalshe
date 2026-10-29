@@ -1,0 +1,4996 @@
+[
+  {
+    "id": "georgia",
+    "name": "Грузия",
+    "flag": "🇬🇪",
+    "region": "Кавказ",
+    "currency": "GEL",
+    "language": "грузинский",
+    "portal": "myhome.ge",
+    "portalUrl": "https://www.myhome.ge/en/",
+    "cities": [
+      {
+        "id": "georgia-0",
+        "name": "Тбилиси",
+        "wiki": "Tbilisi",
+        "rent": 550,
+        "living": 500,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "mountains"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · горы"
+      },
+      {
+        "id": "georgia-1",
+        "name": "Батуми",
+        "wiki": "Batumi",
+        "rent": 450,
+        "living": 420,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": true,
+    "entry": "Гражданам РФ разрешено безвизовое пребывание до одного полного года по постановлению №255; правило следует перепроверять перед въездом.",
+    "longStay": "В пределах годового безвиза 7 месяцев возможно без ВНЖ. Работа и предпринимательство регулируются отдельно; не следует считать безвиз разрешением на работу.",
+    "official": "https://www.matsne.gov.ge/en/document/view/2278806",
+    "difficulty": 1,
+    "russian": true,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "residence": "Рабочий ВНЖ: подтверждение занятости/предпринимательства, дохода и оборота работодателя. Есть учебные и семейные основания. В 2026 менялось регулирование трудовой миграции.",
+    "sources": [
+      {
+        "title": "Закон Грузии о правовом положении иностранцев, ст.10",
+        "url": "https://www.matsne.gov.ge/en/document/view/2278806"
+      },
+      {
+        "title": "Постановление №255, перечень безвизовых стран",
+        "url": "https://matsne.gov.ge/en/document/view/2867361"
+      },
+      {
+        "title": "Государственное агентство: виды и документы ВНЖ",
+        "url": "https://sda.gov.ge/en/products/migration-residence-permits/"
+      },
+      {
+        "title": "Официальные условия гражданства",
+        "url": "https://sda.gov.ge/en/products/citizenship/"
+      }
+    ],
+    "confidence": "Годовое правило подтверждено законом; перечень РФ фигурирует в №255, отдельное прямое открытие перечня не выполнено.",
+    "visaFree": true,
+    "longType": "free",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [
+      {
+        "portal": "SS.ge",
+        "country": "Грузия",
+        "checked": false,
+        "url": "https://www.ss.ge/en/real-estate/l/Flat/For-Rent?cityIdList=95",
+        "samples": [],
+        "note": "Страница не открылась через инструмент. Нельзя писать, что цены на SS.ge проверены."
+      }
+    ],
+    "citizenship": "Обычная процедура: 10 лет законного непрерывного проживания, экзамены по языку, истории и праву, а также экономическая связь. Есть отдельные семейные и другие основания.",
+    "citizenYears": 10,
+    "social": "Политический контекст чувствителен. Оценка «к россиянам относятся плохо» не подтверждена репрезентативными данными в этой проверке. Уважайте местный язык и не делайте выводы по отдельным историям."
+  },
+  {
+    "id": "thailand",
+    "name": "Таиланд",
+    "flag": "🇹🇭",
+    "region": "ЮВА",
+    "currency": "THB",
+    "language": "тайский",
+    "portal": "DDproperty",
+    "portalUrl": "https://www.ddproperty.com/en",
+    "cities": [
+      {
+        "id": "thailand-0",
+        "name": "Бангкок",
+        "wiki": "Bangkok",
+        "rent": 600,
+        "living": 560,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "thailand-1",
+        "name": "Чиангмай",
+        "wiki": "Chiang_Mai",
+        "rent": 320,
+        "living": 430,
+        "tags": [
+          "work",
+          "mountains",
+          "malls",
+          "clubs"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · горы · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "thailand-2",
+        "name": "Пхукет",
+        "wiki": "Phuket_(city)",
+        "rent": 650,
+        "living": 570,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": true,
+    "entry": "ВАЖНО: с 15 сентября 2026 граждане РФ с обычным паспортом получают до 30 дней по двустороннему безвизовому соглашению. Прежние 60 дней отменены.",
+    "longStay": "Для подходящих удалённых работников/других разрешённых активностей есть DTV: 180 дней за въезд с возможным однократным продлением ещё до 180 дней. Нужны подтверждения и соответствие цели.",
+    "official": "https://moscow.thaiembassy.org/en/publicservice/revision-of-thailand-s-visa-exemption-and-visa-on-arrival-schemes?cate=5d843b6a15e39c1abc00515b",
+    "difficulty": 2,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "residence": "DTV — многократная виза на 5 лет, а не ПМЖ. Для удалённых работников подтверждают деятельность и финансовые средства не менее 500 000 THB. Другие пути: учёба, работа, семья, пенсионные категории при выполнении условий.",
+    "sources": [
+      {
+        "title": "Посольство Таиланда в Москве: новые правила с 15.09.2026",
+        "url": "https://moscow.thaiembassy.org/en/publicservice/revision-of-thailand-s-visa-exemption-and-visa-on-arrival-schemes?cate=5d843b6a15e39c1abc00515b"
+      },
+      {
+        "title": "Официальный Thai e-Visa: DTV",
+        "url": "https://thaievisa.go.th/page/destination-thailand-visa"
+      },
+      {
+        "title": "МИД Таиланда: параметры DTV",
+        "url": "https://image.mfa.go.th/mfa/0/91fPdh6NtO/VISA_Information/New_Visa_Measures_July_2024.pdf"
+      }
+    ],
+    "confidence": "Проверены перечисленные официальные страницы; решение принимают уполномоченные органы.",
+    "visaFree": true,
+    "longType": "conditional",
+    "climate": "tropical",
+    "english": false,
+    "rentalChecks": [
+      {
+        "portal": "DDproperty",
+        "country": "Таиланд",
+        "city": "Бангкок",
+        "checked": true,
+        "url": "https://www.ddproperty.com/en/property-for-rent",
+        "samples": [
+          {
+            "price": 9500,
+            "currency": "THB",
+            "period": "month",
+            "rooms": "studio",
+            "area": 27,
+            "description": "I-House Laguna Garden, Bang Kapi; опубликовано 28.10.2026"
+          },
+          {
+            "price": 20500,
+            "currency": "THB",
+            "period": "month",
+            "rooms": "1 bedroom",
+            "area": 35,
+            "description": "ASHTON Asoke; 130 м от Sukhumvit MRT; опубликовано 29.10.2026"
+          },
+          {
+            "price": 14000,
+            "currency": "THB",
+            "period": "month",
+            "rooms": "studio",
+            "area": 25,
+            "description": "Rhythm Asoke; опубликовано 29.10.2026"
+          }
+        ],
+        "note": "Проверена открытая выдача. Студия отличается от отдельной спальни. Срок договора, депозит и коммунальные согласовываются отдельно."
+      },
+      {
+        "portal": "DDproperty",
+        "country": "Таиланд",
+        "city": "Чиангмай",
+        "checked": true,
+        "url": "https://www.ddproperty.com/en/condo-for-rent/in-chiang-mai-th50",
+        "samples": [
+          {
+            "price": 17000,
+            "currency": "THB",
+            "area": 45,
+            "rooms": "1 bedroom",
+            "description": "Hill Side Plaza and Condominium, Chang Phuak; цена из выдачи",
+            "url": "https://www.ddproperty.com/en/condo-for-rent/in-chiang-mai-th50"
+          }
+        ],
+        "note": "Просмотрена выдача 30.10.2026. Это один пример, не средняя цена. Наличие не подтверждено."
+      }
+    ],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей."
+  },
+  {
+    "id": "vietnam",
+    "name": "Вьетнам",
+    "flag": "🇻🇳",
+    "region": "ЮВА",
+    "currency": "VND",
+    "language": "вьетнамский",
+    "portal": "Batdongsan",
+    "portalUrl": "https://batdongsan.com.vn/",
+    "cities": [
+      {
+        "id": "vietnam-0",
+        "name": "Ханой",
+        "wiki": "Hanoi",
+        "rent": 430,
+        "living": 400,
+        "tags": [
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "vietnam-1",
+        "name": "Дананг",
+        "wiki": "Da_Nang",
+        "rent": 380,
+        "living": 350,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "vietnam-2",
+        "name": "Хошимин",
+        "wiki": "Ho_Chi_Minh_City",
+        "rent": 500,
+        "living": 450,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      }
+    ],
+    "verified": true,
+    "entry": "Для граждан РФ — без визы до 45 дней. Официальное освобождение действует 15.03.2025–14.03.2028. Электронная виза — до 90 дней.",
+    "longStay": "Безвиз/обычная e-visa не обеспечивают непрерывные 7 месяцев. Нужен применимый длительный статус; отдельное исследование рабочих, инвестиционных и семейных карт требуется перед решением.",
+    "official": "https://vnembassy-moscow.mofa.gov.vn/web/guest/tin-chi-tiet/chi-tiet/viet-nam-39-s-visa-exemption-list-57163-172.html",
+    "difficulty": 4,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "residence": "Не стоит подавать визараны как ВНЖ или гарантированный маршрут. Полные требования к TRC в рамках этой проверки не подтверждены официальной страницей.",
+    "sources": [
+      {
+        "title": "Посольство Вьетнама в Москве: список освобождений",
+        "url": "https://vnembassy-moscow.mofa.gov.vn/web/guest/tin-chi-tiet/chi-tiet/viet-nam-39-s-visa-exemption-list-57163-172.html"
+      },
+      {
+        "title": "Национальное туристическое управление: визы",
+        "url": "https://vietnam.travel/plan-your-trip/visa-requirements/"
+      },
+      {
+        "title": "Официальная электронная виза",
+        "url": "https://evisa.gov.vn"
+      }
+    ],
+    "confidence": "45-дневный безвиз подтверждён МИД; длительные статусы требуют дополнительной проверки.",
+    "visaFree": true,
+    "longType": "unknown",
+    "climate": "tropical",
+    "english": false,
+    "rentalChecks": [
+      {
+        "portal": "Batdongsan",
+        "country": "Вьетнам",
+        "city": "Дананг",
+        "checked": true,
+        "url": "https://batdongsan.com.vn/cho-thue-can-ho-chung-cu-da-nang",
+        "samples": [
+          {
+            "price": 16000000,
+            "currency": "VND",
+            "area": 50,
+            "rooms": "1 bedroom",
+            "description": "Sun Symphony: 1 спальня, меблированная; цена из выдачи",
+            "url": "https://batdongsan.com.vn/cho-thue-can-ho-chung-cu-da-nang"
+          }
+        ],
+        "note": "Выдача просмотрена 30.10.2026. Пример предложения, не средняя цена всего города; объявление может быть снято."
+      }
+    ],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей."
+  },
+  {
+    "id": "serbia",
+    "name": "Сербия",
+    "flag": "🇷🇸",
+    "region": "Европа",
+    "currency": "RSD",
+    "language": "сербский",
+    "portal": "Halo oglasi",
+    "portalUrl": "https://www.halooglasi.com/nekretnine/izdavanje-stanova",
+    "cities": [
+      {
+        "id": "serbia-0",
+        "name": "Белград",
+        "wiki": "Belgrade",
+        "rent": 700,
+        "living": 600,
+        "tags": [
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "serbia-1",
+        "name": "Нови-Сад",
+        "wiki": "Novi_Sad",
+        "rent": 500,
+        "living": 480,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": true,
+    "entry": "Для обычного паспорта РФ — без визы до 30 дней.",
+    "longStay": "Для 7 месяцев оформляют временное проживание или единое разрешение на проживание и работу по реальному основанию. Постоянные выезды не являются гарантированным способом легализации.",
+    "official": "https://www.mfa.rs/en/citizens/travel-serbia/visa-regime/ruska-federacija",
+    "difficulty": 2,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "residence": "Официальный портал предусматривает работу, самозанятость, образование, семью, владение недвижимостью и другие основания с отдельными документами.",
+    "sources": [
+      {
+        "title": "МИД Сербии: визовый режим для России",
+        "url": "https://www.mfa.rs/en/citizens/travel-serbia/visa-regime/ruska-federacija"
+      },
+      {
+        "title": "Госпортал: временное проживание",
+        "url": "https://welcometoserbia.gov.rs/temporary-residence"
+      },
+      {
+        "title": "Госпортал: проживание и работа",
+        "url": "https://welcometoserbia.gov.rs/residence-and-work-permit"
+      },
+      {
+        "title": "Госпортал: предприниматели",
+        "url": "https://welcometoserbia.gov.rs/visa-for-foreign-business-owners"
+      },
+      {
+        "title": "Официальные условия гражданства",
+        "url": "https://www.msp.gov.rs/gradjani/usluge/drzavljanstvo"
+      }
+    ],
+    "confidence": "Проверены перечисленные официальные страницы; решение принимают уполномоченные органы.",
+    "visaFree": true,
+    "longType": "conditional",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [
+      {
+        "portal": "Halo oglasi",
+        "country": "Сербия",
+        "city": "Белград",
+        "checked": false,
+        "url": "https://www.halooglasi.com/nekretnine/izdavanje-stanova/beograd",
+        "samples": [],
+        "note": "Сайт открылся, но объявления не извлеклись: показаны нулевые результаты. Цены не подтверждены."
+      }
+    ],
+    "citizenship": "Обычный приём требует ПМЖ, не менее 3 лет зарегистрированного постоянного проживания и обычно выхода из прежнего гражданства либо подтверждения такого выхода. Три года временного ВНЖ — не срок до паспорта.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей."
+  },
+  {
+    "id": "armenia",
+    "name": "Армения",
+    "flag": "🇦🇲",
+    "region": "Кавказ",
+    "currency": "AMD",
+    "language": "армянский",
+    "portal": "List.am",
+    "portalUrl": "https://www.list.am/category/56",
+    "cities": [
+      {
+        "id": "armenia-0",
+        "name": "Ереван",
+        "wiki": "Yerevan",
+        "rent": 600,
+        "living": 500,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "mountains"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · горы"
+      },
+      {
+        "id": "armenia-1",
+        "name": "Гюмри",
+        "wiki": "Gyumri",
+        "rent": 300,
+        "living": 370,
+        "tags": [
+          "mountains"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "горы"
+      }
+    ],
+    "verified": true,
+    "entry": "Общий безвизовый предел — 180 дней в течение года, если международное соглашение не устанавливает иное.",
+    "longStay": "180 дней недостаточно для непрерывного пребывания 7 месяцев. Нужно оформить применимый статус проживания/проверить основание работы по ЕАЭС.",
+    "official": "https://www.mfa.am/ru/visa",
+    "difficulty": 2,
+    "russian": true,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "residence": "Временный статус: учёба, предпринимательство, армянское происхождение, семья, работа и другие законные основания. Регистрация бизнеса сама по себе не гарантирует выдачу.",
+    "sources": [
+      {
+        "title": "МИД Армении: визы",
+        "url": "https://www.mfa.am/ru/visa"
+      },
+      {
+        "title": "Migration and Citizenship Service: temporary residence",
+        "url": "https://migration.mia.gov.am/en/acquiring-temporary-residence-status"
+      },
+      {
+        "title": "Подача на статус проживания",
+        "url": "https://migration.e-gov.am/en/service/residency_application/info"
+      },
+      {
+        "title": "Официальные условия гражданства",
+        "url": "https://english.hartak.am/services/a0404bc3-4dc9-4602-bbd5-0a372ff69cfa/online/"
+      }
+    ],
+    "confidence": "Подтверждены общий безвизовый предел и основания статуса; особенности ЕАЭС не исследованы полностью.",
+    "visaFree": true,
+    "longType": "conditional",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [
+      {
+        "portal": "List.am",
+        "country": "Армения",
+        "city": "Ереван",
+        "checked": true,
+        "url": "https://www.list.am/en/category/56",
+        "samples": [
+          {
+            "price": 280000,
+            "currency": "AMD",
+            "period": "month",
+            "rooms": 1,
+            "area": 39,
+            "description": "Арабкир, улица Ваграма Папазяна, 3/5, каменный дом; агентство; Property Not Verified",
+            "url": "https://www.list.am/en/item/995195809"
+          }
+        ],
+        "note": "Открыты выдача и карточка. Цена предложения одного объекта; объявление самим порталом не верифицировано."
+      }
+    ],
+    "citizenship": "Общий маршрут: последние 3 года законного проживания, знание армянского языка и Конституции. Есть специальные основания. С 2026 года заявления проходят через электронную систему; решение не автоматическое.",
+    "citizenYears": 3,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей."
+  },
+  {
+    "id": "indonesia",
+    "name": "Индонезия",
+    "flag": "🇮🇩",
+    "region": "ЮВА",
+    "currency": "IDR",
+    "language": "индонезийский",
+    "portal": "Rumah123",
+    "portalUrl": "https://www.rumah123.com/en/rent/",
+    "cities": [
+      {
+        "id": "indonesia-0",
+        "name": "Джакарта",
+        "wiki": "Jakarta",
+        "rent": 500,
+        "living": 430,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "indonesia-1",
+        "name": "Денпасар · Бали",
+        "wiki": "Denpasar",
+        "rent": 600,
+        "living": 500,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": true,
+    "entry": "Для россиян доступна VOA/e-VOA: 30 дней, возможно одно продление ещё на 30 дней. Это платная виза, не безвиз.",
+    "longStay": "E33G для удалённых работников может дать год проживания. Нужен контракт с иностранной компанией, доход минимум 60 000 USD в год и выписка со средствами от 2 000 USD.",
+    "official": "https://kemlu.go.id/id/lima/pelayanan-perwakilan/visa-elektronik-saat-kedatangan-%28e-voa%29",
+    "difficulty": 3,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "residence": "Официальный материал E33G указывает 7 000 000 IDR за год, отсутствие местного спонсора, запрет получать оплату от индонезийских лиц/компаний. Применимость и актуальную пошлину сверять в eVisa.",
+    "sources": [
+      {
+        "title": "МИД Индонезии: e-VOA",
+        "url": "https://kemlu.go.id/id/lima/pelayanan-perwakilan/visa-elektronik-saat-kedatangan-%28e-voa%29"
+      },
+      {
+        "title": "Иммиграция Ngurah Rai: E33G",
+        "url": "https://ngurahrai.imigrasi.go.id/edukasi-visa-e33g-rumah-kedua-bagi-pekerja-jarak-jauh/"
+      },
+      {
+        "title": "Официальный eVisa",
+        "url": "https://evisa.imigrasi.go.id"
+      }
+    ],
+    "confidence": "Проверены перечисленные официальные страницы; решение принимают уполномоченные органы.",
+    "visaFree": false,
+    "longType": "conditional",
+    "climate": "tropical",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей."
+  },
+  {
+    "id": "kazakhstan",
+    "name": "Казахстан",
+    "flag": "🇰🇿",
+    "region": "Центральная Азия",
+    "currency": "KZT",
+    "language": "казахский, русский",
+    "portal": "Krisha",
+    "portalUrl": "https://krisha.kz/arenda/kvartiry/",
+    "cities": [
+      {
+        "id": "kazakhstan-0",
+        "name": "Астана",
+        "wiki": "Astana",
+        "rent": 450,
+        "living": 450,
+        "tags": [
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "kazakhstan-1",
+        "name": "Алматы",
+        "wiki": "Almaty",
+        "rent": 550,
+        "living": 480,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "mountains",
+          "clubs"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · горы · игровая инфраструктура"
+      }
+    ],
+    "verified": true,
+    "entry": "Для граждан России — до 90 дней без РВП. Принимающая сторона уведомляет о прибытии в течение трёх рабочих дней. Правило совокупного срока необходимо сверять с актуальной редакцией и категорией гражданства.",
+    "longStay": "Нужно РВП, обычно на срок до года при сохранении основания. Работа, учёба, семья и бизнес имеют разные требования.",
+    "official": "https://www.gov.kz/org/qriim/documents/details/366730?lang=ru",
+    "difficulty": 2,
+    "russian": true,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "residence": "Рабочее РВП для ЕАЭС возможно на основании трудового/допустимого гражданско-правового договора. Требуются документы принимающей стороны и адреса; предусмотрена дактилоскопия.",
+    "sources": [
+      {
+        "title": "МВД Казахстана: памятка гражданам РФ",
+        "url": "https://www.gov.kz/org/qriim/documents/details/366730?lang=ru"
+      },
+      {
+        "title": "eGov: правила въезда и РВП",
+        "url": "https://egov.kz/cms/ru/articles/move_abroad/exit-entry_of_foreign_nationals"
+      },
+      {
+        "title": "Правительство: основания и срок РВП",
+        "url": "https://www.gov.kz/situations/572/1260?lang=ru"
+      }
+    ],
+    "confidence": "Официальная общая страница содержит неоднозначный совокупный предел 90/180 и 120/год для общего режима; не переносить его автоматически на РФ/ЕАЭС.",
+    "visaFree": true,
+    "longType": "conditional",
+    "climate": "cold",
+    "english": false,
+    "rentalChecks": [
+      {
+        "portal": "Krisha.kz",
+        "country": "Казахстан",
+        "city": "Алматы",
+        "checked": true,
+        "url": "https://krisha.kz/arenda/kvartiry/almaty/?das%5Blive.rooms%5D=1",
+        "samples": [
+          {
+            "price": 250000,
+            "currency": "KZT",
+            "period": "month",
+            "rooms": 1,
+            "area": 55,
+            "description": "Медеуский район, Думан-2, ЖК Меркур Град; коммунальные отдельно",
+            "url": "https://krisha.kz/a/show/1009593935"
+          },
+          {
+            "price": 350000,
+            "currency": "KZT",
+            "period": "month",
+            "rooms": 1,
+            "area": 45,
+            "description": "Алмалинский район, ЖК Novella; депозит месяц"
+          }
+        ],
+        "note": "Открыты выдача и одно объявление. Это цены предложения, не средняя стоимость рынка; наличие не подтверждалось звонком."
+      }
+    ],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Русский широко используется, но это не гарантирует одинаковый опыт общения. Оснований присваивать всей стране оценку «плохое отношение к россиянам» в проверенных источниках нет."
+  },
+  {
+    "id": "turkey",
+    "name": "Турция",
+    "flag": "🇹🇷",
+    "region": "Ближний Восток",
+    "currency": "TRY",
+    "language": "турецкий",
+    "portal": "Sahibinden",
+    "portalUrl": "https://www.sahibinden.com/en/for-rent-apartment",
+    "cities": [
+      {
+        "id": "turkey-0",
+        "name": "Анкара",
+        "wiki": "Ankara",
+        "rent": 450,
+        "living": 480,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "turkey-1",
+        "name": "Стамбул",
+        "wiki": "Istanbul",
+        "rent": 700,
+        "living": 600,
+        "tags": [
+          "sea",
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "turkey-2",
+        "name": "Анталья",
+        "wiki": "Antalya",
+        "rent": 550,
+        "living": 500,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": true,
+    "entry": "Обычный паспорт РФ: без визы до 60 дней за поездку; суммарно не более 90 дней в каждом периоде 180 дней.",
+    "longStay": "Нужен соответствующий ВНЖ либо разрешение на работу. Аренда квартиры не гарантирует туристический ВНЖ.",
+    "official": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
+    "difficulty": 4,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "residence": "Краткосрочные основания включают недвижимость, деловые связи, туризм и другие цели; также есть семейный и студенческий ВНЖ. Требуются подтверждение цели, адрес и документы, возможен отказ.",
+    "sources": [
+      {
+        "title": "МИД Турции: визовый режим",
+        "url": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa"
+      },
+      {
+        "title": "Консульство РФ: памятка 2026",
+        "url": "https://istanbul.mid.ru/upload/iblock/a18/a18338616dcbf623e3ffd4e04d10c9fe.pdf"
+      },
+      {
+        "title": "Migration Management: residence permit types",
+        "url": "https://en.goc.gov.tr/residence-permit-types"
+      }
+    ],
+    "confidence": "Проверены перечисленные официальные страницы; решение принимают уполномоченные органы.",
+    "visaFree": true,
+    "longType": "conditional",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей."
+  },
+  {
+    "id": "montenegro",
+    "name": "Черногория",
+    "flag": "🇲🇪",
+    "region": "Европа",
+    "currency": "EUR",
+    "language": "черногорский",
+    "portal": "Realitica",
+    "portalUrl": "https://www.realitica.com/",
+    "cities": [
+      {
+        "id": "montenegro-0",
+        "name": "Подгорица",
+        "wiki": "Podgorica",
+        "rent": 500,
+        "living": 550,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "montenegro-1",
+        "name": "Будва",
+        "wiki": "Budva",
+        "rent": 650,
+        "living": 550,
+        "tags": [
+          "sea",
+          "beach",
+          "work"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "portugal",
+    "name": "Португалия",
+    "flag": "🇵🇹",
+    "region": "Европа",
+    "currency": "EUR",
+    "language": "португальский",
+    "portal": "Idealista",
+    "portalUrl": "https://www.idealista.pt/en/arrendar-casas/",
+    "cities": [
+      {
+        "id": "portugal-0",
+        "name": "Лиссабон",
+        "wiki": "Lisbon",
+        "rent": 1200,
+        "living": 750,
+        "tags": [
+          "sea",
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "portugal-1",
+        "name": "Порту",
+        "wiki": "Porto",
+        "rent": 950,
+        "living": 650,
+        "tags": [
+          "sea",
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · метро · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": true,
+    "entry": "Нужна соответствующая виза/действующее право въезда; туристический Шенген ограничен 90 днями в 180 и не заменяет статус проживания.",
+    "longStay": "Резидентская виза и ВНЖ по подходящему основанию: удалённая работа, трудоустройство, учёба, семья и другие. Подтверждение достаточного дохода и документов обязательно.",
+    "official": "https://aima.gov.pt/pt/trabalhar",
+    "difficulty": 4,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "residence": "AIMA прямо предусматривает ВНЖ для работы удалённо на иностранного заказчика/работодателя с соответствующей резидентской визой. Точные доходные пороги и сроки натурализации здесь не подтверждались.",
+    "sources": [
+      {
+        "title": "AIMA: рабочие основания",
+        "url": "https://aima.gov.pt/pt/trabalhar"
+      },
+      {
+        "title": "AIMA: ВНЖ для удалённой деятельности",
+        "url": "https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-o-exercicio-de-atividade-profissional-prestada-de-forma-remota-com-visto-de-residencia-para-o-exe"
+      }
+    ],
+    "confidence": "Подтверждён маршрут удалённой работы; не обещать простую выдачу/конкретный срок гражданства без отдельной проверки.",
+    "visaFree": false,
+    "longType": "conditional",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей."
+  },
+  {
+    "id": "spain",
+    "name": "Испания",
+    "flag": "🇪🇸",
+    "region": "Европа",
+    "currency": "EUR",
+    "language": "испанский",
+    "portal": "Idealista",
+    "portalUrl": "https://www.idealista.com/en/alquiler-viviendas/",
+    "cities": [
+      {
+        "id": "spain-0",
+        "name": "Мадрид",
+        "wiki": "Madrid",
+        "rent": 1150,
+        "living": 750,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "spain-1",
+        "name": "Валенсия",
+        "wiki": "Valencia",
+        "rent": 950,
+        "living": 650,
+        "tags": [
+          "sea",
+          "beach",
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · метро · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "poland",
+    "name": "Польша",
+    "flag": "🇵🇱",
+    "region": "Европа",
+    "currency": "PLN",
+    "language": "польский",
+    "portal": "Otodom",
+    "portalUrl": "https://www.otodom.pl/",
+    "cities": [
+      {
+        "id": "poland-0",
+        "name": "Варшава",
+        "wiki": "Warsaw",
+        "rent": 900,
+        "living": 650,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "poland-1",
+        "name": "Краков",
+        "wiki": "Kraków",
+        "rent": 750,
+        "living": 600,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": true,
+    "entry": "Въезд россиян ограничен по категориям исключений. Обычная туристическая цель и наличие шенгенской визы сами по себе не означают разрешённый въезд; ограничение касается погранпереходов независимо от страны отправления.",
+    "longStay": "Возможен лишь при наличии применимого основания и документов на длительное пребывание, например работа/учёба/семья, а также права на въезд по действующим исключениям.",
+    "official": "https://www.strazgraniczna.pl/pl/cudzoziemcy/obowiazujace-ograniczenia/13494%2CEN-RUSSIA-RESTRICTIONS-AGAINST-RUSSIAN-CITIZENS.pdf",
+    "difficulty": 5,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "residence": "Проверять категорию допуска по §3(2) и требования выбранного статуса. Юридические ограничения — проверяемый факт; они не являются измерением личного отношения всех жителей.",
+    "sources": [
+      {
+        "title": "Пограничная служба Польши: ограничения для россиян",
+        "url": "https://www.strazgraniczna.pl/pl/cudzoziemcy/obowiazujace-ograniczenia/13494%2CEN-RUSSIA-RESTRICTIONS-AGAINST-RUSSIAN-CITIZENS.pdf"
+      },
+      {
+        "title": "Пограничная служба: действующие ограничения",
+        "url": "https://www.strazgraniczna.pl/pl/cudzoziemcy/obowiazujace-ograniczenia"
+      },
+      {
+        "title": "МВД Польши: условия въезда и проживания",
+        "url": "https://www.gov.pl/web/mswia-en/entry-and-residence-conditions-for-foreign-nationals-in-poland"
+      }
+    ],
+    "confidence": "Проверены перечисленные официальные страницы; решение принимают уполномоченные органы.",
+    "visaFree": false,
+    "longType": "conditional",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Подтверждены ограничения въезда по гражданству РФ и категориям исключений. Это юридическое ограничение, а не оценка отношения всех жителей. См. Пограничную службу в источниках."
+  },
+  {
+    "id": "malaysia",
+    "name": "Малайзия",
+    "flag": "🇲🇾",
+    "region": "ЮВА",
+    "currency": "MYR",
+    "language": "малайский, английский",
+    "portal": "PropertyGuru",
+    "portalUrl": "https://www.propertyguru.com.my/",
+    "cities": [
+      {
+        "id": "malaysia-0",
+        "name": "Куала-Лумпур",
+        "wiki": "Kuala_Lumpur",
+        "rent": 450,
+        "living": 450,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "malaysia-1",
+        "name": "Джорджтаун",
+        "wiki": "George_Town,_Penang",
+        "rent": 400,
+        "living": 420,
+        "tags": [
+          "sea",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "tropical",
+    "english": true,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "philippines",
+    "name": "Филиппины",
+    "flag": "🇵🇭",
+    "region": "ЮВА",
+    "currency": "PHP",
+    "language": "филиппинский, английский",
+    "portal": "Lamudi",
+    "portalUrl": "https://www.lamudi.com.ph/",
+    "cities": [
+      {
+        "id": "philippines-0",
+        "name": "Манила",
+        "wiki": "Manila",
+        "rent": 500,
+        "living": 480,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "philippines-1",
+        "name": "Себу",
+        "wiki": "Cebu_City",
+        "rent": 400,
+        "living": 430,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "tropical",
+    "english": true,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "cambodia",
+    "name": "Камбоджа",
+    "flag": "🇰🇭",
+    "region": "ЮВА",
+    "currency": "KHR",
+    "language": "кхмерский",
+    "portal": "Realestate.com.kh",
+    "portalUrl": "https://www.realestate.com.kh/rent/",
+    "cities": [
+      {
+        "id": "cambodia-0",
+        "name": "Пномпень",
+        "wiki": "Phnom_Penh",
+        "rent": 350,
+        "living": 400,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "cambodia-1",
+        "name": "Сиемреап",
+        "wiki": "Siem_Reap",
+        "rent": 280,
+        "living": 350,
+        "tags": [
+          "work"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "tropical",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "laos",
+    "name": "Лаос",
+    "flag": "🇱🇦",
+    "region": "ЮВА",
+    "currency": "LAK",
+    "language": "лаосский",
+    "portal": "Yula",
+    "portalUrl": "https://www.yula.la/",
+    "cities": [
+      {
+        "id": "laos-0",
+        "name": "Вьентьян",
+        "wiki": "Vientiane",
+        "rent": 350,
+        "living": 370,
+        "tags": [
+          "work"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства"
+      },
+      {
+        "id": "laos-1",
+        "name": "Луангпхабанг",
+        "wiki": "Luang_Prabang",
+        "rent": 320,
+        "living": 350,
+        "tags": [
+          "mountains"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "горы"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "tropical",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "srilanka",
+    "name": "Шри-Ланка",
+    "flag": "🇱🇰",
+    "region": "Южная Азия",
+    "currency": "LKR",
+    "language": "сингальский, тамильский",
+    "portal": "ikman",
+    "portalUrl": "https://ikman.lk/",
+    "cities": [
+      {
+        "id": "srilanka-0",
+        "name": "Коломбо",
+        "wiki": "Colombo",
+        "rent": 400,
+        "living": 400,
+        "tags": [
+          "sea",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "srilanka-1",
+        "name": "Галле",
+        "wiki": "Galle",
+        "rent": 350,
+        "living": 350,
+        "tags": [
+          "sea",
+          "beach",
+          "work"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "tropical",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "india",
+    "name": "Индия",
+    "flag": "🇮🇳",
+    "region": "Южная Азия",
+    "currency": "INR",
+    "language": "хинди, английский",
+    "portal": "99acres",
+    "portalUrl": "https://www.99acres.com/",
+    "cities": [
+      {
+        "id": "india-0",
+        "name": "Нью-Дели",
+        "wiki": "New_Delhi",
+        "rent": 350,
+        "living": 370,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "india-1",
+        "name": "Панаджи · Гоа",
+        "wiki": "Panaji",
+        "rent": 400,
+        "living": 370,
+        "tags": [
+          "sea",
+          "beach",
+          "work"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "tropical",
+    "english": true,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "nepal",
+    "name": "Непал",
+    "flag": "🇳🇵",
+    "region": "Южная Азия",
+    "currency": "NPR",
+    "language": "непальский",
+    "portal": "Hamrobazar",
+    "portalUrl": "https://hamrobazaar.com/",
+    "cities": [
+      {
+        "id": "nepal-0",
+        "name": "Катманду",
+        "wiki": "Kathmandu",
+        "rent": 220,
+        "living": 300,
+        "tags": [
+          "work",
+          "mountains"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · горы"
+      },
+      {
+        "id": "nepal-1",
+        "name": "Покхара",
+        "wiki": "Pokhara",
+        "rent": 220,
+        "living": 280,
+        "tags": [
+          "work",
+          "mountains"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · горы"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "china",
+    "name": "Китай",
+    "flag": "🇨🇳",
+    "region": "Восточная Азия",
+    "currency": "CNY",
+    "language": "китайский",
+    "portal": "Ziroom",
+    "portalUrl": "https://www.ziroom.com/",
+    "cities": [
+      {
+        "id": "china-0",
+        "name": "Пекин",
+        "wiki": "Beijing",
+        "rent": 800,
+        "living": 600,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "china-1",
+        "name": "Шанхай",
+        "wiki": "Shanghai",
+        "rent": 950,
+        "living": 650,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "japan",
+    "name": "Япония",
+    "flag": "🇯🇵",
+    "region": "Восточная Азия",
+    "currency": "JPY",
+    "language": "японский",
+    "portal": "SUUMO",
+    "portalUrl": "https://suumo.jp/chintai/",
+    "cities": [
+      {
+        "id": "japan-0",
+        "name": "Токио",
+        "wiki": "Tokyo",
+        "rent": 950,
+        "living": 750,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "japan-1",
+        "name": "Осака",
+        "wiki": "Osaka",
+        "rent": 650,
+        "living": 650,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "korea",
+    "name": "Южная Корея",
+    "flag": "🇰🇷",
+    "region": "Восточная Азия",
+    "currency": "KRW",
+    "language": "корейский",
+    "portal": "Zigbang",
+    "portalUrl": "https://www.zigbang.com/",
+    "cities": [
+      {
+        "id": "korea-0",
+        "name": "Сеул",
+        "wiki": "Seoul",
+        "rent": 800,
+        "living": 750,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "korea-1",
+        "name": "Пусан",
+        "wiki": "Busan",
+        "rent": 500,
+        "living": 600,
+        "tags": [
+          "sea",
+          "beach",
+          "metro",
+          "malls",
+          "clubs"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · метро · торговые центры · игровая инфраструктура"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "taiwan",
+    "name": "Тайвань",
+    "flag": "🇹🇼",
+    "region": "Восточная Азия",
+    "currency": "TWD",
+    "language": "китайский",
+    "portal": "591",
+    "portalUrl": "https://rent.591.com.tw/",
+    "cities": [
+      {
+        "id": "taiwan-0",
+        "name": "Тайбэй",
+        "wiki": "Taipei",
+        "rent": 700,
+        "living": 600,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "taiwan-1",
+        "name": "Гаосюн",
+        "wiki": "Kaohsiung",
+        "rent": 450,
+        "living": 480,
+        "tags": [
+          "sea",
+          "metro",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · метро · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "mongolia",
+    "name": "Монголия",
+    "flag": "🇲🇳",
+    "region": "Восточная Азия",
+    "currency": "MNT",
+    "language": "монгольский",
+    "portal": "Unegui",
+    "portalUrl": "https://www.unegui.mn/",
+    "cities": [
+      {
+        "id": "mongolia-0",
+        "name": "Улан-Батор",
+        "wiki": "Ulaanbaatar",
+        "rent": 400,
+        "living": 450,
+        "tags": [
+          "work",
+          "malls",
+          "mountains"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры · горы"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "cold",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "kyrgyzstan",
+    "name": "Кыргызстан",
+    "flag": "🇰🇬",
+    "region": "Центральная Азия",
+    "currency": "KGS",
+    "language": "кыргызский, русский",
+    "portal": "House.kg",
+    "portalUrl": "https://www.house.kg/",
+    "cities": [
+      {
+        "id": "kyrgyzstan-0",
+        "name": "Бишкек",
+        "wiki": "Bishkek",
+        "rent": 400,
+        "living": 370,
+        "tags": [
+          "work",
+          "malls",
+          "mountains",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры · горы · игровая инфраструктура"
+      },
+      {
+        "id": "kyrgyzstan-1",
+        "name": "Ош",
+        "wiki": "Osh",
+        "rent": 250,
+        "living": 300,
+        "tags": [
+          "mountains"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "горы"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": true,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "uzbekistan",
+    "name": "Узбекистан",
+    "flag": "🇺🇿",
+    "region": "Центральная Азия",
+    "currency": "UZS",
+    "language": "узбекский",
+    "portal": "OLX",
+    "portalUrl": "https://www.olx.uz/nedvizhimost/kvartiry/arenda-dolgosrochnaya/",
+    "cities": [
+      {
+        "id": "uzbekistan-0",
+        "name": "Ташкент",
+        "wiki": "Tashkent",
+        "rent": 450,
+        "living": 370,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "uzbekistan-1",
+        "name": "Самарканд",
+        "wiki": "Samarkand",
+        "rent": 300,
+        "living": 300,
+        "tags": [
+          "work"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": true,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "tajikistan",
+    "name": "Таджикистан",
+    "flag": "🇹🇯",
+    "region": "Центральная Азия",
+    "currency": "TJS",
+    "language": "таджикский",
+    "portal": "Somon",
+    "portalUrl": "https://somon.tj/nedvizhimost/",
+    "cities": [
+      {
+        "id": "tajikistan-0",
+        "name": "Душанбе",
+        "wiki": "Dushanbe",
+        "rent": 350,
+        "living": 350,
+        "tags": [
+          "malls",
+          "mountains"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "торговые центры · горы"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": true,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "azerbaijan",
+    "name": "Азербайджан",
+    "flag": "🇦🇿",
+    "region": "Кавказ",
+    "currency": "AZN",
+    "language": "азербайджанский",
+    "portal": "Bina",
+    "portalUrl": "https://bina.az/",
+    "cities": [
+      {
+        "id": "azerbaijan-0",
+        "name": "Баку",
+        "wiki": "Baku",
+        "rent": 450,
+        "living": 450,
+        "tags": [
+          "sea",
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "azerbaijan-1",
+        "name": "Гянджа",
+        "wiki": "Ganja,_Azerbaijan",
+        "rent": 250,
+        "living": 320,
+        "tags": [
+          "mountains"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "горы"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": true,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "uae",
+    "name": "ОАЭ",
+    "flag": "🇦🇪",
+    "region": "Ближний Восток",
+    "currency": "AED",
+    "language": "арабский, английский",
+    "portal": "Bayut",
+    "portalUrl": "https://www.bayut.com/to-rent/property/uae/",
+    "cities": [
+      {
+        "id": "uae-0",
+        "name": "Абу-Даби",
+        "wiki": "Abu_Dhabi",
+        "rent": 1400,
+        "living": 800,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "uae-1",
+        "name": "Дубай",
+        "wiki": "Dubai",
+        "rent": 1700,
+        "living": 950,
+        "tags": [
+          "sea",
+          "beach",
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · метро · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": true,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "qatar",
+    "name": "Катар",
+    "flag": "🇶🇦",
+    "region": "Ближний Восток",
+    "currency": "QAR",
+    "language": "арабский",
+    "portal": "Property Finder",
+    "portalUrl": "https://www.propertyfinder.qa/",
+    "cities": [
+      {
+        "id": "qatar-0",
+        "name": "Доха",
+        "wiki": "Doha",
+        "rent": 1200,
+        "living": 750,
+        "tags": [
+          "sea",
+          "beach",
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · метро · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "oman",
+    "name": "Оман",
+    "flag": "🇴🇲",
+    "region": "Ближний Восток",
+    "currency": "OMR",
+    "language": "арабский",
+    "portal": "OpenSooq",
+    "portalUrl": "https://om.opensooq.com/",
+    "cities": [
+      {
+        "id": "oman-0",
+        "name": "Маскат",
+        "wiki": "Muscat",
+        "rent": 650,
+        "living": 550,
+        "tags": [
+          "sea",
+          "beach",
+          "malls",
+          "mountains"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · торговые центры · горы"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "bahrain",
+    "name": "Бахрейн",
+    "flag": "🇧🇭",
+    "region": "Ближний Восток",
+    "currency": "BHD",
+    "language": "арабский",
+    "portal": "Property Finder",
+    "portalUrl": "https://www.propertyfinder.bh/",
+    "cities": [
+      {
+        "id": "bahrain-0",
+        "name": "Манама",
+        "wiki": "Manama",
+        "rent": 650,
+        "living": 550,
+        "tags": [
+          "sea",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "israel",
+    "name": "Израиль",
+    "flag": "🇮🇱",
+    "region": "Ближний Восток",
+    "currency": "ILS",
+    "language": "иврит",
+    "portal": "Yad2",
+    "portalUrl": "https://www.yad2.co.il/realestate/rent",
+    "cities": [
+      {
+        "id": "israel-0",
+        "name": "Иерусалим",
+        "wiki": "Jerusalem",
+        "rent": 1100,
+        "living": 950,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "israel-1",
+        "name": "Тель-Авив",
+        "wiki": "Tel_Aviv",
+        "rent": 1500,
+        "living": 1100,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "cyprus",
+    "name": "Кипр",
+    "flag": "🇨🇾",
+    "region": "Европа",
+    "currency": "EUR",
+    "language": "греческий, турецкий",
+    "portal": "Bazaraki",
+    "portalUrl": "https://www.bazaraki.com/real-estate-to-rent/",
+    "cities": [
+      {
+        "id": "cyprus-0",
+        "name": "Никосия",
+        "wiki": "Nicosia",
+        "rent": 700,
+        "living": 700,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "cyprus-1",
+        "name": "Лимасол",
+        "wiki": "Limassol",
+        "rent": 1300,
+        "living": 850,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "germany",
+    "name": "Германия",
+    "flag": "🇩🇪",
+    "region": "Европа",
+    "currency": "EUR",
+    "language": "немецкий",
+    "portal": "ImmobilienScout24",
+    "portalUrl": "https://www.immobilienscout24.de/",
+    "cities": [
+      {
+        "id": "germany-0",
+        "name": "Берлин",
+        "wiki": "Berlin",
+        "rent": 1200,
+        "living": 850,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "germany-1",
+        "name": "Лейпциг",
+        "wiki": "Leipzig",
+        "rent": 650,
+        "living": 700,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "france",
+    "name": "Франция",
+    "flag": "🇫🇷",
+    "region": "Европа",
+    "currency": "EUR",
+    "language": "французский",
+    "portal": "SeLoger",
+    "portalUrl": "https://www.seloger.com/",
+    "cities": [
+      {
+        "id": "france-0",
+        "name": "Париж",
+        "wiki": "Paris",
+        "rent": 1500,
+        "living": 950,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "france-1",
+        "name": "Лион",
+        "wiki": "Lyon",
+        "rent": 850,
+        "living": 750,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "italy",
+    "name": "Италия",
+    "flag": "🇮🇹",
+    "region": "Европа",
+    "currency": "EUR",
+    "language": "итальянский",
+    "portal": "Immobiliare",
+    "portalUrl": "https://www.immobiliare.it/affitto-case/",
+    "cities": [
+      {
+        "id": "italy-0",
+        "name": "Рим",
+        "wiki": "Rome",
+        "rent": 1100,
+        "living": 750,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "italy-1",
+        "name": "Турин",
+        "wiki": "Turin",
+        "rent": 650,
+        "living": 650,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "greece",
+    "name": "Греция",
+    "flag": "🇬🇷",
+    "region": "Европа",
+    "currency": "EUR",
+    "language": "греческий",
+    "portal": "Spitogatos",
+    "portalUrl": "https://www.spitogatos.gr/en",
+    "cities": [
+      {
+        "id": "greece-0",
+        "name": "Афины",
+        "wiki": "Athens",
+        "rent": 700,
+        "living": 650,
+        "tags": [
+          "sea",
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "greece-1",
+        "name": "Салоники",
+        "wiki": "Thessaloniki",
+        "rent": 550,
+        "living": 600,
+        "tags": [
+          "sea",
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · метро · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "hungary",
+    "name": "Венгрия",
+    "flag": "🇭🇺",
+    "region": "Европа",
+    "currency": "HUF",
+    "language": "венгерский",
+    "portal": "Ingatlan",
+    "portalUrl": "https://ingatlan.com/",
+    "cities": [
+      {
+        "id": "hungary-0",
+        "name": "Будапешт",
+        "wiki": "Budapest",
+        "rent": 650,
+        "living": 600,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "hungary-1",
+        "name": "Дебрецен",
+        "wiki": "Debrecen",
+        "rent": 450,
+        "living": 500,
+        "tags": [
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "czechia",
+    "name": "Чехия",
+    "flag": "🇨🇿",
+    "region": "Европа",
+    "currency": "CZK",
+    "language": "чешский",
+    "portal": "Sreality",
+    "portalUrl": "https://www.sreality.cz/",
+    "cities": [
+      {
+        "id": "czechia-0",
+        "name": "Прага",
+        "wiki": "Prague",
+        "rent": 950,
+        "living": 700,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "czechia-1",
+        "name": "Брно",
+        "wiki": "Brno",
+        "rent": 700,
+        "living": 600,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "bulgaria",
+    "name": "Болгария",
+    "flag": "🇧🇬",
+    "region": "Европа",
+    "currency": "EUR",
+    "language": "болгарский",
+    "portal": "Imot",
+    "portalUrl": "https://www.imot.bg/",
+    "cities": [
+      {
+        "id": "bulgaria-0",
+        "name": "София",
+        "wiki": "Sofia",
+        "rent": 600,
+        "living": 550,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "bulgaria-1",
+        "name": "Варна",
+        "wiki": "Varna",
+        "rent": 450,
+        "living": 500,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "romania",
+    "name": "Румыния",
+    "flag": "🇷🇴",
+    "region": "Европа",
+    "currency": "RON",
+    "language": "румынский",
+    "portal": "Imobiliare",
+    "portalUrl": "https://www.imobiliare.ro/",
+    "cities": [
+      {
+        "id": "romania-0",
+        "name": "Бухарест",
+        "wiki": "Bucharest",
+        "rent": 550,
+        "living": 550,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "romania-1",
+        "name": "Клуж-Напока",
+        "wiki": "Cluj-Napoca",
+        "rent": 600,
+        "living": 550,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "albania",
+    "name": "Албания",
+    "flag": "🇦🇱",
+    "region": "Европа",
+    "currency": "ALL",
+    "language": "албанский",
+    "portal": "MerrJep",
+    "portalUrl": "https://www.merrjep.al/",
+    "cities": [
+      {
+        "id": "albania-0",
+        "name": "Тирана",
+        "wiki": "Tirana",
+        "rent": 500,
+        "living": 500,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "albania-1",
+        "name": "Влёра",
+        "wiki": "Vlorë",
+        "rent": 400,
+        "living": 450,
+        "tags": [
+          "sea",
+          "beach"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "bosnia",
+    "name": "Босния и Герцеговина",
+    "flag": "🇧🇦",
+    "region": "Европа",
+    "currency": "BAM",
+    "language": "боснийский, сербский, хорватский",
+    "portal": "OLX.ba",
+    "portalUrl": "https://olx.ba/",
+    "cities": [
+      {
+        "id": "bosnia-0",
+        "name": "Сараево",
+        "wiki": "Sarajevo",
+        "rent": 400,
+        "living": 450,
+        "tags": [
+          "work",
+          "malls",
+          "mountains"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры · горы"
+      },
+      {
+        "id": "bosnia-1",
+        "name": "Баня-Лука",
+        "wiki": "Banja_Luka",
+        "rent": 300,
+        "living": 400,
+        "tags": [
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "northmacedonia",
+    "name": "Северная Македония",
+    "flag": "🇲🇰",
+    "region": "Европа",
+    "currency": "MKD",
+    "language": "македонский",
+    "portal": "Pazar3",
+    "portalUrl": "https://www.pazar3.mk/",
+    "cities": [
+      {
+        "id": "northmacedonia-0",
+        "name": "Скопье",
+        "wiki": "Skopje",
+        "rent": 350,
+        "living": 400,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "northmacedonia-1",
+        "name": "Охрид",
+        "wiki": "Ohrid",
+        "rent": 300,
+        "living": 380,
+        "tags": [
+          "mountains"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "горы"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "belarus",
+    "name": "Беларусь",
+    "flag": "🇧🇾",
+    "region": "Европа",
+    "currency": "BYN",
+    "language": "белорусский, русский",
+    "portal": "Kufar",
+    "portalUrl": "https://re.kufar.by/",
+    "cities": [
+      {
+        "id": "belarus-0",
+        "name": "Минск",
+        "wiki": "Minsk",
+        "rent": 450,
+        "living": 450,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "clubs"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · игровая инфраструктура"
+      },
+      {
+        "id": "belarus-1",
+        "name": "Брест",
+        "wiki": "Brest,_Belarus",
+        "rent": 300,
+        "living": 350,
+        "tags": [
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": true,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "uk",
+    "name": "Великобритания",
+    "flag": "🇬🇧",
+    "region": "Европа",
+    "currency": "GBP",
+    "language": "английский",
+    "portal": "Rightmove",
+    "portalUrl": "https://www.rightmove.co.uk/",
+    "cities": [
+      {
+        "id": "uk-0",
+        "name": "Лондон",
+        "wiki": "London",
+        "rent": 2200,
+        "living": 1100,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "uk-1",
+        "name": "Манчестер",
+        "wiki": "Manchester",
+        "rent": 1100,
+        "living": 850,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": true,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "netherlands",
+    "name": "Нидерланды",
+    "flag": "🇳🇱",
+    "region": "Европа",
+    "currency": "EUR",
+    "language": "нидерландский",
+    "portal": "Funda",
+    "portalUrl": "https://www.funda.nl/",
+    "cities": [
+      {
+        "id": "netherlands-0",
+        "name": "Амстердам",
+        "wiki": "Amsterdam",
+        "rent": 2000,
+        "living": 950,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "netherlands-1",
+        "name": "Роттердам",
+        "wiki": "Rotterdam",
+        "rent": 1500,
+        "living": 850,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "finland",
+    "name": "Финляндия",
+    "flag": "🇫🇮",
+    "region": "Европа",
+    "currency": "EUR",
+    "language": "финский, шведский",
+    "portal": "Vuokraovi",
+    "portalUrl": "https://www.vuokraovi.com/",
+    "cities": [
+      {
+        "id": "finland-0",
+        "name": "Хельсинки",
+        "wiki": "Helsinki",
+        "rent": 1000,
+        "living": 850,
+        "tags": [
+          "sea",
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "finland-1",
+        "name": "Тампере",
+        "wiki": "Tampere",
+        "rent": 700,
+        "living": 750,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "cold",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "usa",
+    "name": "США",
+    "flag": "🇺🇸",
+    "region": "Северная Америка",
+    "currency": "USD",
+    "language": "английский",
+    "portal": "Zillow",
+    "portalUrl": "https://www.zillow.com/",
+    "cities": [
+      {
+        "id": "usa-0",
+        "name": "Вашингтон",
+        "wiki": "Washington,_D.C.",
+        "rent": 2100,
+        "living": 1200,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "usa-1",
+        "name": "Остин",
+        "wiki": "Austin,_Texas",
+        "rent": 1500,
+        "living": 1050,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": true,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "canada",
+    "name": "Канада",
+    "flag": "🇨🇦",
+    "region": "Северная Америка",
+    "currency": "CAD",
+    "language": "английский, французский",
+    "portal": "Rentals.ca",
+    "portalUrl": "https://rentals.ca/",
+    "cities": [
+      {
+        "id": "canada-0",
+        "name": "Оттава",
+        "wiki": "Ottawa",
+        "rent": 1400,
+        "living": 950,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "canada-1",
+        "name": "Монреаль",
+        "wiki": "Montreal",
+        "rent": 1200,
+        "living": 850,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "cold",
+    "english": true,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "mexico",
+    "name": "Мексика",
+    "flag": "🇲🇽",
+    "region": "Латинская Америка",
+    "currency": "MXN",
+    "language": "испанский",
+    "portal": "Inmuebles24",
+    "portalUrl": "https://www.inmuebles24.com/",
+    "cities": [
+      {
+        "id": "mexico-0",
+        "name": "Мехико",
+        "wiki": "Mexico_City",
+        "rent": 800,
+        "living": 600,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "mexico-1",
+        "name": "Мерида",
+        "wiki": "Mérida,_Yucatán",
+        "rent": 550,
+        "living": 500,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "argentina",
+    "name": "Аргентина",
+    "flag": "🇦🇷",
+    "region": "Латинская Америка",
+    "currency": "ARS",
+    "language": "испанский",
+    "portal": "Zonaprop",
+    "portalUrl": "https://www.zonaprop.com.ar/",
+    "cities": [
+      {
+        "id": "argentina-0",
+        "name": "Буэнос-Айрес",
+        "wiki": "Buenos_Aires",
+        "rent": 650,
+        "living": 600,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "argentina-1",
+        "name": "Кордова",
+        "wiki": "Córdoba,_Argentina",
+        "rent": 400,
+        "living": 450,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "brazil",
+    "name": "Бразилия",
+    "flag": "🇧🇷",
+    "region": "Латинская Америка",
+    "currency": "BRL",
+    "language": "португальский",
+    "portal": "QuintoAndar",
+    "portalUrl": "https://www.quintoandar.com.br/",
+    "cities": [
+      {
+        "id": "brazil-0",
+        "name": "Бразилиа",
+        "wiki": "Brasília",
+        "rent": 450,
+        "living": 500,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "brazil-1",
+        "name": "Флорианополис",
+        "wiki": "Florianópolis",
+        "rent": 650,
+        "living": 550,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "tropical",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "chile",
+    "name": "Чили",
+    "flag": "🇨🇱",
+    "region": "Латинская Америка",
+    "currency": "CLP",
+    "language": "испанский",
+    "portal": "Portal Inmobiliario",
+    "portalUrl": "https://www.portalinmobiliario.com/",
+    "cities": [
+      {
+        "id": "chile-0",
+        "name": "Сантьяго",
+        "wiki": "Santiago",
+        "rent": 600,
+        "living": 600,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "mountains"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · горы"
+      },
+      {
+        "id": "chile-1",
+        "name": "Винья-дель-Мар",
+        "wiki": "Viña_del_Mar",
+        "rent": 600,
+        "living": 550,
+        "tags": [
+          "sea",
+          "beach",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "uruguay",
+    "name": "Уругвай",
+    "flag": "🇺🇾",
+    "region": "Латинская Америка",
+    "currency": "UYU",
+    "language": "испанский",
+    "portal": "Mercado Libre",
+    "portalUrl": "https://www.mercadolibre.com.uy/inmuebles/",
+    "cities": [
+      {
+        "id": "uruguay-0",
+        "name": "Монтевидео",
+        "wiki": "Montevideo",
+        "rent": 750,
+        "living": 700,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "uruguay-1",
+        "name": "Пунта-дель-Эсте",
+        "wiki": "Punta_del_Este",
+        "rent": 850,
+        "living": 750,
+        "tags": [
+          "sea",
+          "beach"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Юридическое гражданство: обычно 5 лет обычного проживания или 3 года с семьёй в стране, средства к существованию и доказательства связи со страной. Гражданство и национальность имеют особенности; проверяйте последствия отдельно.",
+    "citizenYears": 5,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": [
+      {
+        "title": "Официальные условия гражданства",
+        "url": "https://www.gub.uy/tramites/carta-ciudadania"
+      }
+    ]
+  },
+  {
+    "id": "colombia",
+    "name": "Колумбия",
+    "flag": "🇨🇴",
+    "region": "Латинская Америка",
+    "currency": "COP",
+    "language": "испанский",
+    "portal": "Finca Raíz",
+    "portalUrl": "https://www.fincaraiz.com.co/",
+    "cities": [
+      {
+        "id": "colombia-0",
+        "name": "Богота",
+        "wiki": "Bogotá",
+        "rent": 450,
+        "living": 450,
+        "tags": [
+          "work",
+          "malls",
+          "mountains"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры · горы"
+      },
+      {
+        "id": "colombia-1",
+        "name": "Медельин",
+        "wiki": "Medellín",
+        "rent": 600,
+        "living": 450,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "mountains"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · горы"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "tropical",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "ecuador",
+    "name": "Эквадор",
+    "flag": "🇪🇨",
+    "region": "Латинская Америка",
+    "currency": "USD",
+    "language": "испанский",
+    "portal": "Plusvalía",
+    "portalUrl": "https://www.plusvalia.com/",
+    "cities": [
+      {
+        "id": "ecuador-0",
+        "name": "Кито",
+        "wiki": "Quito",
+        "rent": 400,
+        "living": 400,
+        "tags": [
+          "metro",
+          "work",
+          "malls",
+          "mountains"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры · горы"
+      },
+      {
+        "id": "ecuador-1",
+        "name": "Куэнка",
+        "wiki": "Cuenca,_Ecuador",
+        "rent": 400,
+        "living": 380,
+        "tags": [
+          "work",
+          "mountains"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · горы"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "peru",
+    "name": "Перу",
+    "flag": "🇵🇪",
+    "region": "Латинская Америка",
+    "currency": "PEN",
+    "language": "испанский",
+    "portal": "Urbania",
+    "portalUrl": "https://urbania.pe/",
+    "cities": [
+      {
+        "id": "peru-0",
+        "name": "Лима",
+        "wiki": "Lima",
+        "rent": 500,
+        "living": 450,
+        "tags": [
+          "sea",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "peru-1",
+        "name": "Арекипа",
+        "wiki": "Arequipa",
+        "rent": 300,
+        "living": 350,
+        "tags": [
+          "mountains",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "горы · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "costarica",
+    "name": "Коста-Рика",
+    "flag": "🇨🇷",
+    "region": "Латинская Америка",
+    "currency": "CRC",
+    "language": "испанский",
+    "portal": "Encuentra24",
+    "portalUrl": "https://www.encuentra24.com/costa-rica-en/real-estate-for-rent",
+    "cities": [
+      {
+        "id": "costarica-0",
+        "name": "Сан-Хосе",
+        "wiki": "San_José,_Costa_Rica",
+        "rent": 650,
+        "living": 600,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "costarica-1",
+        "name": "Тамариндо",
+        "wiki": "Tamarindo,_Costa_Rica",
+        "rent": 850,
+        "living": 650,
+        "tags": [
+          "sea",
+          "beach",
+          "work"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "tropical",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "panama",
+    "name": "Панама",
+    "flag": "🇵🇦",
+    "region": "Латинская Америка",
+    "currency": "USD",
+    "language": "испанский",
+    "portal": "Encuentra24",
+    "portalUrl": "https://www.encuentra24.com/panama-en/real-estate-for-rent",
+    "cities": [
+      {
+        "id": "panama-0",
+        "name": "Панама",
+        "wiki": "Panama_City",
+        "rent": 850,
+        "living": 600,
+        "tags": [
+          "sea",
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house",
+          "condo"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · метро · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house",
+      "condo"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "tropical",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "egypt",
+    "name": "Египет",
+    "flag": "🇪🇬",
+    "region": "Африка",
+    "currency": "EGP",
+    "language": "арабский",
+    "portal": "Dubizzle",
+    "portalUrl": "https://www.dubizzle.com.eg/en/properties/",
+    "cities": [
+      {
+        "id": "egypt-0",
+        "name": "Каир",
+        "wiki": "Cairo",
+        "rent": 300,
+        "living": 300,
+        "tags": [
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "метро · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "egypt-1",
+        "name": "Хургада",
+        "wiki": "Hurghada",
+        "rent": 300,
+        "living": 300,
+        "tags": [
+          "sea",
+          "beach",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "morocco",
+    "name": "Марокко",
+    "flag": "🇲🇦",
+    "region": "Африка",
+    "currency": "MAD",
+    "language": "арабский, амазигский",
+    "portal": "Mubawab",
+    "portalUrl": "https://www.mubawab.ma/en",
+    "cities": [
+      {
+        "id": "morocco-0",
+        "name": "Рабат",
+        "wiki": "Rabat",
+        "rent": 450,
+        "living": 400,
+        "tags": [
+          "sea",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "morocco-1",
+        "name": "Марракеш",
+        "wiki": "Marrakesh",
+        "rent": 400,
+        "living": 400,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "tunisia",
+    "name": "Тунис",
+    "flag": "🇹🇳",
+    "region": "Африка",
+    "currency": "TND",
+    "language": "арабский",
+    "portal": "Tayara",
+    "portalUrl": "https://www.tayara.tn/",
+    "cities": [
+      {
+        "id": "tunisia-0",
+        "name": "Тунис",
+        "wiki": "Tunis",
+        "rent": 300,
+        "living": 350,
+        "tags": [
+          "sea",
+          "metro",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · метро · торговые центры"
+      },
+      {
+        "id": "tunisia-1",
+        "name": "Сус",
+        "wiki": "Sousse",
+        "rent": 250,
+        "living": 300,
+        "tags": [
+          "sea",
+          "beach",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": false,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "mauritius",
+    "name": "Маврикий",
+    "flag": "🇲🇺",
+    "region": "Африка",
+    "currency": "MUR",
+    "language": "английский, французский, креольский",
+    "portal": "Lexpress Property",
+    "portalUrl": "https://www.lexpressproperty.com/en/",
+    "cities": [
+      {
+        "id": "mauritius-0",
+        "name": "Порт-Луи",
+        "wiki": "Port_Louis",
+        "rent": 600,
+        "living": 550,
+        "tags": [
+          "sea",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "mauritius-1",
+        "name": "Гранд-Бэ",
+        "wiki": "Grand_Baie",
+        "rent": 700,
+        "living": 600,
+        "tags": [
+          "sea",
+          "beach",
+          "work"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "tropical",
+    "english": true,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "southafrica",
+    "name": "ЮАР",
+    "flag": "🇿🇦",
+    "region": "Африка",
+    "currency": "ZAR",
+    "language": "английский и другие",
+    "portal": "Property24",
+    "portalUrl": "https://www.property24.com/to-rent",
+    "cities": [
+      {
+        "id": "southafrica-0",
+        "name": "Претория",
+        "wiki": "Pretoria",
+        "rent": 400,
+        "living": 500,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "southafrica-1",
+        "name": "Кейптаун",
+        "wiki": "Cape_Town",
+        "rent": 800,
+        "living": 600,
+        "tags": [
+          "sea",
+          "beach",
+          "work",
+          "malls",
+          "mountains"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · пляжи · кафе и рабочие пространства · торговые центры · горы"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": true,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "australia",
+    "name": "Австралия",
+    "flag": "🇦🇺",
+    "region": "Океания",
+    "currency": "AUD",
+    "language": "английский",
+    "portal": "Domain",
+    "portalUrl": "https://www.domain.com.au/rent/",
+    "cities": [
+      {
+        "id": "australia-0",
+        "name": "Канберра",
+        "wiki": "Canberra",
+        "rent": 1500,
+        "living": 950,
+        "tags": [
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "australia-1",
+        "name": "Мельбурн",
+        "wiki": "Melbourne",
+        "rent": 1500,
+        "living": 950,
+        "tags": [
+          "sea",
+          "metro",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · метро · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": true,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  },
+  {
+    "id": "newzealand",
+    "name": "Новая Зеландия",
+    "flag": "🇳🇿",
+    "region": "Океания",
+    "currency": "NZD",
+    "language": "английский, маори",
+    "portal": "Trade Me",
+    "portalUrl": "https://www.trademe.co.nz/a/property/residential/rent",
+    "cities": [
+      {
+        "id": "newzealand-0",
+        "name": "Веллингтон",
+        "wiki": "Wellington",
+        "rent": 1300,
+        "living": 950,
+        "tags": [
+          "sea",
+          "work",
+          "malls"
+        ],
+        "capital": true,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · кафе и рабочие пространства · торговые центры"
+      },
+      {
+        "id": "newzealand-1",
+        "name": "Окленд",
+        "wiki": "Auckland",
+        "rent": 1400,
+        "living": 950,
+        "tags": [
+          "sea",
+          "work",
+          "malls"
+        ],
+        "capital": false,
+        "housing": [
+          "apartment",
+          "house"
+        ],
+        "costSource": "Редакционный сценарий бюджета, не замер рынка. Погрешность может превышать 30%; цены зависят от района, сезона и договора.",
+        "features": "побережье · кафе и рабочие пространства · торговые центры"
+      }
+    ],
+    "verified": false,
+    "entry": "Условия въезда требуют отдельной проверки",
+    "longStay": "Работа, учёба, семья или специальная программа. Наличие подходящего основания и доступность подачи для граждан РФ нужно проверить до переезда.",
+    "official": "https://www.iatatravelcentre.com/",
+    "difficulty": 0,
+    "russian": false,
+    "housing": [
+      "apartment",
+      "house"
+    ],
+    "visaFree": false,
+    "longType": "unknown",
+    "climate": "temperate",
+    "english": true,
+    "rentalChecks": [],
+    "citizenship": "Срок и условия натурализации не проверены. Наличие ВНЖ не означает автоматического права на паспорт.",
+    "citizenYears": null,
+    "social": "Репрезентативных сопоставимых данных о бытовом отношении к россиянам нет. Опыт зависит от города, языка и обстоятельств. Проверяйте правила въезда и банков отдельно; паспорт не предсказывает поведение отдельных людей.",
+    "sources": []
+  }
+]
