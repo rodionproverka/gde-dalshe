@@ -10,3 +10,5 @@
 @media(max-width:760px){.filters{height:100dvh;max-height:100dvh}.filters .filter-scroll{flex:1 1 0}.filters .search-button{margin-bottom:env(safe-area-inset-bottom,0px)}input,select{font-size:16px}.search-form input,.search-form select{font-size:16px}.filters select,.filters input:not([type=checkbox]){font-size:16px}}
 
 .hero-location{text-align:left}.hero-location:hover{opacity:.8}.footer-credit{font-size:8px;color:#8b9681;white-space:nowrap}
+
+.detail-nav .detail-nav-close{position:sticky;left:0;z-index:4;flex:none;background:#fff;padding-right:12px;font-size:16px;color:var(--green)}
