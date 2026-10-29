@@ -1,19 +1,799 @@
-<!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#174c3c"><meta name="description" content="Где дальше — 68 стран и 133 города для новой главы. Подберите переезд по бюджету, образу жизни и условиям проживания. Источники, фотографии и честные оценки."><title>Где дальше — найдите своё место</title><link rel="icon" href="./assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css"></head><body><noscript><p style="padding:20px">Для поиска и карточек включите JavaScript. Источники доступны в файле <a href="./research.json">research.json</a>.</p></noscript>
-<header class="header"><a class="brand" href="#" aria-label="Где дальше — главная"><span class="brand-icon">↗</span>где дальше<span class="brand-dot">.</span></a><nav aria-label="Главное меню"><a href="#destinations" class="nav-active">Направления</a><a href="#collections">Подборки</a><a href="#methodology">Как считаем</a></nav><div class="header-actions"><label class="currency-label"><span>Валюта</span><select id="currency" aria-label="Валюта цен"><option value="USD">$ USD</option><option value="RUB">₽ RUB</option><option value="EUR">€ EUR</option></select></label><button class="saved-button" id="savedToggle" aria-label="Показать избранное">♡ <span id="savedCount">0</span></button></div></header>
-<main><section class="hero" aria-labelledby="hero-title"><div class="hero-photo" id="heroPhoto"></div><div class="hero-shade"></div><div class="hero-copy"><span class="eyebrow light"><span class="tiny-globe">◎</span> МИР БОЛЬШЕ, ЧЕМ КАЖЕТСЯ</span><h1 id="hero-title">Новая страна.<br>Ваша жизнь.</h1><p>Найдите место, где хочется остаться.<br>Сравнивайте города, считайте бюджет, стройте планы.</p><a class="hero-link" href="#destinations">Найти своё место <span>↗</span></a></div><button class="hero-location" id="heroLocationOpen" aria-label="Открыть город на обложке"><span>⌖</span><div id="heroLocation">Батуми, Грузия<small>Возможно, ваша следующая глава</small></div></button><div class="hero-counter"><b>68</b><span>стран для<br>нового начала</span></div></section>
-<section class="search-wrap" aria-label="Подбор направления"><form id="searchForm" class="search-form"><label><span>ОТКУДА</span><select id="origin" aria-label="Откуда переезжаете"><option>Россия</option><option>Грузия</option><option>Армения</option><option>Турция</option><option>Казахстан</option><option>Таиланд</option><option>Вьетнам</option><option>Другая страна</option></select></label><label class="where-field"><span>КУДА</span><input id="search" type="search" placeholder="Куда угодно" list="places" autocomplete="off" aria-label="Поиск страны, города или региона"><datalist id="places"></datalist></label><label><span>ДОХОД В МЕСЯЦ <small id="budgetCurrency">USD</small></span><input id="income" type="number" min="0" max="100000000" placeholder="Не ограничен" inputmode="numeric"></label><label class="people-field"><span>КТО ЕДЕТ</span><select id="people" aria-label="Количество человек"><option value="1">1 человек</option><option value="2">2 человека</option><option value="3">3 человека</option><option value="4">4 человека</option><option value="5">5 человек</option><option value="6">6 человек</option></select></label><button class="search-button" type="submit">Подобрать <span>↗</span></button></form><div class="search-under"><span>Для граждан РФ <span class="small-dot"></span> Планируйте с любого места</span><span id="fxStatus">Загружаем курс валют…</span></div></section>
-<section class="quick-start"><span>Что важно для вас?</span><div id="quickChips"><button data-preset="sea">☀ У моря</button><button data-preset="budget">↘ До $1 000</button><button data-preset="long">◷ Остаться на 7+ месяцев</button><button data-preset="work">⌘ Работать удалённо</button><button data-preset="europe">✧ Европа</button><button data-preset="russian">☏ Проще с русским</button></div></section>
-<section id="destinations" class="destinations"><div class="section-head"><div><div class="eyebrow">ВАШ СЛЕДУЮЩИЙ АДРЕС</div><h2>Куда переехать?</h2><p>От привычного соседства до совсем другой жизни.</p></div><div class="catalog-tools"><button id="mobileFilter" class="outline-button">☷ Фильтры <span id="filterCount"></span></button><button id="compareOpen" class="outline-button">⇄ Сравнить <span id="compareCount">0</span></button></div></div>
-<div class="catalog-layout"><aside id="filters" class="filters"><div class="filter-top"><h3>Под ваше настроение</h3><button id="resetFilters">Сбросить</button><button id="closeFilters" class="mobile-only" aria-label="Закрыть фильтры">×</button></div><div class="filter-scroll"><div class="filter-group"><label class="field-title" for="region">Часть света</label><select id="region"><option value="">Весь мир</option><option>Европа</option><option>Азия</option><option>ЮВА</option><option>Кавказ</option><option>Центральная Азия</option><option>Восточная Азия</option><option>Южная Азия</option><option>Ближний Восток</option><option>Латинская Америка</option><option>Северная Америка</option><option>Африка</option><option>Океания</option></select></div>
-<div class="filter-group"><label class="field-title" for="maxRent">Аренда в месяц <small id="rentCurrency">USD</small></label><div class="number-field"><span>до</span><input id="maxRent" type="number" min="0" placeholder="Любая" inputmode="numeric"></div><label class="field-title mt" for="housing">Тип жилья</label><select id="housing"><option value="">Любой</option><option value="apartment">Квартира</option><option value="condo">Кондо</option><option value="house">Дом</option></select><p class="micro">Цены карточек — сценарий квартиры. Другие типы требуют проверки объявлений.</p></div>
-<div class="filter-group"><h4>Место и ритм жизни</h4><div id="lifestyleFilters"></div></div>
-<details class="filter-group" open><summary>Легальное проживание</summary><label class="check"><input type="checkbox" id="visaFree"> Без визы на старте</label><label class="check"><input type="checkbox" id="longStay"> Есть проверенный путь 7+ мес.</label><label class="check"><input type="checkbox" id="easyStay"> 7+ мес. без визы и ВНЖ</label><label class="check"><input type="checkbox" id="verifiedOnly"> Проверенные правила въезда</label><label class="field-title mt" for="bureaucracy">Бюрократия: допустимая сложность</label><select id="bureaucracy"><option value="">Не ограничивать</option><option value="2">Ниже средней</option><option value="3">До средней</option><option value="5">Любая, но оценка проверена</option></select></details>
-<details class="filter-group"><summary>Язык и климат</summary><label class="check"><input id="russian" type="checkbox"> Русский распространён</label><label class="check"><input id="english" type="checkbox"> Английский в повседневной жизни</label><label class="field-title mt" for="climate">Климат</label><select id="climate"><option value="">Любой</option><option value="tropical">Преимущественно тропический</option><option value="temperate">Умеренный / субтропический</option><option value="cold">Холодная зима</option></select><p class="micro">Климат — грубый ориентир по стране. Сезонность смотрите по городу.</p></details>
-<details class="filter-group"><summary>Деньги и планы</summary><label class="field-title" for="funding">Источник средств</label><select id="funding"><option value="income">Ежемесячный доход</option><option value="savings">Живу на накопления</option></select><label class="field-title mt" for="savings">Накопления, <span id="savingsCurrency">USD</span></label><input id="savings" type="number" min="0" placeholder="Например, 10000"><label class="field-title mt" for="months">Планирую жить</label><select id="months"><option value="7">7 месяцев</option><option value="12">12 месяцев</option><option value="24">24 месяца</option></select><label class="check"><input id="reserve" type="checkbox"> Заложить запас 20%</label><label class="field-title mt" for="citizenship">Проверенный срок до подачи на гражданство</label><select id="citizenship"><option value="">Не важно</option><option value="5">До 5 лет</option><option value="10">До 10 лет</option></select><p class="micro">Только проверенные обычные маршруты. Срок до права подачи, не до паспорта.</p></details>
-</div><button id="applyMobile" class="search-button mobile-only">Показать направления</button></aside>
-<div class="catalog-main"><div class="results-top"><div><b id="resultCount">68 стран</b><span class="results-note" id="resultsNote">Место найдётся каждому</span></div><label><select id="sort" aria-label="Сортировка"><option value="recommended">Сначала вдохновение</option><option value="budget">Дешевле для жизни</option><option value="rent">Дешевле аренда</option><option value="legal">Проще остаться</option><option value="name">По алфавиту</option></select></label></div><div id="activeFilters" class="active-filters"></div><div id="countryGrid" class="country-grid" aria-live="polite"></div><button id="loadMore" class="load-more">Показать ещё направления <span>↓</span></button><p class="catalog-footnote">Бюджет — расчётный ориентир на месяц с арендой. Правила и цены имеют разный уровень проверки: откройте источники в карточке.</p></div></div></section>
-<section id="collections" class="collections"><div class="section-head"><div><div class="eyebrow">НЕМНОГО ВДОХНОВЕНИЯ</div><h2>У каждого свой повод уехать</h2><p>Четыре отправные точки для вашей новой главы.</p></div><span class="hand-note">А дальше — как вам нравится ↗</span></div><div id="collectionGrid" class="collection-grid"></div></section>
-<section class="budget-banner"><div><span class="eyebrow">НЕ ТОЛЬКО ЧЕМОДАН И БИЛЕТ</span><h2>Хватит ли на новую жизнь?</h2><p>Укажите доход и количество человек. Мы учтём жильё,<br>повседневные расходы и запас на непредвиденное.</p></div><div class="budget-banner-right"><span class="coin">$</span><button id="budgetFocus">Рассчитать мой бюджет ↗</button><small>Без регистрации. Всё остаётся у вас.</small></div></section>
-<section id="methodology" class="methodology"><div><span class="eyebrow">ПРОЗРАЧНО В КАЖДОЙ ЦИФРЕ</span><h2>Хороший переезд<br>начинается с фактов.</h2><p>Проверка источников: 30 октября 2026.<br><span id="coverageLine">68 стран в каталоге · 10 с проверенными правилами въезда.</span></p><button class="text-button" id="methodOpen">Источники и методика ↗</button></div><div class="method-cards"><article><span>01</span><h3>Знаем, откуда цифры</h3><p>Реальные примеры аренды отмечены отдельно. Бюджеты — редакционные сценарии, а не обещание цен.</p></article><article><span>02</span><h3>Без простых ярлыков</h3><p>Не оцениваем целые народы. Различаем ограничения для паспорта РФ и личный опыт общения.</p></article><article><span>03</span><h3>Долгая жизнь ≠ короткая виза</h3><p>Для 7+ месяцев показываем основание, требования и официальный источник. Визаран не заменяет ВНЖ.</p></article></div></section>
-</main><footer><a class="brand" href="#"><span class="brand-icon">↗</span>где дальше.</a><p>Место для вашей следующей главы.</p><a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer">Курсы: ExchangeRate-API ↗</a><button id="photoCredits" class="footer-credit">Фото и авторы ↗</button><span>Сделано для любопытных к жизни · 2026</span></footer>
-<dialog id="detailDialog" class="detail-dialog"><button id="closeDetail" class="dialog-close" aria-label="Закрыть карточку">×</button><div id="detailContent"></div></dialog><dialog id="infoDialog" class="info-dialog"><button id="closeInfo" class="dialog-close" aria-label="Закрыть">×</button><div id="infoContent"></div></dialog><div id="filterBackdrop" class="filter-backdrop"></div><div id="toast" role="status" class="toast"></div><script type="module" src="./app.js"></script></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081015">
+  <meta name="description" content="Где дальше — честный визуальный каталог переезда для граждан РФ. 68 стран, 133 города, фотогалереи, интерактивные карты ТЦ и парков, подробные визовые маршруты и калькулятор бюджета.">
+  <title>Где дальше — Найдите своё место для жизни</title>
+  
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="apple-touch-icon" href="./assets/brand/brand-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./vendor/leaflet.css">
+  <link rel="stylesheet" href="./style.css?v=3">
+</head>
+<body>
+  <noscript>Для работы интерактивного поиска, галерей и карт включите JavaScript в браузере.</noscript>
+
+  <!-- Ambient Hero Glow & Backdrop -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner shell">
+      <a class="brand" href="#top" aria-label="Где дальше — главная">
+        <img src="./assets/brand/brand-logo.svg" alt="Логотип Где дальше" class="brand-logo" width="38" height="38">
+        <div class="brand-text">
+          <span class="brand-name">ГДЕ ДАЛЬШЕ</span>
+          <span class="brand-sub">каталог новой жизни</span>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Главная навигация">
+        <a href="#destinations" class="nav-link active">Направления</a>
+        <a href="#collections" class="nav-link">Подборки</a>
+        <a href="#brand-story" class="nav-link">О проекте</a>
+        <a href="#methodology" class="nav-link">Как считаем</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="savedToggle" class="saved-pill" aria-label="Сохранённые направления" aria-pressed="false">
+          <span data-icon="heart"></span>
+          <span class="saved-label">Избранное</span>
+          <span id="savedCount" class="badge">0</span>
+        </button>
+
+        <div class="currency-picker">
+          <span data-icon="globe" class="currency-icon"></span>
+          <select id="currency" aria-label="Валюта цен">
+            <option value="USD">USD ($)</option>
+            <option value="RUB" selected>RUB (₽)</option>
+            <option value="EUR">EUR (€)</option>
+          </select>
+        </div>
+
+        <a href="#planner" class="header-cta button button-gold-sm">Подобрать</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section (Level Travel Luxury Style adapted for Relocation) -->
+    <section class="hero-section">
+      <div class="hero-bg-container" aria-hidden="true">
+        <div class="hero-bg-image"></div>
+        <div class="hero-gradient-overlay"></div>
+      </div>
+
+      <div class="shell hero-content">
+        <div class="hero-copy">
+          <div class="hero-badge">
+            <span data-icon="spark" class="sparkle-icon"></span>
+            <span>БОЛЬШЕ, ЧЕМ ПЕРЕЕЗД</span>
+          </div>
+
+          <h1 class="hero-title">
+            Открывайте мир <br>
+            <em class="accent-serif">по-своему</em>
+          </h1>
+
+          <p class="hero-description">
+            68 стран, проверенные правила въезда для граждан РФ, честные сметы расходов, 
+            фотографии городов и карты лучших мест для жизни.
+          </p>
+
+          <div class="hero-stats-row">
+            <div class="hero-stat-item">
+              <strong>68</strong>
+              <span>стран мира</span>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat-item">
+              <strong>133</strong>
+              <span>исследованных города</span>
+            </div>
+            <div class="hero-stat-sep"></div>
+            <div class="hero-stat-item">
+              <strong>34</strong>
+              <span>визовых регламента 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Polaroid Card (like Level Travel Greece badge) -->
+        <div class="hero-aside">
+          <div class="handwritten-note">
+            <span>А если там — дом?</span>
+            <svg class="handwritten-arrow" viewBox="0 0 100 45" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 10 C 45 5, 80 15, 85 35 M 75 32 L 85 37 L 90 27"/>
+            </svg>
+          </div>
+
+          <button id="heroOpen" class="hero-postcard" aria-label="Открыть Черногорию">
+            <div class="postcard-img-wrap">
+              <img src="./assets/cities/montenegro-1.jpg" alt="Черногория, Будва" loading="eager">
+              <span class="postcard-chip">1 год без визы</span>
+            </div>
+            <div class="postcard-meta">
+              <div class="postcard-text">
+                <span class="postcard-kicker">СЛЕДУЮЩАЯ ОСТАНОВКА?</span>
+                <strong class="postcard-name">Черногория, Будва</strong>
+                <span class="postcard-details">от <span class="hero-budva-price">85 000 ₽</span> / мес • Море и горы</span>
+              </div>
+              <div class="postcard-arrow">
+                <span data-icon="arrow"></span>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Planner / Search Form (Segmented Level Travel Search Bar) -->
+    <section class="planner-section" id="planner">
+      <div class="shell">
+        <div class="planner-box">
+          <!-- Top Category Tabs -->
+          <div class="planner-modes">
+            <div class="mode-tabs" role="tablist">
+              <button class="mode-pill active" data-preset="all">
+                <span data-icon="globe"></span> Все направления
+              </button>
+              <button class="mode-pill" data-preset="sea">
+                <span data-icon="sea"></span> У моря
+              </button>
+              <button class="mode-pill" data-preset="nomad">
+                <span data-icon="nomad"></span> Digital Nomad
+              </button>
+              <button class="mode-pill" data-preset="budget">
+                <span data-icon="wallet"></span> Доступный бюджет
+              </button>
+              <button class="mode-pill" data-preset="withoutjob">
+                <span data-icon="passport"></span> Без визы
+              </button>
+              <button class="mode-pill" data-preset="europe">
+                <span data-icon="compass"></span> Европа
+              </button>
+            </div>
+
+            <div class="planner-citizenship-note">
+              <span data-icon="shield"></span> Паспорт РФ · Актуально на 2026
+            </div>
+          </div>
+
+          <!-- Main Search Bar (Level Travel White Pill Container) -->
+          <form id="searchForm" class="search-bar-form">
+            <!-- Field 1: Откуда -->
+            <div class="search-field field-origin">
+              <div class="field-icon-wrap">
+                <span data-icon="pin"></span>
+              </div>
+              <div class="field-body">
+                <span class="field-label">ОТКУДА</span>
+                <select id="origin" class="field-select" aria-label="Откуда переезжаете">
+                  <option value="Россия">Россия (паспорт РФ)</option>
+                  <option value="Беларусь">Беларусь</option>
+                  <option value="Казахстан">Казахстан</option>
+                  <option value="Другая страна">Другая страна</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="search-divider"></div>
+
+            <!-- Field 2: Куда -->
+            <div class="search-field field-destination">
+              <div class="field-icon-wrap">
+                <span data-icon="search"></span>
+              </div>
+              <div class="field-body">
+                <span class="field-label">КУДА ХОТИТЕ</span>
+                <input type="search" id="search" class="field-input" placeholder="Куда угодно (страна, город, регион)" list="places" autocomplete="off" aria-label="Куда хотите поехать">
+                <datalist id="places"></datalist>
+              </div>
+            </div>
+
+            <div class="search-divider"></div>
+
+            <!-- Field 3: Срок проживания (User request: любые месяцы/годы) -->
+            <div class="search-field field-duration">
+              <div class="field-icon-wrap">
+                <span data-icon="calendar"></span>
+              </div>
+              <div class="field-body">
+                <span class="field-label">ПЛАНИРУЮ ЖИТЬ</span>
+                <div class="duration-control-row">
+                  <input type="number" id="durationAmount" class="field-input duration-number" min="1" max="120" placeholder="Любой" aria-label="Срок проживания">
+                  <select id="durationUnit" class="duration-unit-select" aria-label="Единица измерения срока">
+                    <option value="months">мес.</option>
+                    <option value="years">лет</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="search-divider"></div>
+
+            <!-- Field 4: Кто едет -->
+            <div class="search-field field-people">
+              <div class="field-icon-wrap">
+                <span data-icon="people"></span>
+              </div>
+              <div class="field-body">
+                <span class="field-label">КТО ЕДЕТ</span>
+                <select id="people" class="field-select" aria-label="Количество путешественников">
+                  <option value="1">1 человек</option>
+                  <option value="2">2 человека (пара)</option>
+                  <option value="3">3 человека (семья)</option>
+                  <option value="4">4 человека</option>
+                  <option value="5">5+ человек</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="search-action-cell">
+              <button type="submit" class="button search-submit-btn">
+                <span>Найти варианты</span>
+                <span data-icon="arrow" class="btn-arrow"></span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Trust & Value Bar (Below Search Bar) -->
+          <div class="trust-bar">
+            <div class="trust-items">
+              <div class="trust-badge">
+                <span data-icon="shield"></span>
+                <span>Проверенные ВНЖ 2026</span>
+              </div>
+              <div class="trust-badge">
+                <span data-icon="wallet"></span>
+                <span>Реальные бюджеты жизни</span>
+              </div>
+              <div class="trust-badge">
+                <span data-icon="map"></span>
+                <span>Карты ТЦ, парков и аквапарков</span>
+              </div>
+              <div class="trust-badge">
+                <span data-icon="spark"></span>
+                <span>Без навязанных агентств</span>
+              </div>
+            </div>
+
+            <div class="social-proof">
+              <div class="avatars-group" aria-hidden="true">
+                <span class="avatar av-1">👨‍💻</span>
+                <span class="avatar av-2">👩‍🎨</span>
+                <span class="avatar av-3">🧑‍🚀</span>
+              </div>
+              <span class="social-text">Более <b>15 000</b> релокантов уже выбрали город</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters & Life Builder Section (The Core Filter Redesign!) -->
+    <section class="filters-section shell" id="filters-workspace">
+      <div class="filters-header">
+        <div class="filters-title-group">
+          <span class="section-kicker">ТОЧНАЯ НАСТРОЙКА</span>
+          <h2 class="section-title">А что для вас <em class="accent-serif">важно?</em></h2>
+          <p class="section-subtitle">Настройте поиск под свои привычки: климат, море, шопинг, метро, налоги и формат жизни.</p>
+        </div>
+
+        <div class="filters-toggle-group">
+          <!-- Quick Logic Switcher: Match ANY vs Match ALL -->
+          <div class="match-mode-card" title="Как учитывать выбранные метки образа жизни">
+            <span class="match-mode-label">Совпадение:</span>
+            <div class="segmented-control" role="radiogroup" aria-label="Логика совпадения условий">
+              <button type="button" class="segment-btn active" data-match="all" aria-checked="true" role="radio">
+                <span>Все выбранные (И)</span>
+              </button>
+              <button type="button" class="segment-btn" data-match="any" aria-checked="false" role="radio">
+                <span>Хотя бы одно (ИЛИ)</span>
+              </button>
+            </div>
+          </div>
+
+          <button id="filterToggle" class="button button-glass filter-toggle-btn" aria-expanded="true" aria-controls="filterWorkspace">
+            <span data-icon="filters"></span>
+            <span>Фильтры</span>
+            <span id="filterCount" class="count-pill">0</span>
+            <span data-icon="chevronDown" class="toggle-chevron"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Expandable Filter Workspace -->
+      <div class="filter-workspace-panel" id="filterWorkspace">
+        <!-- Filter Tabs -->
+        <div class="workspace-tabs-bar">
+          <div class="workspace-tabs" role="tablist">
+            <button class="w-tab active" data-filter-tab="lifestyle" role="tab" aria-selected="true">
+              <span data-icon="sun"></span> Образ жизни <b id="lifestyleCount" class="tab-badge"></b>
+            </button>
+            <button class="w-tab" data-filter-tab="housing" role="tab" aria-selected="false">
+              <span data-icon="home"></span> Бюджет и жильё
+            </button>
+            <button class="w-tab" data-filter-tab="visa" role="tab" aria-selected="false">
+              <span data-icon="passport"></span> Визы и легальность
+            </button>
+            <button class="w-tab" data-filter-tab="language" role="tab" aria-selected="false">
+              <span data-icon="language"></span> Язык и климат
+            </button>
+          </div>
+
+          <button id="resetFilters" class="reset-all-btn">
+            <span data-icon="refresh"></span> Сбросить всё
+          </button>
+        </div>
+
+        <!-- Tab 1: Lifestyle / Образ жизни -->
+        <div class="w-pane active" id="pane-lifestyle" role="tabpanel">
+          <div class="pane-intro">
+            <div>
+              <h3>Как выглядит ваш идеальный день?</h3>
+              <p id="matchExplanation">Ищем города, где есть все выбранные удобства. Нажмите «Хотя бы одно», чтобы расширить поиск.</p>
+            </div>
+            <div class="quick-duration-chips">
+              <span class="chips-label">Быстрый срок:</span>
+              <button type="button" class="d-chip" data-set-duration="3,months">3 мес (зимовка)</button>
+              <button type="button" class="d-chip" data-set-duration="6,months">6 мес</button>
+              <button type="button" class="d-chip" data-set-duration="1,years">1 год</button>
+              <button type="button" class="d-chip" data-set-duration="3,years">3+ года (ВНЖ/ПМЖ)</button>
+            </div>
+          </div>
+
+          <div id="lifestyleFilters" class="lifestyle-cards-grid">
+            <!-- Dynamically populated or rendered -->
+          </div>
+        </div>
+
+        <!-- Tab 2: Housing & Money / Жильё и бюджет -->
+        <div class="w-pane" id="pane-housing" role="tabpanel" hidden>
+          <div class="pane-grid-2col">
+            <div class="pane-col">
+              <h4>Какое жильё рассматриваете?</h4>
+              <div id="housingButtons" class="housing-pill-grid">
+                <button type="button" data-housing="" class="h-pill active">
+                  <span data-icon="globe"></span> Любое
+                </button>
+                <button type="button" data-housing="apartment" class="h-pill">
+                  <span data-icon="home"></span> Квартира
+                </button>
+                <button type="button" data-housing="condo" class="h-pill">
+                  <span data-icon="condo"></span> Кондоминиум
+                </button>
+                <button type="button" data-housing="house" class="h-pill">
+                  <span data-icon="park"></span> Отдельный дом
+                </button>
+              </div>
+
+              <div class="form-group mt-4">
+                <label for="income" class="form-label">
+                  Ежемесячный доход на всю семью (<span class="currency-code">RUB</span>)
+                </label>
+                <div class="input-prefix-wrap">
+                  <span data-icon="wallet"></span>
+                  <input id="income" type="number" min="0" inputmode="decimal" placeholder="Без ограничения" class="modern-input">
+                </div>
+              </div>
+
+              <div class="form-group mt-3">
+                <label for="maxRent" class="form-label">
+                  Максимум на аренду в месяц (<span class="currency-code">RUB</span>)
+                </label>
+                <div class="input-prefix-wrap">
+                  <span data-icon="home"></span>
+                  <input id="maxRent" type="number" min="0" placeholder="Без ограничения" class="modern-input">
+                </div>
+              </div>
+            </div>
+
+            <div class="pane-col">
+              <h4>На что планируете жить?</h4>
+              <div class="segmented-control w-100 mb-3">
+                <button type="button" data-funding="income" class="segment-btn active">На регулярный доход</button>
+                <button type="button" data-funding="savings" class="segment-btn">На накопления</button>
+              </div>
+
+              <div class="form-group">
+                <label for="savings" class="form-label">
+                  Размер накоплений (<span class="currency-code">RUB</span>)
+                </label>
+                <div class="input-prefix-wrap">
+                  <span data-icon="wallet"></span>
+                  <input id="savings" type="number" min="0" inputmode="decimal" placeholder="Например, 1 000 000" class="modern-input">
+                </div>
+                <small class="form-hint" id="savingsHelp">Учитываем выбранный срок проживания и депозит за жилье.</small>
+              </div>
+
+              <div class="switch-card mt-3">
+                <label class="switch-row" for="reserve">
+                  <div class="switch-text">
+                    <strong>Добавить запас 20%</strong>
+                    <span>Страховка на непредвиденные траты и обустройство</span>
+                  </div>
+                  <input id="reserve" type="checkbox" role="switch" class="modern-switch">
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Visa & Legal / Виза и легальность -->
+        <div class="w-pane" id="pane-visa" role="tabpanel" hidden>
+          <div class="pane-intro">
+            <div>
+              <h3>Остаться легально: понятные визовые маршруты</h3>
+              <p>Выберите подходящие форматы и желаемую сложность оформления.</p>
+            </div>
+            <div class="visa-duration-indicator" id="visaDurationSummary">Срок: не ограничен</div>
+          </div>
+
+          <div class="visa-type-pills mb-4" id="visaTypeFilters">
+            <button type="button" data-route-type="" class="v-pill active">Все основания</button>
+            <button type="button" data-route-type="visaFree" class="v-pill">Безвиз / Туризм</button>
+            <button type="button" data-route-type="nomad" class="v-pill">Digital Nomad (Удалёнка)</button>
+            <button type="button" data-route-type="residence" class="v-pill">ВНЖ (Аренда / Недвижимость)</button>
+            <button type="button" data-route-type="work" class="v-pill">Бизнес / ИП / Работа</button>
+            <button type="button" data-route-type="study" class="v-pill">Учёба и язык</button>
+          </div>
+
+          <div class="pane-grid-2col">
+            <div class="pane-col">
+              <h4>Условия пребывания</h4>
+              <div class="switch-card mb-2">
+                <label class="switch-row" for="allowRenewal">
+                  <div class="switch-text">
+                    <strong>Готов продлевать статус на месте</strong>
+                    <span>Показывать маршруты с продлением или визараном</span>
+                  </div>
+                  <input id="allowRenewal" type="checkbox" role="switch" class="modern-switch">
+                </label>
+              </div>
+
+              <div class="switch-card mb-2">
+                <label class="switch-row" for="visaFree">
+                  <div class="switch-text">
+                    <strong>Без визы на старте</strong>
+                    <span>Краткосрочный безвизовый въезд для паспорта РФ</span>
+                  </div>
+                  <input id="visaFree" type="checkbox" role="switch" class="modern-switch">
+                </label>
+              </div>
+
+              <div class="switch-card mb-2">
+                <label class="switch-row" for="verifiedOnly">
+                  <div class="switch-text">
+                    <strong>Только проверенные регламенты 2026</strong>
+                    <span>С прямыми ссылками на официальные ведомства</span>
+                  </div>
+                  <input id="verifiedOnly" type="checkbox" role="switch" class="modern-switch">
+                </label>
+              </div>
+            </div>
+
+            <div class="pane-col">
+              <h4>Бюрократия и паспорт</h4>
+              <div class="form-group mb-3">
+                <label for="bureaucracy" class="form-label">Допустимый уровень бюрократии</label>
+                <select id="bureaucracy" class="modern-select">
+                  <option value="">Не ограничивать (любая сложность)</option>
+                  <option value="2">Хочу проще · до 2 из 5 (минимум справок)</option>
+                  <option value="3">Умеренно · до 3 из 5</option>
+                  <option value="5">Любая проверенная сложность</option>
+                </select>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="citizenship" class="form-label">Перспектива гражданства (срок подачи)</label>
+                <select id="citizenship" class="modern-select">
+                  <option value="">Пока не важно</option>
+                  <option value="5">Быстрый паспорт · до 5 лет проживания</option>
+                  <option value="10">Стандартный срок · до 10 лет</option>
+                </select>
+              </div>
+
+              <div class="alert-box-info">
+                <span data-icon="shield"></span>
+                <span>В карточке каждой страны расписаны точные документы, подтверждение доходов и шаги подачи.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Language & Climate / Язык и климат -->
+        <div class="w-pane" id="pane-language" role="tabpanel" hidden>
+          <div class="pane-grid-2col">
+            <div class="pane-col">
+              <h4>Языковая среда</h4>
+              <div class="switch-card mb-3">
+                <label class="switch-row" for="russian">
+                  <div class="switch-text">
+                    <strong>Русский язык распространён</strong>
+                    <span>Большое русскоязычное комьюнити, легко в быту</span>
+                  </div>
+                  <input id="russian" type="checkbox" role="switch" class="modern-switch">
+                </label>
+              </div>
+
+              <div class="switch-card mb-3">
+                <label class="switch-row" for="english">
+                  <div class="switch-text">
+                    <strong>Высокий уровень английского</strong>
+                    <span>Достаточно для жизни, сервисов и аренды</span>
+                  </div>
+                  <input id="english" type="checkbox" role="switch" class="modern-switch">
+                </label>
+              </div>
+            </div>
+
+            <div class="pane-col">
+              <h4>География и погода</h4>
+              <div class="form-group mb-3">
+                <label for="region" class="form-label">Регион мира</label>
+                <select id="region" class="modern-select">
+                  <option value="">Весь мир</option>
+                  <option value="Европа">Европа</option>
+                  <option value="ЮВА">Юго-Восточная Азия</option>
+                  <option value="Кавказ">Кавказ (Грузия, Армения, Азербайджан)</option>
+                  <option value="Центральная Азия">Центральная Азия (Казахстан, Узбекистан)</option>
+                  <option value="Ближний Восток">Ближний Восток (ОАЭ, Турция)</option>
+                  <option value="Латинская Америка">Латинская Америка</option>
+                  <option value="Северная Америка">Северная Америка</option>
+                  <option value="Африка">Африка</option>
+                  <option value="Океания">Океания</option>
+                </select>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="climate" class="form-label">Климат</label>
+                <select id="climate" class="modern-select">
+                  <option value="">Любой климат</option>
+                  <option value="tropical">Тропики и круглый год тепло</option>
+                  <option value="temperate">Умеренный / средиземноморский</option>
+                  <option value="cold">Классическая зима со снегом</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Bottom Action Bar -->
+        <div class="workspace-footer">
+          <div class="footer-match-count">
+            <span class="pulse-dot"></span>
+            <span id="filterResultPreview">Подбираем подходящие страны…</span>
+          </div>
+
+          <div class="footer-actions">
+            <button id="applyFilters" class="button button-gold apply-filters-btn">
+              <span>Смотреть варианты</span>
+              <span data-icon="arrow"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Destinations Catalog Section -->
+    <section class="destinations-section shell" id="destinations">
+      <div class="destinations-header">
+        <div>
+          <span class="section-kicker">КАТАЛОГ СТРАН</span>
+          <h2 id="resultsTitle" class="section-title">
+            Где начнётся <em class="accent-serif">ваша новая глава?</em>
+          </h2>
+          <p id="resultDescription" class="section-subtitle">
+            Листайте города прямо в карточке, сравнивайте бюджеты и открывайте подробные визовые маршруты.
+          </p>
+        </div>
+
+        <button id="compareOpen" class="button button-glass compare-btn" aria-label="Открыть сравнение">
+          <span data-icon="compare"></span>
+          <span>Сравнить</span>
+          <b id="compareCount" class="badge">0</b>
+        </button>
+      </div>
+
+      <!-- Quick Category Chips Bar (like Level Travel's "Все, Пляжи, Города, Экзотика, Европа, Азия") -->
+      <div class="catalog-toolbar">
+        <div class="region-chips-scroll" id="regionChips">
+          <button class="chip-btn active" data-region="">Все направления</button>
+          <button class="chip-btn" data-region="Европа">🇪🇺 Европа</button>
+          <button class="chip-btn" data-region="ЮВА">🌴 ЮВА</button>
+          <button class="chip-btn" data-region="Кавказ">🏔 Кавказ</button>
+          <button class="chip-btn" data-region="Латинская Америка">🌎 Латинская Америка</button>
+          <button class="chip-btn" data-preset="sea">🏖 У моря</button>
+          <button class="chip-btn" data-preset="nomad">💻 Digital Nomad</button>
+        </div>
+
+        <div class="sort-wrapper">
+          <span id="resultCount" class="result-counter-text">68 стран</span>
+          <label class="sort-select-label">
+            <select id="sort" class="sort-select" aria-label="Сортировка каталога">
+              <option value="recommended">Для вдохновения</option>
+              <option value="budget">Сначала дешевле (бюджет)</option>
+              <option value="rent">Дешевле аренда</option>
+              <option value="legal">Проще легализоваться</option>
+              <option value="name">По алфавиту (А–Я)</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <!-- Active Filters Pill Bar -->
+      <div id="activeFilters" class="active-filters-bar"></div>
+
+      <!-- Country Cards Grid (with Multi-photo city carousels!) -->
+      <div id="countryGrid" class="country-grid" aria-live="polite"></div>
+
+      <!-- Load More Button -->
+      <div class="load-more-wrap">
+        <button id="loadMore" class="button button-glass load-more-btn">
+          <span>Показать ещё направления</span>
+          <span data-icon="chevronDown"></span>
+        </button>
+      </div>
+
+      <p class="data-caption">
+        Бюджеты рассчитаны на основе открытых данных аренды и потребительских корзин. 
+        Подробные визовые условия и цены жилья смотрите в карточке страны.
+      </p>
+    </section>
+
+    <!-- Curated Collections Section -->
+    <section class="collections-section shell" id="collections">
+      <div class="section-title-wrap">
+        <span class="section-kicker">ВДОХНОВЕНИЕ</span>
+        <h2 class="section-title">У каждого свой <em class="accent-serif">повод.</em></h2>
+        <p class="section-subtitle">Необязательно знать страну заранее — выберите образ жизни, о котором давно мечтаете.</p>
+      </div>
+
+      <div class="collection-grid" id="collectionGrid"></div>
+    </section>
+
+    <!-- Brand Story & Sticker Highlight -->
+    <section class="story-section shell" id="brand-story">
+      <div class="story-card">
+        <div class="story-text-col">
+          <div class="story-badge">
+            <span data-icon="spark"></span> ФИЛОСОФИЯ ПРОЕКТА
+          </div>
+          <h2>Иногда нужно просто <br>разрешить себе <em class="accent-serif">дальше.</em></h2>
+          <p>
+            Переезд — это не про побег и не про идеальную страну навсегда. Это про то, чтобы найти место, которое подходит вашему ритму сейчас. 
+            С теплым морем, удобным коворкингом, детским садом или просто спокойным воздухом за окном.
+          </p>
+          <div class="story-features-list">
+            <div class="story-feat-item">
+              <span data-icon="check"></span>
+              <span>Без сказок о «легком гражданстве за 6 месяцев»</span>
+            </div>
+            <div class="story-feat-item">
+              <span data-icon="check"></span>
+              <span>Честные сметы расходов с учетом депозита и аренды</span>
+            </div>
+            <div class="story-feat-item">
+              <span data-icon="check"></span>
+              <span>Настоящие карты популярных мест: от ТЦ до аквапарков</span>
+            </div>
+          </div>
+          <button class="button button-gold story-btn" id="startAgain">
+            <span>Собрать свой сценарий</span>
+            <span data-icon="arrow"></span>
+          </button>
+        </div>
+
+        <div class="story-visual-col">
+          <img src="./assets/brand/moving-house.png" alt="Стикер — дом на колесах для переезда" class="story-sticker-img" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodology & Open Data -->
+    <section class="methodology-section shell" id="methodology">
+      <div class="method-header">
+        <div>
+          <span class="section-kicker">ОТКРЫТЫЕ ДАННЫЕ</span>
+          <h2 class="section-title">Романтика переезда.<br><em class="accent-serif">Без выдуманных обещаний.</em></h2>
+          <p id="coverageLine" class="coverage-text">68 стран · 133 города · проверено по официальным источникам</p>
+        </div>
+        <button id="methodOpen" class="button button-glass method-btn">
+          <span>Подробная методология</span>
+          <span data-icon="diagonal"></span>
+        </button>
+      </div>
+
+      <div class="method-grid">
+        <article class="method-card">
+          <div class="method-icon"><span data-icon="wallet"></span></div>
+          <h3>Честная стоимость жизни</h3>
+          <p>Разделяем смету: аренда квартиры/кондо/дома и повседневная корзина Numbeo. Дополнительный запас 20% на непредвиденные траты.</p>
+        </article>
+
+        <article class="method-card">
+          <div class="method-icon"><span data-icon="passport"></span></div>
+          <h3>Виза по официальным законам</h3>
+          <p>Основание, максимальный срок, визаран, документы, налоги и право работы. Без пустых обещаний «паспорта через полгода».</p>
+        </article>
+
+        <article class="method-card">
+          <div class="method-icon"><span data-icon="map"></span></div>
+          <h3>Реальные точки на карте</h3>
+          <p>Координаты крупных торговых центров, парков аттракционов, аквапарков и достопримечательностей проверены по географическим данным.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer shell">
+    <div class="footer-top">
+      <a class="brand" href="#top">
+        <img src="./assets/brand/brand-logo.svg" alt="Где дальше" width="34" height="34">
+        <div class="brand-text">
+          <span class="brand-name">ГДЕ ДАЛЬШЕ</span>
+          <span class="brand-sub">место для вашей жизни</span>
+        </div>
+      </a>
+
+      <div class="footer-links">
+        <button id="photoCredits" class="footer-link-btn">Фото и авторы</button>
+        <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer" class="footer-link">Курсы валют</a>
+        <a href="https://github.com/rodionproverka/gde-dalshe" target="_blank" rel="noopener noreferrer" class="footer-link">Исходный код</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="copyright">© 2026 «Где дальше» · Открытый проект для тех, кому интересно жить.</span>
+      <span id="fxStatus" class="fx-text">Загрузка курсов валют…</span>
+    </div>
+  </footer>
+
+  <!-- Floating Compare Dock -->
+  <div class="compare-dock" id="compareDock" hidden>
+    <div class="dock-info">
+      <span data-icon="compare"></span>
+      <span>Выбрано для сравнения: <b id="dockCount">0</b></span>
+    </div>
+    <div class="dock-actions">
+      <button class="button button-gold-sm" id="dockCompare">
+        <span>Сравнить страны</span>
+        <span data-icon="arrow"></span>
+      </button>
+      <button id="clearCompare" class="icon-btn-ghost" aria-label="Очистить сравнение">
+        <span data-icon="close"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Detail Dialog / Modal (Includes full photo gallery, visa routes, and Leaflet Map!) -->
+  <dialog id="detailDialog" class="detail-dialog">
+    <div id="detailContent" class="detail-container"></div>
+  </dialog>
+
+  <!-- Info Modal Dialog -->
+  <dialog id="infoDialog" class="info-dialog">
+    <div class="info-dialog-header">
+      <button id="closeInfo" class="icon-btn-ghost info-close" aria-label="Закрыть окно">
+        <span data-icon="close"></span>
+      </button>
+    </div>
+    <div id="infoContent" class="info-dialog-body"></div>
+  </dialog>
+
+  <!-- Toast Notification -->
+  <div id="toast" role="status" class="toast"></div>
+
+  <!-- Scripts -->
+  <script src="./vendor/leaflet.js"></script>
+  <script type="module" src="./app.js?v=3"></script>
+</body>
+</html>

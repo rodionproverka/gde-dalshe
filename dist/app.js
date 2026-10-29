@@ -1,70 +1,1820 @@
-import {defaultFilters,tagNames,monthly,findMatches} from './core.js';
-const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const safeUrl=u=>{try{const url=new URL(u,location.href);return ['http:','https:'].includes(url.protocol)?esc(u):'#'}catch{return '#'}};
-const read=(k,fallback)=>{try{return JSON.parse(localStorage.getItem(k))??fallback}catch{return fallback}};const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
-let countries=[],photos={},rates={USD:1,RUB:80.53,EUR:.897},rateDate='',f={...defaultFilters,currency:read('gd-currency','USD'),tags:[]},saved=read('gd-saved',[]),compare=[],visible=9,selected=null,selectedCity=null,tab='overview',lastTrigger=null;
-if(!['USD','RUB','EUR'].includes(f.currency))f.currency='USD';if(!Array.isArray(saved))saved=[];
-const symbols={USD:'$',RUB:'₽',EUR:'€'};
-function money(usd,currency=f.currency){return (symbols[currency]||currency+' ')+new Intl.NumberFormat('ru-RU',{maximumFractionDigits:Math.abs(usd*(rates[currency]||1))<10?2:0}).format(usd*(rates[currency]||1))}
-function localMoney(value,currency){return new Intl.NumberFormat('ru-RU',{maximumFractionDigits:value<100?2:0}).format(value)+' '+currency}
-function fmtNative(value,currency){return money(value/(rates[currency]||1))}
-function plural(n,forms){const m=n%100;return forms[m>10&&m<20?2:n%10===1?0:n%10>1&&n%10<5?1:2]}
-const toast=t=>{$('#toast').textContent=t;$('#toast').classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').classList.remove('visible'),3000)};
-function img(city,cls='',eager=false){const p=photos[city.id];return p?`<img class="${cls}" src="./${esc(p.src)}" alt="${esc(city.name)} — фотография города" loading="${eager?'eager':'lazy'}" decoding="async">`:`<div class="missing-photo">⌖ ${esc(city.name)}<br>Фото пока не добавлено</div>`}
-function photoCredit(city){const p=photos[city.id];return p?`<div class="photo-credit">Фото: ${esc(p.attribution||p.author)} · <a href="${safeUrl(p.source)}" target="_blank" rel="noopener noreferrer">${esc(p.title||city.name)}</a> · <a href="${safeUrl(p.licenseUrl)}" target="_blank" rel="noopener noreferrer">${esc(p.license)}</a>. Кадрирование для обложки.</div>`:''}
-function link(url,text){return `<a href="${safeUrl(url)}" target="_blank" rel="noopener noreferrer">${esc(text)} ↗</a>`}
-function budgetLabel(){return `${f.people} чел.`}
-function updateCurrency(){const old=f.currency;f.currency=$('#currency').value;for(const id of ['income','maxRent','savings']){if(f[id]!==''){f[id]=Math.round(Number(f[id])/(rates[old]||1)*(rates[f.currency]||1));$('#'+id).value=f[id]}}save('gd-currency',f.currency);for(const id of ['budgetCurrency','rentCurrency','savingsCurrency'])$('#'+id).textContent=f.currency;$('#quickChips [data-preset=budget]').textContent='↘ До '+money(1000);render();if(selected)renderDetail();}
-function syncURL(){const params=new URLSearchParams();params.set('currency',f.currency);if($('#origin').value!=='Россия')params.set('origin',$('#origin').value);for(const [k,v]of Object.entries(f)){if(['currency','saved','income','savings'].includes(k))continue;if(Array.isArray(v)){if(v.length)params.set(k,v.join(','))}else if(v!==defaultFilters[k]&&v!=='')params.set(k,String(v))}if(selected){params.set('country',selected.id);if(selectedCity)params.set('city',selectedCity.id)}const url=location.pathname+(params.size?'?'+params:'')+location.hash;history.replaceState(null,'',url)}
-function render(){const matches=findMatches(countries,f,rates,saved);$('#resultCount').textContent=matches.length+' '+plural(matches.length,['страна','страны','стран']);$('#resultsNote').textContent=f.saved?'Ваши сохранённые направления':f.income!==''||f.funding==='savings'?'Расчёт для '+budgetLabel()+' · с жильём':'Место найдётся каждому';$('#savedCount').textContent=saved.length;$('#savedToggle').classList.toggle('active',f.saved);$('#savedToggle').setAttribute('aria-pressed',f.saved);$('#compareCount').textContent=compare.length;
-$('#countryGrid').innerHTML=matches.length?matches.slice(0,visible).map(({country:c,city,budget,cities})=>`<article class="country-card"><div class="card-image">${img(city)}<span class="card-badge">${c.verified?(c.longType==='free'?'Год без визы':'Правила проверены'):'Открыть новое'}</span><button class="save-card ${saved.includes(c.id)?'is-saved':''}" data-save="${c.id}" aria-label="${saved.includes(c.id)?'Удалить из избранного':'Сохранить'}: ${esc(c.name)}" aria-pressed="${saved.includes(c.id)}">${saved.includes(c.id)?'♥':'♡'}</button><span class="location">⌖ ${esc(city.name)}</span></div><div class="card-content"><h3 class="country-title"><span>${c.flag}</span>${esc(c.name)}</h3><div class="card-description">${esc(c.region)} · ${cities.length} ${plural(cities.length,['город','города','городов'])} под ваш запрос</div><div class="card-budget"><strong>${money(budget.total)}<small> / мес.</small></strong><span>сценарий на ${budgetLabel()}<br>аренда ${money(budget.rent)}</span></div><div class="card-tags">${city.tags.slice(0,2).map(t=>`<span class="tag">${esc(tagNames[t])}</span>`).join('')}<span class="tag ${c.verified?'warm':'neutral'}">${c.verified?'Въезд: есть источник':'Правила уточняются'}</span></div><div class="card-bottom"><button class="card-open" data-open="${c.id}" data-city="${city.id}">О стране <span>↗</span></button><label class="compare-check"><input type="checkbox" data-compare="${c.id}" ${compare.includes(c.id)?'checked':''} aria-label="Сравнить ${esc(c.name)}"> Сравнить</label></div></div></article>`).join(''):`<div class="empty-state"><span style="font-size:35px">⌖</span><h3>${f.saved?'Здесь будут ваши места':'Пока нет точного совпадения'}</h3><p>${f.saved?'Нажмите на сердечко в карточке страны.':'Попробуйте увеличить бюджет или убрать часть фильтров.'}</p><button id="emptyReset">${f.saved?'Ко всем странам':'Сбросить фильтры'}</button></div>`;
-$('#loadMore').hidden=matches.length<=visible;$('#loadMore').textContent=`Ещё направления · осталось ${Math.max(0,matches.length-visible)} ↓`;
-const chips=[];if(f.search)chips.push(['search','Поиск: '+f.search]);if(f.region)chips.push(['region',f.region]);if(f.income!=='')chips.push(['income','Доход: '+money(Number(f.income)/(rates[f.currency]||1))]);if(f.maxRent!=='')chips.push(['maxRent','Аренда до '+money(Number(f.maxRent)/(rates[f.currency]||1))]);if(f.housing)chips.push(['housing',{condo:'Кондо',house:'Дом',apartment:'Квартира'}[f.housing]]);for(const t of f.tags)chips.push(['tag:'+t,tagNames[t]]);for(const [k,t]of Object.entries({visaFree:'Без визы',longStay:'7+ месяцев с основанием',easyStay:'7+ мес. без визы и ВНЖ',verifiedOnly:'Проверено',russian:'Русский',english:'Английский',reserve:'Запас 20%',saved:'Избранное'})){if(f[k])chips.push([k,t])}if(f.bureaucracy)chips.push(['bureaucracy','Бюрократия ≤ '+f.bureaucracy+'/5']);if(f.citizenship)chips.push(['citizenship','Гражданство: подача ≤ '+f.citizenship+' лет']);if(f.climate)chips.push(['climate',{tropical:'Тропики',temperate:'Умеренный климат',cold:'Холодная зима'}[f.climate]]);if(f.funding==='savings')chips.push(['funding','Накопления на '+f.months+' мес.']);$('#activeFilters').innerHTML=chips.map(([k,t])=>`<button data-remove="${esc(k)}">${esc(t)} ×</button>`).join('');$('#filterCount').textContent=chips.length||'';syncURL();}
-function reset(){f={...defaultFilters,currency:f.currency,tags:[]};visible=9;syncInputs();render();$$('#quickChips button').forEach(b=>b.classList.remove('active'))}
-function syncInputs(){for(const k of Object.keys(f)){const el=$('#'+k);if(!el)continue;if(el.type==='checkbox')el.checked=f[k];else el.value=f[k]}$$('[data-tag]').forEach(e=>e.checked=f.tags.includes(e.dataset.tag));$('#currency').value=f.currency;for(const id of ['budgetCurrency','rentCurrency','savingsCurrency'])$('#'+id).textContent=f.currency;$('#quickChips [data-preset=budget]').textContent='↘ До '+money(1000)}
-function preset(name){reset();if(name==='sea')f.tags=['sea'];if(name==='budget'){f.income=Math.round(1000*(rates[f.currency]||1));f.sort='budget'}if(name==='long'){f.longStay=true;f.sort='legal'}if(name==='work')f.tags=['work'];if(name==='europe')f.region='Европа';if(name==='russian')f.russian=true;if(name==='withoutjob'){f.easyStay=true;toast('Для жизни без работы нужны накопления; годовой безвиз не даёт права работать.')}syncInputs();render();$('#destinations').scrollIntoView({behavior:'smooth'});$(`[data-preset="${name}"]`)?.classList.add('active')}
-function renderCollections(){const items=[['withoutjob','georgia-1','01 / НАЧАТЬ С ПРОСТОГО','Уехать без<br>готовой работы','Длинный старт, если есть накопления'],['europe','portugal-1','02 / БЛИЖЕ ПО ДУХУ','Европа в вашем<br>ритме','Большие города и маленькие привычки'],['sea','vietnam-1','03 / СОЛЬ НА КОЖЕ','Вместо зимы —<br>море','Города, где вода совсем рядом'],['budget','thailand-1','04 / ЛЕГЧЕ НА ПОДЪЁМ','Больше жизни.<br>Меньше расходов.','Сценарии до '+money(1000)+' на одного']];$('#collectionGrid').innerHTML=items.map(([preset,id,label,title,text])=>{const city=countries.flatMap(c=>c.cities).find(x=>x.id===id);return `<button class="collection-card" data-preset="${preset}" aria-label="${esc(title.replaceAll('<br>',' '))}">${city?img(city):''}<div><span class="collection-label">${label}</span><h3>${title}</h3><p>${esc(text)}</p><span class="collection-number">↗</span></div></button>`}).join('')}
-let observed={
-'georgia-0':{currency:'GEL',url:'https://www.numbeo.com/cost-of-living/in/Tbilisi',items:[['Молоко · 1 л',5.67],['Яйца · 12 шт.',7.16],['Обед в недорогом кафе',30],['Кино · 1 билет',18],['Общественный транспорт · поездка',1],['Такси · старт + 5 км, без ожидания',13]]},
- 'thailand-1':{currency:'THB',url:'https://www.numbeo.com/cost-of-living/in/Chiang-Mai',items:[['Молоко · 1 л',67.58],['Яйца · 12 шт.',75.3],['Обед в недорогом кафе',75],['Кино · 1 билет',220],['Такси · старт + 5 км, без ожидания',132.5]]},
- 'serbia-0':{currency:'RSD',url:'https://www.numbeo.com/cost-of-living/in/Belgrade',items:[['Молоко · 1 л',149.78],['Яйца · 12 шт.',286.27],['Обед в недорогом кафе',1390],['Кино · 1 билет',860],['Такси · старт + 5 км, без ожидания',845]]}
+import {defaultFilters, tagNames, monthly, findMatches, durationMonths, evaluateRoute} from './core.js';
+import {icon} from './icons.js';
+
+// DOM Utilities
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl = u => {
+  try {
+    const url = new URL(u, location.href);
+    return ['http:', 'https:'].includes(url.protocol) ? esc(u) : '#';
+  } catch {
+    return '#';
+  }
 };
-const cityNotes={
-'georgia-0':['Метро, автобусы и такси; на холмах удобство пеших маршрутов зависит от района.','Старый город, серные бани, Мтацминда. Торговые центры: ориентиры для поиска — Galleria Tbilisi и East Point.','Для поездок по Кавказу нужны отдельные проверки границ, страховки и въезда. Горный рельеф влияет на время в пути.'],
-'georgia-1':['Пешие маршруты по бульвару, автобусы и такси. Летом пробки и выше сезонный спрос на жильё.','Море и длинный бульвар; изучите Batumi Mall, ботанический сад, поездки в горную Аджарию.','Зимой сыро, летом туристический сезон; годовая аренда и летний контракт могут сильно отличаться.'],
- 'thailand-0':['BTS/MRT и лодки, такси и мототакси. Смотрите реальную пешую дорогу до станции, а не только расстояние.','Крупные ТЦ, ночные рынки, рестораны. Ориентиры: ICONSIAM, Siam Paragon, CentralWorld.','Крупный авиаузел, но визы соседних стран проверяются отдельно. На улице жарко и влажно.'],
- 'thailand-1':['Метро нет. Сонгтео и такси; для байка нужны действующие права нужной категории.','Кофейни, горы, старый город. Ориентиры: MAYA и Central Chiangmai.','Проверьте сезон дымки перед долгой арендой. Климат и качество воздуха меняются в течение года.'],
- 'vietnam-1':['Автобусы, такси и приложения заказа поездок. Метро нет; пешая доступность сильно зависит от района.','Мỹ Khê, набережная, Хойан поблизости. Для шопинга ищите Vincom Plaza и Lotte Mart.','Осень может быть дождливой. Близость моря не гарантирует удобный пляж круглый год.'],
- 'serbia-0':['Автобусы и трамваи, такси; проверьте актуальные тарифы и маршруты оператора.','Калемегдан, Земун, набережные, кафе. Ориентиры для шопинга: Galerija и Ušće.','Сербия вне Шенгена: сербский ВНЖ сам по себе не даёт право въезда в страны Шенгена.'],
- 'kazakhstan-1':['Метро, автобусы и такси; район и часы пик заметно влияют на время поездки.','Горы, Медеу, прогулки. Ориентиры: MEGA Alma-Ata и Dostyk Plaza.','Учитывайте сезонный воздух и зимнюю погоду; смотрите состояние конкретного района.'],
- 'armenia-0':['Метро, автобусы и такси; рельеф и летняя жара влияют на пешие прогулки.','Каскад, кафе, музеи, поездки в горы. Ориентиры: Dalma Garden Mall и Yerevan Mall.','Возможности наземных маршрутов зависят от доступности границ; проверяйте маршрут перед поездкой.'],
- 'indonesia-1':['Метро нет; байк, автомобиль и такси. Время в пути между районами Бали может быть большим.','Храмы, пляжи, серфинг и кафе. Денпасар и Чангу — разные места: стоимость и ритм жизни отличаются.','Сезон дождей, дорожное движение, права и страховка — часть планирования комфорта.']
+
+const readStorage = (k, fallback) => {
+  try { return JSON.parse(localStorage.getItem(k)) ?? fallback; } catch { return fallback; }
 };
-function openCountry(id,cityId){selected=countries.find(c=>c.id===id);if(!selected)return;selectedCity=selected.cities.find(c=>c.id===cityId)||selected.cities[0];tab='overview';lastTrigger=document.activeElement;renderDetail();if(!$('#detailDialog').open)$('#detailDialog').showModal();$('#detailDialog').scrollTop=0;syncURL()}
-function renderDetail(){const c=selected,city=selectedCity;const m=monthly(city,+f.people,f.housing,f.reserve);const costs=[['Жильё',m.rent,'#235440'],['Продукты и питание',Math.round(m.daily*.44),'#77946a'],['Коммунальные, связь',Math.round(m.daily*.20),'#b2c29a'],['Транспорт',Math.round(m.daily*.12),'#d2a471'],['Досуг',Math.round(m.daily*.14),'#dccba6']];costs.push(['Здоровье и прочее',m.daily-costs.slice(1).reduce((s,x)=>s+x[1],0),'#dce4d0']);if(m.reserve)costs.push(['Запас',m.reserve,'#c6926b']);const note=cityNotes[city.id]||[city.tags.includes('metro')?'Есть метро; сравните районы по доступности станций. Маршруты и стоимость проезда уточняйте у перевозчика.':'Проверьте автобусы, железную дорогу и такси на карте. Наличие приложения не гарантирует одинаковую доступность во всех районах.',city.features+'. Используйте ссылки на карты ниже, чтобы проверить конкретные места и свежие отзывы.','Условия поездок зависят от паспорта, виз и маршрута. Местный ВНЖ не заменяет визу другой страны.'];const obs=observed[city.id];const checks=c.rentalChecks.filter(r=>r.city===city.name&&r.checked);const rentPanel=`<section class="panel"><h3>Где искать жильё</h3><p>${link(c.portalUrl,c.portal+' — местный портал аренды')}</p>${checks.length?checks.map(r=>`<div class="reliability">Объявления просмотрены · 30.10.2026</div>${r.samples.map(s=>`<div class="rent-sample"><strong>${localMoney(s.price,s.currency)} <small>≈ ${fmtNative(s.price,s.currency)} / мес.</small></strong><p>${esc(s.description)}</p><small>${esc(s.rooms)} · ${s.area} м² · ${link(s.url||r.url,'Посмотреть предложение')}</small></div>`).join('')}<p class="micro">${esc(r.note)}</p>`).join(''):`<div class="note-box warm">Объявления по этому городу не подтверждены. ${money(m.rent)} — расчётный сценарий, не проверенная цена объекта.</div>`}<p>Сверьте срок договора, депозит, комиссию, коммунальные платежи, регистрацию иностранца и право владельца сдавать жильё. Цена в объявлении не означает, что объект доступен.</p><p class="micro">«1 bedroom» — отдельная спальня и часто гостиная, это не всегда российская однокомнатная. Студии в примерах подписаны отдельно.</p></section>`;
-const legal=`<section class="panel"><h3>Въезд с паспортом РФ</h3><div class="reliability">${c.verified?'Официальные страницы проверены 30.10.2026':'Подробная проверка въезда ещё не выполнена'}</div><p>${esc(c.entry)}</p><h4>Как остаться на 7+ месяцев</h4><p>${esc(c.longStay)}</p><h4>ВНЖ и основания</h4><p>${esc(c.residence||'Точные основания, суммы и документы для граждан РФ здесь ещё не подтверждены. Начните с официального консульства и миграционного ведомства страны.')}</p><h4>Оценка бюрократии</h4><p>${c.difficulty?`${c.difficulty} из 5 — редакционная оценка по доступности основания и объёму документов. Это не статистика одобрений.`:'Недостаточно проверенных данных для оценки.'}</p><h4>Гражданство</h4><p>${esc(c.citizenship)}</p></section><section class="panel"><h3>Маршрут подготовки</h3><div class="route-row">${['1. Выбрать основание','2. Проверить въезд','3. Подготовить документы','4. Забронировать стартовое жильё','5. Подать на статус в срок'].map(s=>`<span class="route-step">${s}</span>`).join('')}</div><p>Вы едете из: <b>${esc($('#origin').value)}</b>. Правила в этой карточке относятся к гражданству РФ. Доступность подачи из выбранной страны, транзит и требования к её резидентам проверяются отдельно; сайт не рассчитывает авиамаршруты.</p><p>Обычно заранее готовят загранпаспорт, документы о доходе и основании, страховку, справку о несудимости, документы семьи с апостилем/легализацией и переводом, если их требует выбранный статус. Это список подготовки, точный состав — по официальной программе.</p><div class="note-box warm">Право находиться, работать и быть налоговым резидентом — разные вопросы. Длинная виза не всегда даёт право работать на местный рынок.</div></section>`;
-const sources=`<section class="panel source-links"><h3>Источники и качество данных</h3><div class="reliability">Исследование от 30 октября 2026</div>${c.sources.length?c.sources.map(s=>link(s.url,s.title)).join(''):'<p>Официальные правила страны в этой версии ещё не проверены. На основе этой карточки нельзя делать вывод о праве въезда.</p>'}${obs?link(obs.url,'Numbeo: цены '+city.name+' (данные пользователей)'):''}${checks.map(r=>link(r.url,r.portal+': просмотренная выдача аренды')).join('')}<h4>Что значит бюджет</h4><p>${esc(city.costSource)} Редакционная модель: аренда + повседневные расходы на одного. Ещё один человек добавляет 70% повседневных расходов; начиная с третьего, аренда увеличивается на 20% за человека. Дом ×1,8, кондо ×1,15 к квартире — сценарные множители, не рыночная оценка.</p><p>В бюджет не включены перелёт, визовые сборы, услуги юриста, международная школа и крупное лечение. Стартовый запас: два месячных платежа аренды дополнительно (условные депозит и обустройство).</p><p>При накоплениях проверяем: месячный бюджет × выбранный срок + два платежа аренды. Размеры реального депозита и предоплаты могут отличаться.</p><p>${esc(c.confidence||'Исследование правил этой страны не завершено.')}</p><h4>Курс и фотографии</h4><p>${esc($('#fxStatus').textContent)}. Конвертация справочная: банки, наличный обмен и переводы используют другие курсы.</p>${link('https://www.exchangerate-api.com','Поставщик курсов')} ${photoCredit(city)}</section>`;
-const daily=`<section class="panel"><h3>Как устроена жизнь в городе</h3><h4>Транспорт</h4><p>${esc(note[0])}</p><h4>Досуг, торговые центры и особенности</h4><p>${esc(note[1])}</p><h4>Путешествия и сезонность</h4><p>${esc(note[2])}</p><div class="route-row">${[['ТЦ','shopping mall'],['Кино','cinema'],['Компьютерные клубы','gaming internet cafe'],['Коворкинги','coworking'],['Транспорт','public transport'],['Что посмотреть','attractions']].map(([title,q])=>link('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q+' '+city.wiki.replaceAll('_',' ')),title)).join(' · ')}</div><p class="micro">Ссылки открывают поиск реальных мест. Наличие конкретного клуба, язык сеанса, цены и часы работы проверяйте по выбранному заведению. Метки каталога — ориентиры, не полный реестр.</p></section><section class="panel"><h3>Язык, адаптация, отношение</h3><p>Местные языки: <b>${esc(c.language)}</b>. ${c.russian?'Русский заметно используется в повседневном общении, но официальные документы могут требовать местного языка.':c.english?'Английский может помочь в повседневной жизни; требования к документам и госуслугам отдельные.':'В туристических местах английский может помочь, но для аренды, медицины и ведомств стоит подготовить перевод.'}</p><h4>Отношение к гражданам РФ</h4><p>${esc(c.social)}</p><h4>Комфорт — по вашим привычкам</h4><p>Сравните район, шум, качество воздуха, пешие маршруты, кондиционер/отопление, доступ к медицине и интернет в конкретной квартире. Универсальной оценки «качества жизни» здесь нет: условия зависят от адреса и бюджета.</p></section>`;
-const expense=`<section class="panel"><h3>Из чего складывается месяц <span class="currency-inline">${f.currency}</span></h3><p>Расчёт на ${budgetLabel()} · ${f.housing?{condo:'кондо',house:'дом',apartment:'квартира'}[f.housing]:'квартира'} · редакционный сценарий</p><div class="chart-bar" role="img" aria-label="Состав бюджета: ${costs.map(x=>x[0]+' '+money(x[1])).join(', ')}">${costs.map(x=>`<span style="width:${x[1]/m.total*100}%;background:${x[2]}"></span>`).join('')}</div>${costs.map(x=>`<div class="legend-row"><span><i style="background:${x[2]}"></i>${x[0]}</span><strong>${money(x[1])}</strong></div>`).join('')}<div class="legend-row"><b>Всего в месяц</b><strong>${money(m.total)}</strong></div><div class="note-box">Ориентир на переезд: ${money(m.total*3+m.rent*2)} — три месяца жизни, условный депозит и обустройство. Перелёт и оформление отдельно.</div>${f.funding==='savings'&&f.savings!==''?`<p class="savings-result">Ваших накоплений по модели хватит примерно на ${Math.max(0,Math.floor((Number(f.savings)/(rates[f.currency]||1)-m.rent*2)/m.total))} месяцев после стартового запаса.</p>`:''}</section>`;
-const groceries=`<section class="panel"><h3>Продукты, такси и развлечения</h3>${obs?`<p>Ориентиры Numbeo, просмотрены 30.10.2026. Данные участников, а не официальный прайс. Суммы переведены из ${obs.currency}.</p><table class="cost-table"><tbody>${obs.items.map(([title,v])=>`<tr><td>${esc(title)}</td><td>${fmtNative(v,obs.currency)}<br><small>${localMoney(v,obs.currency)}</small></td></tr>`).join('')}</tbody></table><p>${link(obs.url,'Сверить цены и диапазоны')}</p><p class="micro">Такси: расчёт по старту и тарифу за 5 км без ожидания, не котировка приложения. Динамический тариф может отличаться.</p>`:'<div class="note-box warm">Точные цены продуктов, такси и билетов по этому городу ещё не подтверждены. Мы не подставляем выдуманный прайс. В общем бюджете есть сценарные суммы на эти категории.</div>'}</section>`;
-$('#detailContent').innerHTML=`<div class="detail-hero">${img(city,'',true)}<div class="detail-hero-copy"><span class="detail-topline">${esc(c.region).toUpperCase()} · ${c.flag} ${esc(c.name)}</span><h2>${esc(city.name)}</h2><p>${city.capital?'Главный город в подборке · ':''}${esc(city.features)}</p></div></div><div class="detail-nav" role="tablist" aria-label="Разделы страны"><button class="detail-nav-close" data-detail-close="true" aria-label="Вернуться к каталогу">←</button>${[['overview','Обзор'],['costs','Бюджет и жильё'],['legal','Въезд и ВНЖ'],['daily','Жизнь в городе'],['sources','Источники']].map(([id,t])=>`<button role="tab" aria-selected="${tab===id}" data-tab="${id}" class="${tab===id?'active':''}">${t}</button>`).join('')}</div><div class="detail-body"><div class="city-tabs" aria-label="Города страны">${c.cities.map(ct=>`<button data-detail-city="${ct.id}" class="${city.id===ct.id?'active':''}" aria-pressed="${city.id===ct.id}">${esc(ct.name)}</button>`).join('')}</div><div class="detail-stats"><div class="stat"><span>БЮДЖЕТ НА МЕСЯЦ</span><strong>${money(m.total)}</strong><small>оценка · ${budgetLabel()}</small></div><div class="stat"><span>АРЕНДА · СЦЕНАРИЙ</span><strong>${money(m.rent)}</strong><small>сценарий, не цена объявления</small></div><div class="stat"><span>МЕСТНАЯ ВАЛЮТА</span><strong>${esc(c.currency)}</strong><small>$1 ≈ ${new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(rates[c.currency]||1)} ${esc(c.currency)}</small></div><div class="stat"><span>7+ МЕСЯЦЕВ</span><strong style="font-size:19px">${c.longType==='free'?'Без ВНЖ':c.longType==='conditional'?'С основанием':'Уточнить'}</strong><small>${c.verified?'см. правила и требования':'нет полной проверки'}</small></div></div>${tab==='overview'?`<div class="detail-columns"><div>${expense}${daily}</div><div>${rentPanel}<section class="panel"><h3>План на 7+ месяцев</h3><p>${esc(c.longStay)}</p><button class="text-button" data-tab="legal">Разобраться с ВНЖ ↗</button></section></div></div>`:tab==='costs'?`<div class="detail-columns"><div>${expense}${groceries}</div><div>${rentPanel}<section class="panel"><h3>Конвертер валют</h3><label class="field-title" for="convertAmount">Сумма</label><input id="convertAmount" value="100" type="number" min="0"><select id="convertFrom" aria-label="Исходная валюта">${[...new Set([c.currency,'USD','RUB','EUR'])].map(cur=>`<option>${cur}</option>`).join('')}</select><p id="convertResult"></p><p class="micro">Справочный курс поставщика, без комиссии.</p></section></div></div>`:tab==='legal'?legal:tab==='daily'?daily: sources}${photoCredit(city)}<div class="detail-disclaimer">Информация для планирования, не обещание допуска, статуса или цены. У каждого источника — своя область проверки. Гражданство РФ · дата исследования 30.10.2026.</div></div>`;
-if($('#convertAmount'))convert();syncURL();}
-function convert(){const amount=Number($('#convertAmount').value);const from=$('#convertFrom').value;$('#convertResult').textContent=amount<0||!Number.isFinite(amount)?'Введите положительную сумму':['USD','RUB','EUR',selected.currency].filter((v,i,a)=>a.indexOf(v)===i&&v!==from).map(cur=>money(amount/(rates[from]||1),cur)).join(' · ')}
-function closeDetail(){if($('#detailDialog').open)$('#detailDialog').close();selected=null;selectedCity=null;syncURL();lastTrigger?.focus?.()}
-function openInfo(html){$('#infoContent').innerHTML=html;$('#infoDialog').showModal();$('#infoDialog').scrollTop=0}
-function showMethod(){openInfo(`<span class="eyebrow">ОТКРЫТАЯ МЕТОДИКА</span><h2>Доверять — значит знать источник</h2><p>Проверка: 30 октября 2026. Каталог содержит ${countries.length} стран и ${countries.flatMap(c=>c.cities).length} города. Правила въезда исследованы для ${countries.filter(c=>c.verified).length} стран; это не полный справочник миграционного права всех стран.</p><h3>Три типа информации</h3><ul><li><b>Проверено по официальной странице:</b> отдельные правила въезда, основания длительного проживания, некоторые условия гражданства. Ссылки в карточке страны. Полный персональный набор требований может отличаться.</li><li><b>Объявление просмотрено:</b> конкретная цена предложения, тип жилья и площадь. Проверены Алматы, Ереван, Бангкок, Чиангмай и Дананг. Наличие не подтверждалось звонком. Это не средняя рыночная цена.</li><li><b>Расчётный сценарий:</b> суммы бюджетов и аренды на карточках. Это редакционные ориентиры с возможной погрешностью более 30%, а не исследование рынка во всех городах.</li></ul><h3>Расчёт бюджета</h3><p>Месяц = аренда + повседневные расходы. Каждый дополнительный человек добавляет 70% повседневных расходов. С третьего человека модель увеличивает аренду на 20% за человека. Дом: ×1,8, кондо: ×1,15 к сценарию квартиры. Эти коэффициенты не получены из статистики рынка. По умолчанию не учтены перелёт, визовые сборы, школа и крупное лечение.</p><p>Накопления сравниваем с бюджетом за выбранное число месяцев плюс два месяца аренды на условные депозит и обустройство. Можно включить 20% резерва. Детям и взрослым модель считает одинаковые дополнительные расходы.</p><h3>Фильтры и оценки</h3><p>Все выбранные условия применяются одновременно к одному городу. Карточка показывает самый доступный подходящий город. Метки образа жизни и языка — редакционные ориентиры. «Коворкинги и кафе» и «компьютерные клубы» требуют проверки конкретных заведений по ссылкам на карту. Бюрократия 1–5 оценивает сложность основания и документов, а не вероятность выдачи. Неисследованные направления исключаются фильтрами проверенных юридических условий.</p><p>В регионе «Азия» для удобства поиска включены Кавказ и Ближний Восток. Указанный климат — обобщение: сезон и город нужно проверять отдельно.</p><h3>Как обновляются курсы</h3><p>При открытии запрашивается ExchangeRate-API. Если сервис недоступен, используется последний сохранённый снимок с явной датой. Все бюджеты хранятся в USD. Курс банка, наличных и переводов может отличаться. ${link('https://www.exchangerate-api.com','Поставщик и условия использования')}</p><h3>Отношение к россиянам</h3><p>Мы не превращаем личные истории в оценку целой страны. Юридические ограничения для паспорта РФ отмечены отдельно, бытовое отношение не получает выдуманный балл.</p><h3>Персональные данные</h3><p>Регистрации и аналитики нет. Избранное и валюта сохраняются в браузере. Фильтры входят в адрес страницы для сохранения ссылки; суммы дохода и накоплений в ссылку не включаются. Фотографии загружены локально, атрибуция — в карточках. Внешние шрифты, курсы и ссылки обращаются к соответствующим сервисам.</p><h3>Все проверенные юридические источники</h3>${countries.filter(c=>c.sources.length).map(c=>`<details><summary>${c.flag} ${esc(c.name)}</summary><div class="source-links">${c.sources.map(s=>link(s.url,s.title)).join('')}</div></details>`).join('')}<p>${link('./research.json','Открытые результаты исследования (JSON)')} · ${link('./photos.json','Фото и лицензии (JSON)')}</p>`)}
-function showCompare(){if(compare.length<2){toast('Добавьте для сравнения от 2 до 3 стран');return}const cs=compare.map(id=>countries.find(c=>c.id===id));const matches=findMatches(countries,{...f,saved:false},rates,saved);const cityFor=c=>matches.find(m=>m.country.id===c.id)?.city||c.cities[0];const rows=[['Город',c=>cityFor(c).name],['Бюджет / месяц',c=>money(monthly(cityFor(c),+f.people,f.housing,f.reserve).total)],['Аренда / месяц',c=>money(monthly(cityFor(c),+f.people,f.housing).rent)],['7+ месяцев',c=>c.longStay],['Въезд',c=>c.entry],['Язык',c=>c.language],['Гражданство',c=>c.citizenship],['Проверка',c=>c.verified?'Официальные правила проверены':'Правила не проверены полностью']];openInfo(`<span class="eyebrow">ВЫБРАТЬ СВОЁ</span><h2>Сравнение направлений</h2><p>Расчёт: ${budgetLabel()}. Бюджеты — редакционные сценарии. Города выбраны по текущим фильтрам, иначе показан первый город страны.</p><div class="compare-scroll"><table class="compare-table"><thead><tr><th></th>${cs.map(c=>`<th>${c.flag} ${esc(c.name)}</th>`).join('')}</tr></thead><tbody>${rows.map(([title,fn])=>`<tr><td>${title}</td>${cs.map(c=>`<td>${esc(fn(c))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`)}
-async function loadRates(){try{const cached=await fetch('./rates.json').then(r=>r.json());if(cached.result==='success'){rates=cached.rates;rateDate=cached.time_last_update_utc;$('#fxStatus').textContent=`$1 = ${new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(rates.RUB)} ₽ · снимок ${new Date(rateDate).toLocaleDateString('ru-RU')}`}}catch{$('#fxStatus').textContent='Резервные курсы · 29.10.2026 · сервис недоступен'}render();renderCollections();if(selected)renderDetail();try{const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),7000);let live;try{live=await fetch('https://open.er-api.com/v6/latest/USD',{signal:controller.signal}).then(r=>r.json())}finally{clearTimeout(timeout)}if(live.result==='success'&&live.rates.RUB){rates=live.rates;rateDate=live.time_last_update_utc;$('#fxStatus').textContent=`$1 = ${new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(rates.RUB)} ₽ · курс ${new Date(rateDate).toLocaleDateString('ru-RU')}`;render();renderCollections();if(selected)renderDetail()}}catch{/* Snapshot remains visible with its date. */}}
-async function init(){try{let extraObserved;[countries,photos,extraObserved]=await Promise.all([fetch('./data.json').then(r=>{if(!r.ok)throw Error('data');return r.json()}),fetch('./photos.json').then(r=>r.ok?r.json():{}).catch(()=>({})),fetch('./observed.json').then(r=>r.ok?r.json():{}).catch(()=>({}))]);observed={...observed,...extraObserved};const params=new URLSearchParams(location.search);if(['USD','RUB','EUR'].includes(params.get('currency')))f.currency=params.get('currency');for(const k of Object.keys(defaultFilters)){if(!params.has(k)||k==='saved')continue;const v=params.get(k);if(k==='tags')f.tags=v.split(',').filter(t=>t in tagNames);else if(typeof defaultFilters[k]==='boolean')f[k]=v==='true';else f[k]=v}f.people=Math.min(6,Math.max(1,Number(f.people)||1));f.months=[7,12,24].includes(+f.months)?+f.months:7;for(const id of ['income','maxRent','savings'])if(f[id]!==''&&(!Number.isFinite(Number(f[id]))||Number(f[id])<0))f[id]='';
-$('#coverageLine').textContent=`${countries.length} стран в каталоге · ${countries.filter(c=>c.verified).length} с проверенными правилами въезда.`;$('#origin').innerHTML='<option>Россия</option>'+countries.slice().sort((a,b)=>a.name.localeCompare(b.name,'ru')).map(c=>`<option>${esc(c.name)}</option>`).join('')+'<option>Другая страна</option>';if([...$('#origin').options].some(o=>o.value===params.get('origin')))$('#origin').value=params.get('origin');$('#lifestyleFilters').innerHTML=Object.entries(tagNames).map(([k,t])=>`<label class="check"><input type="checkbox" data-tag="${k}"> ${t}</label>`).join('');$('#places').innerHTML=[...new Set(countries.flatMap(c=>[c.name,c.region,...c.cities.map(ct=>ct.name)]))].map(s=>`<option value="${esc(s)}"></option>`).join('');syncInputs();const hero=photos['georgia-1']||photos['georgia-0'];if(hero){$('#heroPhoto').style.backgroundImage=`url("./${hero.src}")`;if(!photos['georgia-1'])$('#heroLocation').innerHTML='Тбилиси, Грузия<small>Возможно, ваша следующая глава</small>'}render();renderCollections();loadRates();if(params.get('country'))openCountry(params.get('country'),params.get('city'));}catch(e){$('#countryGrid').innerHTML='<div class="empty-state"><h3>Не удалось загрузить каталог</h3><p>Проверьте соединение и обновите страницу.</p><button onclick="location.reload()">Обновить</button></div>';console.error(e)}}
-$('#searchForm').addEventListener('submit',e=>{e.preventDefault();f.search=$('#search').value;f.income=$('#income').value;f.people=$('#people').value;visible=9;render();$('#destinations').scrollIntoView({behavior:'smooth'})});
-for(const id of ['income','maxRent','housing','people','region','visaFree','longStay','easyStay','verifiedOnly','bureaucracy','russian','english','climate','funding','savings','months','reserve','citizenship','sort'])$('#'+id).addEventListener('change',e=>{f[id]=e.target.type==='checkbox'?e.target.checked:e.target.value;if(['income','maxRent','savings'].includes(id)&&Number(f[id])<0){f[id]='';e.target.value=''}visible=9;render()});
-$('#search').addEventListener('input',()=>{f.search=$('#search').value;visible=9;render()});$('#origin').addEventListener('change',syncURL);$('#currency').addEventListener('change',()=>{updateCurrency();renderCollections()});$('#resetFilters').onclick=reset;$('#savedToggle').onclick=()=>{f.saved=!f.saved;visible=9;render();$('#destinations').scrollIntoView({behavior:'smooth'})};$('#loadMore').onclick=()=>{visible+=12;render()};$('#compareOpen').onclick=showCompare;$('#methodOpen').onclick=showMethod;$('#photoCredits').onclick=()=>openInfo(`<span class="eyebrow">ЗА КАДРОМ</span><h2>Фотографии и авторы</h2><p>133 фотографии реальных городов. Оригиналы опубликованы на Wikimedia Commons; изображения масштабированы и могут кадрироваться для карточек.</p>${countries.map(c=>`<h3>${c.flag} ${esc(c.name)}</h3>${c.cities.map(city=>`<b>${esc(city.name)}</b>${photoCredit(city)}`).join('')}`).join('')}`);$('#heroLocationOpen').onclick=()=>openCountry('georgia',photos['georgia-1']?'georgia-1':'georgia-0');$('#budgetFocus').onclick=()=>{$('#income').scrollIntoView({behavior:'smooth',block:'center'});$('#income').focus()};
-function closeFilters(){$('#filters').classList.remove('open');$('#filterBackdrop').classList.remove('open');$('#mobileFilter').focus()}$('#mobileFilter').onclick=()=>{$('#filters').classList.add('open');$('#filterBackdrop').classList.add('open');$('#closeFilters').focus()};$('#closeFilters').onclick=closeFilters;$('#filterBackdrop').onclick=closeFilters;$('#applyMobile').onclick=()=>{closeFilters();$('#destinations').scrollIntoView({behavior:'smooth'})};
-$('#closeDetail').onclick=closeDetail;$('#detailDialog').addEventListener('cancel',e=>{e.preventDefault();closeDetail()});$('#closeInfo').onclick=()=>$('#infoDialog').close();for(const id of ['detailDialog','infoDialog'])$('#'+id).addEventListener('click',e=>{if(e.target!==e.currentTarget)return;const rect=e.currentTarget.getBoundingClientRect();if(e.clientX<rect.left||e.clientX>rect.right||e.clientY<rect.top||e.clientY>rect.bottom){if(id==='detailDialog')closeDetail();else e.currentTarget.close()}});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#filters').classList.contains('open'))closeFilters();if(e.key==='Tab'&&$('#filters').classList.contains('open')){const els=[...$('#filters').querySelectorAll('button,input,select,summary')].filter(el=>el.getClientRects().length);const first=els[0],last=els.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
-document.addEventListener('change',e=>{if(e.target.dataset.tag){f.tags=$$('[data-tag]:checked').map(x=>x.dataset.tag);visible=9;render()}if(e.target.dataset.compare){const id=e.target.dataset.compare;if(e.target.checked){if(compare.length===3){e.target.checked=false;toast('Можно сравнить до трёх стран');return}compare.push(id)}else compare=compare.filter(x=>x!==id);$('#compareCount').textContent=compare.length}if(e.target.id==='convertFrom')convert()});
-document.addEventListener('input',e=>{if(e.target.id==='convertAmount')convert()});
-document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.detailClose)closeDetail();if(b.dataset.open)openCountry(b.dataset.open,b.dataset.city);if(b.dataset.save){const id=b.dataset.save;saved=saved.includes(id)?saved.filter(x=>x!==id):[...saved,id];save('gd-saved',saved);render()}if(b.dataset.preset)preset(b.dataset.preset);if(b.id==='emptyReset')reset();if(b.dataset.remove){const k=b.dataset.remove;if(k.startsWith('tag:'))f.tags=f.tags.filter(t=>t!==k.slice(4));else f[k]=defaultFilters[k];syncInputs();render()}if(b.dataset.detailCity){selectedCity=selected.cities.find(c=>c.id===b.dataset.detailCity);renderDetail()}if(b.dataset.tab){tab=b.dataset.tab;renderDetail();$('.detail-nav')?.scrollIntoView({block:'start',behavior:'smooth'})}});
+const writeStorage = (k, v) => {
+  try { localStorage.setItem(k, JSON.stringify(v)); } catch {}
+};
+
+// Global App State
+let countries = [];
+let photos = {};
+let galleries = {};
+let places = {};
+let cityCoordinates = {};
+let visaRoutes = {};
+let observed = {};
+let rates = {USD: 1, RUB: 80.53, EUR: 0.897};
+let rateDate = '';
+
+let f = {
+  ...defaultFilters,
+  currency: readStorage('gd-currency', 'RUB'),
+  tags: []
+};
+if (!['USD', 'RUB', 'EUR'].includes(f.currency)) f.currency = 'RUB';
+
+let saved = readStorage('gd-saved', []);
+if (!Array.isArray(saved)) saved = [];
+
+let compare = [];
+let visible = 9;
+let selected = null;
+let selectedCity = null;
+let detailTab = 'overview';
+let lastTrigger = null;
+
+// Multi-photo carousel indices per country card: { [countryId]: photoIndex }
+const cardPhotoIdx = {};
+let detailPhotoIdx = 0;
+let leafletMap = null;
+let leafletMarkers = [];
+
+const currencySymbols = {USD: '$', RUB: '₽', EUR: '€'};
+
+function money(usd, curr = f.currency) {
+  const rate = rates[curr] || 1;
+  const val = Math.round(usd * rate);
+  const sym = currencySymbols[curr] || curr + ' ';
+  return curr === 'RUB' 
+    ? new Intl.NumberFormat('ru-RU').format(val) + ' ₽'
+    : (sym + new Intl.NumberFormat('ru-RU').format(val));
+}
+
+function localMoney(value, curr) {
+  return new Intl.NumberFormat('ru-RU', {maximumFractionDigits: value < 100 ? 2 : 0}).format(value) + ' ' + curr;
+}
+
+function fmtNative(value, curr) {
+  return money(value / (rates[curr] || 1));
+}
+
+function plural(n, forms) {
+  const m = n % 100;
+  return forms[m > 10 && m < 20 ? 2 : n % 10 === 1 ? 0 : n % 10 > 1 && n % 10 < 5 ? 1 : 2];
+}
+
+const toast = text => {
+  const el = $('#toast');
+  if (!el) return;
+  el.textContent = text;
+  el.classList.add('visible');
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(() => el.classList.remove('visible'), 3200);
+};
+
+// Render SVG icons into any container with [data-icon]
+function hydrateIcons(root = document) {
+  root.querySelectorAll('[data-icon]').forEach(el => {
+    const name = el.getAttribute('data-icon');
+    if (name) {
+      el.innerHTML = icon(name);
+      el.removeAttribute('data-icon');
+    }
+  });
+}
+
+// Get photo array for a city
+function getCityPhotos(city) {
+  if (city && city.gallery && city.gallery.length) {
+    return city.gallery;
+  }
+  if (city && photos[city.id]) {
+    return [photos[city.id]];
+  }
+  if (galleries[city?.id]) {
+    return galleries[city.id];
+  }
+  return [];
+}
+
+// Update URL parameters
+function syncURL() {
+  const params = new URLSearchParams();
+  params.set('currency', f.currency);
+  if ($('#origin') && $('#origin').value !== 'Россия') params.set('origin', $('#origin').value);
+  for (const [k, v] of Object.entries(f)) {
+    if (['currency', 'saved', 'income', 'savings'].includes(k)) continue;
+    if (Array.isArray(v)) {
+      if (v.length) params.set(k, v.join(','));
+    } else if (v !== defaultFilters[k] && v !== '') {
+      params.set(k, String(v));
+    }
+  }
+  if (selected) {
+    params.set('country', selected.id);
+    if (selectedCity) params.set('city', selectedCity.id);
+  }
+  const url = location.pathname + (params.size ? '?' + params : '') + location.hash;
+  history.replaceState(null, '', url);
+}
+
+// Currency switch
+function updateCurrency() {
+  const old = f.currency;
+  f.currency = $('#currency').value;
+  writeStorage('gd-currency', f.currency);
+
+  for (const id of ['income', 'maxRent', 'savings']) {
+    const el = $('#' + id);
+    if (el && f[id] !== '') {
+      f[id] = Math.round(Number(f[id]) / (rates[old] || 1) * (rates[f.currency] || 1));
+      el.value = f[id];
+    }
+  }
+  $$('.currency-code').forEach(el => el.textContent = f.currency);
+  render();
+  renderCollections();
+  if (selected) renderDetail();
+}
+
+// Render the main catalog of countries
+function render() {
+  const matches = findMatches(countries, f, rates, saved);
+
+  // Update counts
+  if ($('#resultCount')) {
+    $('#resultCount').textContent = matches.length + ' ' + plural(matches.length, ['страна', 'страны', 'стран']);
+  }
+  if ($('#filterResultPreview')) {
+    $('#filterResultPreview').textContent = matches.length 
+      ? `Подходит: ${matches.length} ${plural(matches.length, ['страна', 'страны', 'стран'])}`
+      : 'Нет совпадений — попробуйте смягчить фильтры';
+  }
+  if ($('#savedCount')) {
+    $('#savedCount').textContent = saved.length;
+  }
+  if ($('#compareCount')) {
+    $('#compareCount').textContent = compare.length;
+  }
+
+  // Active filter chips bar
+  const activeChips = [];
+  if (f.search) activeChips.push(['search', 'Поиск: ' + f.search]);
+  if (f.region) activeChips.push(['region', 'Регион: ' + f.region]);
+  if (f.durationAmount) activeChips.push(['duration', `Срок: ${f.durationAmount} ${f.durationUnit === 'years' ? 'лет' : 'мес.'}`]);
+  if (f.routeType) {
+    const names = {visaFree: 'Без визы', nomad: 'Digital Nomad', residence: 'ВНЖ', work: 'Работа/Бизнес', study: 'Учёба'};
+    activeChips.push(['routeType', names[f.routeType] || f.routeType]);
+  }
+  if (f.income !== '') activeChips.push(['income', 'Доход: ' + money(Number(f.income) / (rates[f.currency] || 1))]);
+  if (f.maxRent !== '') activeChips.push(['maxRent', 'Аренда: до ' + money(Number(f.maxRent) / (rates[f.currency] || 1))]);
+  if (f.housing) {
+    const names = {condo: 'Кондо', house: 'Дом', apartment: 'Квартира'};
+    activeChips.push(['housing', names[f.housing] || f.housing]);
+  }
+  for (const t of f.tags) {
+    activeChips.push(['tag:' + t, tagNames[t] || t]);
+  }
+  if (f.matchMode === 'any' && f.tags.length > 1) {
+    activeChips.push(['matchMode', 'Логика: Хотя бы одно']);
+  }
+  if (f.visaFree) activeChips.push(['visaFree', 'Без визы на старте']);
+  if (f.allowRenewal) activeChips.push(['allowRenewal', 'С продлением']);
+  if (f.verifiedOnly) activeChips.push(['verifiedOnly', 'Проверенные регламенты']);
+  if (f.russian) activeChips.push(['russian', 'Русский язык']);
+  if (f.english) activeChips.push(['english', 'Английский язык']);
+  if (f.climate) {
+    const cNames = {tropical: 'Тропики', temperate: 'Умеренный климат', cold: 'Снежная зима'};
+    activeChips.push(['climate', cNames[f.climate] || f.climate]);
+  }
+  if (f.funding === 'savings') activeChips.push(['funding', 'Жить на накопления']);
+  if (f.saved) activeChips.push(['saved', 'Только избранное']);
+
+  if ($('#activeFilters')) {
+    $('#activeFilters').innerHTML = activeChips.map(([k, label]) => 
+      `<button class="active-filter-tag" data-remove="${esc(k)}">${esc(label)} ✕</button>`
+    ).join('');
+  }
+  if ($('#filterCount')) {
+    $('#filterCount').textContent = activeChips.length || '0';
+  }
+
+  // Country Grid
+  const gridEl = $('#countryGrid');
+  if (!gridEl) return;
+
+  if (!matches.length) {
+    gridEl.innerHTML = `
+      <div class="empty-catalog-state" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: rgba(255,255,255,0.02); border-radius: 20px; border: 1px dashed rgba(255,255,255,0.1);">
+        <span style="font-size: 42px; display: block; margin-bottom: 14px;">🌍</span>
+        <h3 style="font-size: 22px; margin-bottom: 8px; color: #fff;">Ничего не найдено под этот запрос</h3>
+        <p style="font-size: 14px; color: #94a3b8; max-width: 500px; margin: 0 auto 20px;">
+          Попробуйте включить переключатель «Хотя бы одно совпадение», увеличить максимальный бюджет или убрать строгие визовые ограничения.
+        </p>
+        <button id="emptyResetBtn" class="button button-gold">Сбросить фильтры</button>
+      </div>
+    `;
+    const btn = $('#emptyResetBtn');
+    if (btn) btn.onclick = resetFilters;
+  } else {
+    gridEl.innerHTML = matches.slice(0, visible).map(({country: c, city, budget, cities}) => {
+      const cityList = cities.length ? cities : c.cities;
+      const primaryCity = city || cityList[0];
+      const cityPhotosList = getCityPhotos(primaryCity);
+      const photoCount = cityPhotosList.length || 1;
+      const curPhotoIdx = cardPhotoIdx[c.id] || 0;
+      const curSafeIdx = Math.min(curPhotoIdx, photoCount - 1);
+      const isSaved = saved.includes(c.id);
+      const isCompared = compare.includes(c.id);
+
+      // Carousel slides markup
+      const slidesMarkup = cityPhotosList.length 
+        ? cityPhotosList.map((p, idx) => `
+            <div class="card-carousel-slide ${idx === curSafeIdx ? 'active' : ''}" data-slide-index="${idx}">
+              <img src="./${esc(p.src)}" alt="${esc(primaryCity.name)} — фото города" loading="lazy" decoding="async">
+            </div>
+          `).join('')
+        : `<div class="card-carousel-slide active"><img src="./assets/cities/${esc(c.id)}-0.jpg" alt="${esc(c.name)}" loading="lazy"></div>`;
+
+      // Carousel dots markup
+      const dotsMarkup = photoCount > 1 
+        ? `<div class="card-dots" data-dots-country="${c.id}">
+             ${Array.from({length: photoCount}).map((_, i) => `<span class="card-dot ${i === curSafeIdx ? 'active' : ''}" data-dot="${i}"></span>`).join('')}
+           </div>`
+        : '';
+
+      // Visa badge label
+      let badgeHtml = '';
+      if (c.longType === 'free') {
+        badgeHtml = `<span class="visa-badge visa-badge-gold">Год без визы</span>`;
+      } else if (c.routes && c.routes.some(r => r.type === 'nomad')) {
+        badgeHtml = `<span class="visa-badge visa-badge-teal">Digital Nomad</span>`;
+      } else if (c.verified) {
+        badgeHtml = `<span class="visa-badge visa-badge-glass">ВНЖ проверен</span>`;
+      }
+
+      // Lifestyle tags
+      const tagPills = primaryCity.tags.slice(0, 3).map(t => 
+        `<span class="tag-chip ${f.tags.includes(t) ? 'tag-highlight' : ''}">${esc(tagNames[t] || t)}</span>`
+      ).join('');
+
+      return `
+        <article class="country-card" data-country-id="${c.id}">
+          <div class="card-media-wrap">
+            ${slidesMarkup}
+            <div class="card-gradient-wash"></div>
+
+            <!-- Top Badges & Actions -->
+            <div class="card-top-left">
+              ${badgeHtml}
+            </div>
+
+            <button class="card-bookmark-btn ${isSaved ? 'is-saved' : ''}" data-save-id="${c.id}" aria-label="Сохранить ${esc(c.name)}" aria-pressed="${isSaved}">
+              ${icon('heart')}
+            </button>
+
+            <!-- Carousel Controls if multiple photos -->
+            ${photoCount > 1 ? `
+              <button class="card-nav-btn card-nav-prev" data-nav-dir="prev" data-country="${c.id}" aria-label="Предыдущее фото">
+                ${icon('chevron', 'rotate-180')}
+              </button>
+              <button class="card-nav-btn card-nav-next" data-nav-dir="next" data-country="${c.id}" aria-label="Следующее фото">
+                ${icon('chevron')}
+              </button>
+              ${dotsMarkup}
+              <span class="card-counter-tag">${curSafeIdx + 1} / ${photoCount}</span>
+            ` : ''}
+
+            <div class="card-location-tag">
+              ${icon('pin')}
+              <span>${esc(primaryCity.name)}, ${esc(c.name)}</span>
+            </div>
+          </div>
+
+          <div class="card-content">
+            <div class="card-title-row">
+              <h3 class="country-title">
+                <span class="country-flag">${c.flag}</span>
+                <span>${esc(c.name)}</span>
+              </h3>
+            </div>
+            <div class="card-subtitle">
+              ${esc(c.region)} · ${cityList.length} ${plural(cityList.length, ['исследованный город', 'исследованных города', 'исследованных городов'])}
+            </div>
+
+            <!-- Budget Box -->
+            <div class="card-budget-box">
+              <div class="budget-primary">
+                <span class="budget-amount">${money(budget.total)}</span>
+                <span class="budget-period">в месяц · ${f.people} чел.</span>
+              </div>
+              <div class="budget-breakdown">
+                <span>Аренда: ${money(budget.rent)}</span>
+                <span>Расходы: ${money(budget.daily)}</span>
+              </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="card-tags-row">
+              ${tagPills}
+              ${c.verified ? `<span class="tag-chip">${icon('shield')} Регламент 2026</span>` : ''}
+            </div>
+
+            <!-- Bottom Actions -->
+            <div class="card-bottom-row">
+              <button class="card-open-btn" data-open-country="${c.id}" data-open-city="${primaryCity.id}">
+                <span>О стране и ВНЖ</span>
+                ${icon('diagonal')}
+              </button>
+
+              <label class="compare-checkbox-label">
+                <input type="checkbox" data-compare-id="${c.id}" ${isCompared ? 'checked' : ''}>
+                <span>Сравнить</span>
+              </label>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  // Load more button
+  if ($('#loadMore')) {
+    $('#loadMore').hidden = matches.length <= visible;
+  }
+
+  // Compare dock visibility
+  const dock = $('#compareDock');
+  if (dock) {
+    dock.hidden = compare.length < 2;
+    if ($('#dockCount')) $('#dockCount').textContent = compare.length;
+  }
+
+  hydrateIcons(gridEl);
+  syncURL();
+}
+
+// Reset all filters
+function resetFilters() {
+  f = {
+    ...defaultFilters,
+    currency: f.currency,
+    tags: []
+  };
+  visible = 9;
+  syncInputs();
+  render();
+  toast('Все фильтры сброшены');
+}
+
+// Sync filter UI inputs with state f
+function syncInputs() {
+  if ($('#search')) $('#search').value = f.search || '';
+  if ($('#income')) $('#income').value = f.income || '';
+  if ($('#maxRent')) $('#maxRent').value = f.maxRent || '';
+  if ($('#savings')) $('#savings').value = f.savings || '';
+  if ($('#people')) $('#people').value = String(f.people || 1);
+  if ($('#durationAmount')) $('#durationAmount').value = f.durationAmount || '';
+  if ($('#durationUnit')) $('#durationUnit').value = f.durationUnit || 'months';
+  if ($('#region')) $('#region').value = f.region || '';
+  if ($('#climate')) $('#climate').value = f.climate || '';
+  if ($('#bureaucracy')) $('#bureaucracy').value = f.bureaucracy || '';
+  if ($('#citizenship')) $('#citizenship').value = f.citizenship || '';
+  if ($('#sort')) $('#sort').value = f.sort || 'recommended';
+
+  if ($('#reserve')) $('#reserve').checked = Boolean(f.reserve);
+  if ($('#allowRenewal')) $('#allowRenewal').checked = Boolean(f.allowRenewal);
+  if ($('#visaFree')) $('#visaFree').checked = Boolean(f.visaFree);
+  if ($('#verifiedOnly')) $('#verifiedOnly').checked = Boolean(f.verifiedOnly);
+  if ($('#russian')) $('#russian').checked = Boolean(f.russian);
+  if ($('#english')) $('#english').checked = Boolean(f.english);
+
+  // Match Mode
+  $$('.match-mode-card .segment-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.match === f.matchMode);
+  });
+
+  // Housing buttons
+  $$('#housingButtons .h-pill').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.housing === f.housing);
+  });
+
+  // Visa route type pills
+  $$('#visaTypeFilters .v-pill').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.routeType === f.routeType);
+  });
+
+  // Funding buttons
+  $$('[data-funding]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.funding === f.funding);
+  });
+
+  // Lifestyle cards
+  $$('.preference-card').forEach(card => {
+    card.classList.toggle('active', f.tags.includes(card.dataset.tag));
+  });
+
+  // Currency select
+  if ($('#currency')) $('#currency').value = f.currency;
+}
+
+// Preset shortcuts
+function applyPreset(name) {
+  resetFilters();
+  if (name === 'sea') {
+    f.tags = ['sea', 'beach'];
+    f.matchMode = 'any';
+  } else if (name === 'nomad') {
+    f.routeType = 'nomad';
+    f.tags = ['work'];
+  } else if (name === 'budget') {
+    f.income = Math.round(1200 * (rates[f.currency] || 1));
+    f.sort = 'budget';
+  } else if (name === 'withoutjob') {
+    f.easyStay = true;
+    toast('Показаны страны с длительным безвизовым въездом для граждан РФ.');
+  } else if (name === 'europe') {
+    f.region = 'Европа';
+  }
+  syncInputs();
+  render();
+  $('#destinations')?.scrollIntoView({behavior: 'smooth'});
+}
+
+// Curated collections
+function renderCollections() {
+  const collectionData = [
+    {
+      preset: 'withoutjob',
+      img: './assets/cities/georgia-1.jpg',
+      label: '01 / ПРОСТОЙ СТАРТ',
+      title: 'Уехать без рабочей визы',
+      desc: 'Годовой безвиз и комфортная жизнь при наличии удалёнки или накоплений.'
+    },
+    {
+      preset: 'nomad',
+      img: './assets/cities/portugal-0.jpg',
+      label: '02 / DIGITAL NOMAD',
+      title: 'Официальные визы кочевников',
+      desc: 'Европа, Азия и Латинская Америка с легальным статусом для удалёнщиков.'
+    },
+    {
+      preset: 'sea',
+      img: './assets/cities/thailand-2.jpg',
+      label: '03 / ВМЕСТО ЗИМЫ',
+      title: 'Тёплое море круглый год',
+      desc: 'Пляжи, свежие фрукты, солнце и европейский уровень сервиса.'
+    },
+    {
+      preset: 'budget',
+      img: './assets/cities/vietnam-1.jpg',
+      label: '04 / УМНЫЙ БЮДЖЕТ',
+      title: 'Качественная жизнь до ' + money(1200),
+      desc: 'Комфортные кондоминиумы с бассейном и отличной инфраструктурой.'
+    }
+  ];
+
+  const container = $('#collectionGrid');
+  if (!container) return;
+
+  container.innerHTML = collectionData.map(item => `
+    <button class="collection-card" data-preset="${item.preset}">
+      <img src="${item.img}" alt="${esc(item.title)}" class="collection-bg-img" loading="lazy">
+      <div class="collection-overlay"></div>
+      <div class="collection-body">
+        <span class="collection-kicker">${item.label}</span>
+        <h3 class="collection-title">${item.title}</h3>
+        <p class="collection-desc">${item.desc}</p>
+      </div>
+    </button>
+  `).join('');
+}
+
+// Detail View / Country Modal
+function openCountry(countryId, cityId) {
+  selected = countries.find(c => c.id === countryId);
+  if (!selected) return;
+  selectedCity = selected.cities.find(c => c.id === cityId) || selected.cities[0];
+  detailTab = 'overview';
+  detailPhotoIdx = 0;
+  lastTrigger = document.activeElement;
+
+  renderDetail();
+  const dialog = $('#detailDialog');
+  if (dialog && !dialog.open) {
+    dialog.showModal();
+    dialog.scrollTop = 0;
+  }
+  syncURL();
+}
+
+function closeDetail() {
+  const dialog = $('#detailDialog');
+  if (dialog && dialog.open) dialog.close();
+  selected = null;
+  selectedCity = null;
+  if (leafletMap) {
+    leafletMap.remove();
+    leafletMap = null;
+  }
+  syncURL();
+  lastTrigger?.focus?.();
+}
+
+// Render the inside of the detail modal
+function renderDetail() {
+  const c = selected;
+  const city = selectedCity;
+  if (!c || !city) return;
+
+  const m = monthly(city, +f.people, f.housing, f.reserve);
+  const cityPhotos = getCityPhotos(city);
+  const totalPhotos = cityPhotos.length || 1;
+  const currentPhoto = cityPhotos[detailPhotoIdx] || {src: `assets/cities/${c.id}-0.jpg`, title: city.name, attribution: ''};
+
+  // Costs breakdown array
+  const costs = [
+    ['Аренда жилья', m.rent, '#2dd4bf'],
+    ['Продукты и кафе', Math.round(m.daily * 0.44), '#38bdf8'],
+    ['Коммунальные и интернет', Math.round(m.daily * 0.20), '#818cf8'],
+    ['Транспорт и авто', Math.round(m.daily * 0.12), '#f59e0b'],
+    ['Досуг и отдых', Math.round(m.daily * 0.14), '#f43f5e']
+  ];
+  if (m.reserve) {
+    costs.push(['Резерв 20%', m.reserve, '#fbbf24']);
+  }
+
+  // City Switcher Tabs
+  const cityTabsMarkup = c.cities.map(ct => `
+    <button class="detail-city-pill ${ct.id === city.id ? 'active' : ''}" data-detail-city="${ct.id}">
+      ${esc(ct.name)}
+    </button>
+  `).join('');
+
+  // Nav Bar Tabs
+  const navTabs = [
+    ['overview', 'Обзор'],
+    ['visa', 'Визы и ВНЖ (Маршруты)'],
+    ['map', 'Карта и популярные места'],
+    ['costs', 'Бюджет и расходы'],
+    ['daily', 'Жизнь в городе'],
+    ['sources', 'Источники и методика']
+  ];
+  const navTabsMarkup = navTabs.map(([id, title]) => `
+    <button class="detail-nav-btn ${detailTab === id ? 'active' : ''}" data-detail-tab="${id}">
+      ${title}
+    </button>
+  `).join('');
+
+  // Top Hero Carousel Header
+  const headerMarkup = `
+    <div class="detail-gallery-header">
+      <div class="detail-gallery-slide active">
+        <img src="./${esc(currentPhoto.src)}" alt="${esc(city.name)}">
+      </div>
+      <div class="detail-gallery-overlay"></div>
+
+      <button class="detail-close-btn" id="closeDetailBtn" aria-label="Закрыть окно">
+        ${icon('close')}
+      </button>
+
+      <div class="detail-header-copy">
+        <span class="detail-topline">${esc(c.region)} · ${c.flag} ${esc(c.name)}</span>
+        <h2 class="detail-city-title">${esc(city.name)}</h2>
+        <p class="detail-city-desc">${city.capital ? 'Столица · ' : ''}${esc(city.features)}</p>
+      </div>
+
+      ${totalPhotos > 1 ? `
+        <div class="detail-gallery-controls">
+          <button class="detail-arrow-btn" id="detailPhotoPrev" aria-label="Предыдущее фото">
+            ${icon('chevron', 'rotate-180')}
+          </button>
+          <span class="detail-photo-counter">${detailPhotoIdx + 1} из ${totalPhotos}</span>
+          <button class="detail-arrow-btn" id="detailPhotoNext" aria-label="Следующее фото">
+            ${icon('chevron')}
+          </button>
+        </div>
+      ` : ''}
+    </div>
+  `;
+
+  // Stats Grid
+  const statsMarkup = `
+    <div class="detail-stat-grid">
+      <div class="detail-stat-card">
+        <span class="detail-stat-label">БЮДЖЕТ НА МЕСЯЦ</span>
+        <div class="detail-stat-val">${money(m.total)}</div>
+        <span class="detail-stat-sub">оценка на ${f.people} чел.</span>
+      </div>
+      <div class="detail-stat-card">
+        <span class="detail-stat-label">АРЕНДА ЖИЛЬЯ</span>
+        <div class="detail-stat-val">${money(m.rent)}</div>
+        <span class="detail-stat-sub">сценарный расчёт</span>
+      </div>
+      <div class="detail-stat-card">
+        <span class="detail-stat-label">СРОК ПРЕБЫВАНИЯ</span>
+        <div class="detail-stat-val" style="font-size: 18px; color: var(--accent-gold);">
+          ${c.longType === 'free' ? 'Год без визы' : (c.routes && c.routes.length ? 'Есть ВНЖ' : 'Уточняется')}
+        </div>
+        <span class="detail-stat-sub">${c.verified ? 'регламент 2026' : 'правила обновляются'}</span>
+      </div>
+      <div class="detail-stat-card">
+        <span class="detail-stat-label">ВАЛЮТА СТРАНЫ</span>
+        <div class="detail-stat-val">${esc(c.currency)}</div>
+        <span class="detail-stat-sub">$1 ≈ ${new Intl.NumberFormat('ru-RU', {maximumFractionDigits: 2}).format(rates[c.currency] || 1)} ${esc(c.currency)}</span>
+      </div>
+    </div>
+  `;
+
+  // Tab 1: Overview
+  const overviewTabContent = `
+    <div class="detail-tab-pane">
+      ${statsMarkup}
+      <div class="pane-grid-2col">
+        <div>
+          <div class="detail-card-panel mb-4" style="background: rgba(255,255,255,0.035); padding: 22px; border-radius: 16px; border: 1px solid var(--border-subtle);">
+            <h3 style="font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 10px;">Как устроена жизнь в ${esc(city.name)}</h3>
+            <p style="font-size: 14.5px; color: #cbd5e1; line-height: 1.6; margin-bottom: 14px;">${esc(city.features)}</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              ${city.tags.map(t => `<span class="tag-chip tag-highlight">${esc(tagNames[t] || t)}</span>`).join('')}
+            </div>
+          </div>
+
+          <div class="detail-card-panel" style="background: rgba(255,255,255,0.035); padding: 22px; border-radius: 16px; border: 1px solid var(--border-subtle);">
+            <h3 style="font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 10px;">Въезд с паспортом РФ</h3>
+            <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px;">${esc(c.entry)}</p>
+            <button class="button button-gold-sm" data-detail-tab="visa">Смотреть все визовые маршруты →</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="detail-card-panel mb-4" style="background: rgba(255,255,255,0.035); padding: 22px; border-radius: 16px; border: 1px solid var(--border-subtle);">
+            <h3 style="font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 10px;">Структура расходов в месяц</h3>
+            <div class="expense-breakdown-chart">
+              ${costs.map(x => `<span style="width: ${(x[1]/m.total)*100}%; background: ${x[2]};"></span>`).join('')}
+            </div>
+            <div class="expense-legend-grid">
+              ${costs.map(x => `
+                <div class="expense-row">
+                  <span style="display: flex; align-items: center; gap: 6px;">
+                    <i style="width: 8px; height: 8px; border-radius: 50%; background: ${x[2]}; display: inline-block;"></i>
+                    ${x[0]}
+                  </span>
+                  <strong>${money(x[1])}</strong>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="detail-card-panel" style="background: rgba(255,255,255,0.035); padding: 22px; border-radius: 16px; border: 1px solid var(--border-subtle);">
+            <h3 style="font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 10px;">Карта популярных мест</h3>
+            <p style="font-size: 13.5px; color: #cbd5e1; margin-bottom: 14px;">
+              Торговые центры, парки аттракционов, аквапарки и достопримечательности города с геолокацией.
+            </p>
+            <button class="button button-glass" data-detail-tab="map" style="width: 100%;">
+              ${icon('map')} Открыть интерактивную карту мест
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Tab 2: Visa Routes (Detailed!)
+  const routesList = c.routes || [];
+  const visaTabContent = `
+    <div class="detail-tab-pane">
+      <div class="pane-intro">
+        <div>
+          <h3>Визовые маршруты и легализация в ${esc(c.name)}</h3>
+          <p>Официальные регламенты, основания, требования к доходу и пошаговые инструкции.</p>
+        </div>
+        <span class="visa-badge visa-badge-gold">Паспорт РФ</span>
+      </div>
+
+      <div class="visa-routes-grid">
+        ${routesList.length ? routesList.map(r => `
+          <div class="route-card">
+            <div class="route-card-header">
+              <div>
+                <span class="visa-badge ${r.type === 'nomad' ? 'visa-badge-teal' : r.type === 'visaFree' ? 'visa-badge-gold' : 'visa-badge-glass'}">
+                  ${r.type === 'nomad' ? 'Digital Nomad' : r.type === 'visaFree' ? 'Без визы' : 'ВНЖ'}
+                </span>
+                <h4 class="route-card-title mt-2">${esc(r.title)}</h4>
+              </div>
+              ${r.incomeUSD ? `<div style="text-align: right;"><span style="font-size: 11px; color: #94a3b8;">ДОХОД ОТ</span><div style="font-size: 18px; font-weight: 800; color: var(--accent-gold);">${money(r.incomeUSD)} / мес</div></div>` : ''}
+            </div>
+
+            <div class="route-params-row">
+              <div class="param-item">
+                <strong>Срок пребывания</strong>
+                <span>${r.durationMonths ? `${r.durationMonths} мес.` : (r.maxContinuousDays ? `${r.maxContinuousDays} дней` : 'По основанию')}</span>
+              </div>
+              <div class="param-item">
+                <strong>Продление на месте</strong>
+                <span>${r.renewable ? 'Возможно' : 'Требует выезда'}</span>
+              </div>
+              <div class="param-item">
+                <strong>Право на работу</strong>
+                <span>${esc(r.workRights || 'По согласованию')}</span>
+              </div>
+            </div>
+
+            <div class="pane-grid-2col mt-3">
+              <div>
+                <h5 class="route-section-title">Требования и условия:</h5>
+                <ul class="route-checklist">
+                  ${(r.conditions || []).map(cond => `<li>${icon('check')} <span>${esc(cond)}</span></li>`).join('')}
+                </ul>
+              </div>
+
+              <div>
+                <h5 class="route-section-title">Необходимые документы:</h5>
+                <ul class="route-checklist">
+                  ${(r.documents || []).map(doc => `<li>${icon('passport')} <span>${esc(doc)}</span></li>`).join('')}
+                </ul>
+              </div>
+            </div>
+
+            ${r.steps && r.steps.length ? `
+              <div class="mt-3">
+                <h5 class="route-section-title">Порядок оформления:</h5>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px;">
+                  ${r.steps.map((step, idx) => `
+                    <div style="background: rgba(0,0,0,0.3); padding: 8px 12px; border-radius: 8px; font-size: 12.5px; color: #cbd5e1; border: 1px solid var(--border-subtle);">
+                      ${esc(step)}
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+
+            ${r.source && r.source.url ? `
+              <div class="mt-4 pt-3" style="border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 11px; color: #64748b;">Проверено по официальным источникам 2026</span>
+                <a href="${safeUrl(r.source.url)}" target="_blank" rel="noopener noreferrer" class="route-official-link">
+                  <span>${esc(r.source.title || 'Официальный регламент')}</span>
+                  ${icon('diagonal')}
+                </a>
+              </div>
+            ` : ''}
+          </div>
+        `).join('') : `
+          <div class="route-card">
+            <h4>Стандартные правила въезда</h4>
+            <p>${esc(c.entry)}</p>
+            <p>${esc(c.longStay)}</p>
+            <p>${esc(c.residence)}</p>
+          </div>
+        `}
+      </div>
+    </div>
+  `;
+
+  // Tab 3: Interactive Map & Popular Places (ТЦ, аквапарки, парки аттракционов, достопримечательности)
+  const cityPlaces = city.places || places[city.id] || [];
+  const mapTabContent = `
+    <div class="detail-tab-pane">
+      <div class="pane-intro">
+        <div>
+          <h3>Популярные места в ${esc(city.name)}</h3>
+          <p>Крупные торговые центры, парки аттракционов, аквапарки, достопримечательности и коворкинги.</p>
+        </div>
+      </div>
+
+      <div class="map-view-container">
+        <!-- Filter chips for POI categories -->
+        <div class="places-filter-chips">
+          <button class="place-chip active" data-poi-filter="all">Все места (${cityPlaces.length})</button>
+          <button class="place-chip" data-poi-filter="mall">${icon('malls')} ТЦ и моллы</button>
+          <button class="place-chip" data-poi-filter="themepark">${icon('themepark')} Парки аттракционов</button>
+          <button class="place-chip" data-poi-filter="waterpark">${icon('waterpark')} Аквапарки</button>
+          <button class="place-chip" data-poi-filter="landmark">${icon('landmark')} Достопримечательности</button>
+        </div>
+
+        <div class="map-layout-grid">
+          <!-- Leaflet Map Container -->
+          <div id="cityLeafletMap" class="leaflet-map-box"></div>
+
+          <!-- Places Cards List -->
+          <div class="places-cards-list" id="poiCardsList">
+            ${cityPlaces.length ? cityPlaces.map(p => `
+              <div class="poi-card" data-poi-id="${p.id}" data-lat="${p.lat}" data-lng="${p.lng}" data-poi-type="${p.type}">
+                <div class="poi-header">
+                  <h5 class="poi-name">${esc(p.name)}</h5>
+                  <span class="poi-type-tag">${p.type === 'mall' ? 'Торговый центр' : p.type === 'themepark' ? 'Парк аттракционов' : p.type === 'waterpark' ? 'Аквапарк' : p.type === 'landmark' ? 'Достопримечательность' : 'Локация'}</span>
+                </div>
+                <p class="poi-desc">${esc(p.description)}</p>
+                <div class="poi-meta">
+                  <button class="poi-focus-btn" data-focus-lat="${p.lat}" data-focus-lng="${p.lng}">
+                    ${icon('pin')} Показать на карте
+                  </button>
+                  ${p.website ? `<a href="${safeUrl(p.website)}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-gold); font-size: 12px; display: inline-flex; align-items: center; gap: 3px;">Сайт места ↗</a>` : ''}
+                </div>
+              </div>
+            `).join('') : `
+              <div style="padding: 30px 20px; text-align: center; color: var(--text-muted);">
+                ${icon('map')}
+                <p style="margin-top: 8px;">Координаты города на карте отмечены. Для поиска конкретных ТЦ и парков воспользуйтесь картой.</p>
+              </div>
+            `}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Tab 4: Costs & Numbeo
+  const obs = observed[city.id];
+  const costsTabContent = `
+    <div class="detail-tab-pane">
+      <div class="pane-intro">
+        <div>
+          <h3>Смета жизни в ${esc(city.name)}</h3>
+          <p>Расчёт на ${f.people} чел. с учётом аренды жилья и потребительской корзины.</p>
+        </div>
+      </div>
+
+      <div class="pane-grid-2col">
+        <div>
+          <div style="background: rgba(255,255,255,0.035); padding: 22px; border-radius: 16px; border: 1px solid var(--border-subtle); margin-bottom: 20px;">
+            <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px;">Статьи бюджета</h4>
+            <div class="expense-breakdown-chart">
+              ${costs.map(x => `<span style="width: ${(x[1]/m.total)*100}%; background: ${x[2]};"></span>`).join('')}
+            </div>
+            <table class="cost-table">
+              <tbody>
+                ${costs.map(x => `
+                  <tr>
+                    <td><i style="width: 8px; height: 8px; border-radius: 50%; background: ${x[2]}; display: inline-block; margin-right: 8px;"></i>${x[0]}</td>
+                    <td style="text-align: right; font-weight: 700;">${money(x[1])}</td>
+                  </tr>
+                `).join('')}
+                <tr style="border-top: 2px solid var(--border-subtle); font-size: 15px;">
+                  <td><strong>Итого в месяц:</strong></td>
+                  <td style="text-align: right; font-weight: 800; color: var(--accent-gold);">${money(m.total)}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Currency Converter -->
+          <div style="background: rgba(255,255,255,0.035); padding: 22px; border-radius: 16px; border: 1px solid var(--border-subtle);">
+            <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px;">Быстрый конвертер валют</h4>
+            <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+              <input id="convertAmount" type="number" min="0" value="1000" class="modern-input" style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); padding: 8px 12px; border-radius: 8px;">
+              <select id="convertFrom" class="modern-select" style="max-width: 110px;">
+                <option value="USD">USD</option>
+                <option value="RUB">RUB</option>
+                <option value="EUR">EUR</option>
+                <option value="${c.currency}">${c.currency}</option>
+              </select>
+            </div>
+            <div id="convertResult" style="font-size: 14px; font-weight: 700; color: var(--accent-teal);"></div>
+          </div>
+        </div>
+
+        <div>
+          <!-- Numbeo Items -->
+          <div style="background: rgba(255,255,255,0.035); padding: 22px; border-radius: 16px; border: 1px solid var(--border-subtle);">
+            <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px;">Реальные ориентиры цен (Numbeo)</h4>
+            ${obs ? `
+              <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Цены пересчитаны из местной валюты (${obs.currency}) по текущему курсу.</p>
+              <table class="cost-table">
+                <tbody>
+                  ${obs.items.map(([title, val]) => `
+                    <tr>
+                      <td>${esc(title)}</td>
+                      <td style="text-align: right;">
+                        <strong>${fmtNative(val, obs.currency)}</strong><br>
+                        <small style="color: var(--text-muted);">${localMoney(val, obs.currency)}</small>
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+              <div style="margin-top: 14px; text-align: right;">
+                <a href="${safeUrl(obs.url)}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-teal); font-size: 12px;">Сверить диапазон цен на Numbeo ↗</a>
+              </div>
+            ` : `
+              <p style="font-size: 13.5px; color: var(--text-secondary); line-height: 1.6;">
+                Точечные чеки на продукты по этому городу ещё калибруются. Общие сценарные расходы рассчитаны на основе регионального индекса цен.
+              </p>
+            `}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Tab 5: Daily Life
+  const dailyTabContent = `
+    <div class="detail-tab-pane">
+      <div class="pane-intro">
+        <div>
+          <h3>Повседневная жизнь и адаптация в ${esc(city.name)}</h3>
+          <p>Языковая среда, транспорт, комьюнити и практические нюансы.</p>
+        </div>
+      </div>
+
+      <div class="pane-grid-2col">
+        <div style="background: rgba(255,255,255,0.035); padding: 22px; border-radius: 16px; border: 1px solid var(--border-subtle);">
+          <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px;">Языковая среда</h4>
+          <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6; margin-bottom: 14px;">
+            Основной язык: <b>${esc(c.language)}</b>. 
+            ${c.russian ? 'Русский язык достаточно широко понятен в сфере услуг и повседневном общении благодаря сформированному комьюнити.' : (c.english ? 'Английский язык широко используется в быту, ресторанах и при аренде жилья.' : 'В быту полезно владеть базовым английским и онлайн-переводчиком.')}
+          </p>
+
+          <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px;">Отношение к гражданам РФ</h4>
+          <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6;">${esc(c.social || 'Бытовое отношение доброжелательное; юридические требования и процедуры оформления открыты.')}</p>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.035); padding: 22px; border-radius: 16px; border: 1px solid var(--border-subtle);">
+          <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px;">Поиск жилья и аренда</h4>
+          <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6; margin-bottom: 14px;">
+            Для долгосрочной аренды используйте местный проверенный портал: 
+            <a href="${safeUrl(c.portalUrl)}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-gold); font-weight: 700;">${esc(c.portal)} ↗</a>.
+          </p>
+          <div class="alert-box-info">
+            ${icon('info')}
+            <span>Внимательно сверяйте депозит (обычно 1–2 месяца), регистрацию иностранца и возможность заключения договора на нужный срок.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Tab 6: Sources
+  const sourcesTabContent = `
+    <div class="detail-tab-pane">
+      <div class="pane-intro">
+        <div>
+          <h3>Официальные источники и методология</h3>
+          <p>Мы не выдумываем миграционные правила — все данные верифицированы по официальным ведомствам.</p>
+        </div>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.035); padding: 24px; border-radius: 16px; border: 1px solid var(--border-subtle);">
+        <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px;">Проверенные правительственные страницы:</h4>
+        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+          ${(c.sources && c.sources.length) ? c.sources.map(s => `
+            <a href="${safeUrl(s.url)}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-teal); font-size: 14px; display: inline-flex; align-items: center; gap: 6px;">
+              <span>${esc(s.title)}</span>
+              ${icon('diagonal')}
+            </a>
+          `).join('') : '<p style="color: var(--text-muted);">Официальные регламенты на стадии верификации.</p>'}
+        </div>
+
+        <h4 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px;">Фотография и лицензия:</h4>
+        <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.6;">
+          ${currentPhoto.author ? `Автор: ${esc(currentPhoto.author)} · ` : ''}
+          ${currentPhoto.license ? `Лицензия: ${esc(currentPhoto.license)} · ` : ''}
+          ${currentPhoto.source ? `<a href="${safeUrl(currentPhoto.source)}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-gold);">Оригинальный снимок на Wikimedia Commons</a>` : ''}
+        </p>
+      </div>
+    </div>
+  `;
+
+  // Assemble Complete Detail Dialog HTML
+  const contentEl = $('#detailContent');
+  if (!contentEl) return;
+
+  contentEl.innerHTML = `
+    ${headerMarkup}
+    <div class="detail-cities-bar">${cityTabsMarkup}</div>
+    <div class="detail-nav-bar">${navTabsMarkup}</div>
+    <div class="detail-body-wrap">
+      ${detailTab === 'overview' ? overviewTabContent :
+        detailTab === 'visa' ? visaTabContent :
+        detailTab === 'map' ? mapTabContent :
+        detailTab === 'costs' ? costsTabContent :
+        detailTab === 'daily' ? dailyTabContent : sourcesTabContent}
+    </div>
+  `;
+
+  hydrateIcons(contentEl);
+
+  // Bind Detail Events
+  const closeBtn = $('#closeDetailBtn');
+  if (closeBtn) closeBtn.onclick = closeDetail;
+
+  const prevBtn = $('#detailPhotoPrev');
+  if (prevBtn) {
+    prevBtn.onclick = () => {
+      detailPhotoIdx = (detailPhotoIdx - 1 + totalPhotos) % totalPhotos;
+      renderDetail();
+    };
+  }
+
+  const nextBtn = $('#detailPhotoNext');
+  if (nextBtn) {
+    nextBtn.onclick = () => {
+      detailPhotoIdx = (detailPhotoIdx + 1) % totalPhotos;
+      renderDetail();
+    };
+  }
+
+  // City Selector
+  $$('.detail-city-pill').forEach(btn => {
+    btn.onclick = () => {
+      const targetId = btn.dataset.detailCity;
+      selectedCity = c.cities.find(ct => ct.id === targetId) || selectedCity;
+      detailPhotoIdx = 0;
+      renderDetail();
+    };
+  });
+
+  // Tab Navigation
+  $$('.detail-nav-btn').forEach(btn => {
+    btn.onclick = () => {
+      detailTab = btn.dataset.detailTab;
+      renderDetail();
+      if (detailTab === 'map') {
+        setTimeout(initLeafletMap, 120);
+      }
+    };
+  });
+
+  // Direct tab triggers
+  $$('[data-detail-tab]').forEach(btn => {
+    if (!btn.classList.contains('detail-nav-btn')) {
+      btn.onclick = () => {
+        detailTab = btn.dataset.detailTab;
+        renderDetail();
+        if (detailTab === 'map') {
+          setTimeout(initLeafletMap, 120);
+        }
+      };
+    }
+  });
+
+  // Currency Converter inside modal
+  if ($('#convertAmount')) {
+    const doConvert = () => {
+      const amt = Number($('#convertAmount').value);
+      const from = $('#convertFrom').value;
+      if (!Number.isFinite(amt) || amt < 0) {
+        $('#convertResult').textContent = 'Введите положительную сумму';
+        return;
+      }
+      const targets = ['RUB', 'USD', 'EUR', c.currency].filter((v, i, a) => a.indexOf(v) === i && v !== from);
+      $('#convertResult').textContent = targets.map(t => money(amt / (rates[from] || 1), t)).join(' · ');
+    };
+    $('#convertAmount').oninput = doConvert;
+    $('#convertFrom').onchange = doConvert;
+    doConvert();
+  }
+
+  // If map tab was active, initialize leaflet
+  if (detailTab === 'map') {
+    setTimeout(initLeafletMap, 120);
+  }
+}
+
+// Leaflet Map Initialization with CartoDB Dark Tiles
+function initLeafletMap() {
+  const mapEl = $('#cityLeafletMap');
+  if (!mapEl || !window.L) return;
+
+  if (leafletMap) {
+    leafletMap.remove();
+    leafletMap = null;
+    leafletMarkers = [];
+  }
+
+  const city = selectedCity;
+  const coords = cityCoordinates[city.id] || {lat: 41.7225, lng: 44.7925};
+  const centerLat = coords.lat || 41.72;
+  const centerLng = coords.lng || 44.79;
+
+  leafletMap = L.map('cityLeafletMap', {
+    center: [centerLat, centerLng],
+    zoom: 12,
+    zoomControl: true,
+    scrollWheelZoom: false
+  });
+
+  // High quality dark luxury CartoDB map tiles
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; CartoDB &copy; OpenStreetMap',
+    maxZoom: 19
+  }).addTo(leafletMap);
+
+  // Add City Center Marker
+  const cityIcon = L.divIcon({
+    className: 'custom-city-marker',
+    html: `<div style="background: #f59e0b; color: #0b1419; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 15px; box-shadow: 0 0 15px rgba(245, 158, 11, 0.7); border: 2px solid #fff;">📍</div>`,
+    iconSize: [34, 34],
+    iconAnchor: [17, 34]
+  });
+  L.marker([centerLat, centerLng], {icon: cityIcon})
+    .addTo(leafletMap)
+    .bindPopup(`<b>${esc(city.name)}</b><br><small>Центр города</small>`);
+
+  // Add POI Markers
+  const cityPlaces = city.places || places[city.id] || [];
+  leafletMarkers = [];
+
+  cityPlaces.forEach(p => {
+    if (!p.lat || !p.lng) return;
+    const typeEmojis = {mall: '🛍', themepark: '🎢', waterpark: '💦', landmark: '🏛', museum: '🏛', coworking: '💻'};
+    const emoji = typeEmojis[p.type] || '⭐️';
+
+    const poiIcon = L.divIcon({
+      className: 'custom-poi-marker',
+      html: `<div style="background: rgba(14, 25, 34, 0.9); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-size: 16px; border: 2px solid #2dd4bf; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">${emoji}</div>`,
+      iconSize: [32, 32],
+      iconAnchor: [16, 32]
+    });
+
+    const marker = L.marker([p.lat, p.lng], {icon: poiIcon}).addTo(leafletMap);
+    marker.bindPopup(`
+      <div style="font-family: 'Golos Text', sans-serif; min-width: 180px; padding: 4px;">
+        <strong style="font-size: 14px; color: #0f172a; display: block; margin-bottom: 2px;">${esc(p.name)}</strong>
+        <p style="font-size: 12px; color: #475569; margin: 0 0 6px;">${esc(p.description)}</p>
+        ${p.website ? `<a href="${safeUrl(p.website)}" target="_blank" rel="noopener noreferrer" style="color: #0d9488; font-size: 11px; font-weight: 700;">Открыть сайт места ↗</a>` : ''}
+      </div>
+    `);
+    leafletMarkers.push({id: p.id, marker, lat: p.lat, lng: p.lng, type: p.type});
+  });
+
+  // Fit bounds if markers exist
+  if (leafletMarkers.length) {
+    const group = L.featureGroup([
+      L.marker([centerLat, centerLng]),
+      ...leafletMarkers.map(m => m.marker)
+    ]);
+    leafletMap.fitBounds(group.getBounds().pad(0.15));
+  }
+
+  // Connect POI List buttons to Map
+  $$('.poi-card').forEach(card => {
+    card.onclick = () => {
+      const lat = Number(card.dataset.lat);
+      const lng = Number(card.dataset.lng);
+      const id = card.dataset.poiId;
+      if (lat && lng && leafletMap) {
+        leafletMap.flyTo([lat, lng], 14, {duration: 0.8});
+        const match = leafletMarkers.find(m => m.id === id);
+        if (match) match.marker.openPopup();
+        $$('.poi-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      }
+    };
+  });
+
+  // POI Category Filter chips
+  $$('.places-filter-chips .place-chip').forEach(chip => {
+    chip.onclick = () => {
+      const type = chip.dataset.poiFilter;
+      $$('.places-filter-chips .place-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+
+      $$('.poi-card').forEach(card => {
+        if (type === 'all' || card.dataset.poiType === type) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      leafletMarkers.forEach(m => {
+        if (type === 'all' || m.type === type) {
+          if (!leafletMap.hasLayer(m.marker)) leafletMap.addLayer(m.marker);
+        } else {
+          if (leafletMap.hasLayer(m.marker)) leafletMap.removeLayer(m.marker);
+        }
+      });
+    };
+  });
+}
+
+// Info Dialog (Methodology / Credits)
+function openInfo(html) {
+  const container = $('#infoContent');
+  const dialog = $('#infoDialog');
+  if (!container || !dialog) return;
+  container.innerHTML = html;
+  hydrateIcons(container);
+  dialog.showModal();
+}
+
+function showMethodology() {
+  openInfo(`
+    <span class="section-kicker">ОТКРЫТАЯ МЕТОДИКА 2026</span>
+    <h2 style="font-size: 26px; font-weight: 800; color: #fff; margin: 8px 0 16px;">Как устроены расчёты и данные</h2>
+    <p style="font-size: 14.5px; color: #cbd5e1; line-height: 1.6; margin-bottom: 16px;">
+      Каталог охватывает <b>68 стран</b> и <b>133 города</b>. Мы не берём случайные цифры из интернета и не рекламируем агентства.
+    </p>
+
+    <h3 style="font-size: 17px; font-weight: 700; color: var(--accent-gold); margin: 18px 0 8px;">1. Оценка бюджета жизни</h3>
+    <p style="font-size: 13.5px; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px;">
+      Бюджет состоит из двух частей: долгосрочная аренда жилья (квартира/кондо/дом) плюс потребительская корзина по Numbeo. 
+      Каждый взрослый спутник добавляет 70% повседневных расходов; с 3-го человека аренда увеличивается на 20%. 
+      Опциональный резерв 20% защищает от валютных колебаний и непредвиденных трат.
+    </p>
+
+    <h3 style="font-size: 17px; font-weight: 700; color: var(--accent-gold); margin: 18px 0 8px;">2. Визовые регламенты</h3>
+    <p style="font-size: 13.5px; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px;">
+      Для 34 ключевых направлений исследованы официальные миграционные законы на 2026 год: безвизовый срок для граждан РФ, 
+      визы цифровых кочевников (Digital Nomad), ВНЖ по аренде, бизнесу и недвижимости.
+    </p>
+
+    <h3 style="font-size: 17px; font-weight: 700; color: var(--accent-gold); margin: 18px 0 8px;">3. Популярные места и география</h3>
+    <p style="font-size: 13.5px; color: #cbd5e1; line-height: 1.6; margin-bottom: 14px;">
+      Все координаты ТЦ, парков аттракционов и аквапарков привязаны к реальной карте для планирования удобных районов проживания.
+    </p>
+  `);
+}
+
+function showPhotoCredits() {
+  openInfo(`
+    <span class="section-kicker">АВТОРЫ И ЛИЦЕНЗИИ</span>
+    <h2 style="font-size: 26px; font-weight: 800; color: #fff; margin: 8px 0 16px;">Фотографии городов</h2>
+    <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6; margin-bottom: 16px;">
+      Все снимки городов загружены в каталог на условиях свободных лицензий Creative Commons (CC BY, CC BY-SA, CC0) с Wikimedia Commons.
+    </p>
+    <div style="max-height: 380px; overflow-y: auto; padding-right: 10px;">
+      ${countries.map(c => `
+        <div style="margin-bottom: 14px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+          <strong style="color: #fff; font-size: 14px;">${c.flag} ${esc(c.name)}</strong>
+          <div style="font-size: 12px; color: #94a3b8; margin-top: 4px;">
+            ${c.cities.map(ct => esc(ct.name)).join(', ')}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `);
+}
+
+// Side-by-side comparison modal
+function showCompareModal() {
+  if (compare.length < 2) {
+    toast('Выберите от 2 до 4 стран для сравнения');
+    return;
+  }
+  const cs = compare.map(id => countries.find(c => c.id === id)).filter(Boolean);
+  const rows = [
+    ['Флаг и страна', c => `${c.flag} ${c.name}`],
+    ['Регион', c => c.region],
+    ['Бюджет на 1 чел / мес', c => money(monthly(c.cities[0], 1).total)],
+    ['Аренда жилья (ориентир)', c => money(monthly(c.cities[0], 1).rent)],
+    ['Безвизовый режим', c => c.entry],
+    ['Длительное проживание', c => c.longStay],
+    ['Язык', c => c.language],
+    ['Сложность оформления', c => c.difficulty ? `${c.difficulty} из 5` : 'Уточняется'],
+    ['Право на гражданство', c => c.citizenship || 'По стандартной процедуре']
+  ];
+
+  openInfo(`
+    <span class="section-kicker">СРАВНЕНИЕ ВАРИАНТОВ</span>
+    <h2 style="font-size: 26px; font-weight: 800; color: #fff; margin: 8px 0 16px;">Сравнение направлений</h2>
+    <div style="overflow-x: auto; margin-top: 14px;">
+      <table class="cost-table" style="min-width: 520px;">
+        <thead>
+          <tr>
+            <th style="text-align: left; padding: 10px; color: var(--text-muted); font-size: 12px;">Критерий</th>
+            ${cs.map(c => `<th style="text-align: left; padding: 10px; color: #fff; font-size: 14px; font-weight: 700;">${c.flag} ${esc(c.name)}</th>`).join('')}
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(([title, fn]) => `
+            <tr>
+              <td style="color: var(--text-secondary); font-size: 13px; font-weight: 600;">${title}</td>
+              ${cs.map(c => `<td style="font-size: 13px; color: #e2e8f0;">${esc(fn(c))}</td>`).join('')}
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `);
+}
+
+// Exchange Rates Loader
+async function loadExchangeRates() {
+  try {
+    const cached = await fetch('./rates.json').then(r => r.json());
+    if (cached && cached.rates) {
+      rates = cached.rates;
+      rateDate = cached.time_last_update_utc;
+      if ($('#fxStatus')) {
+        $('#fxStatus').textContent = `$1 = ${new Intl.NumberFormat('ru-RU', {maximumFractionDigits: 2}).format(rates.RUB)} ₽`;
+      }
+    }
+  } catch (e) {
+    if ($('#fxStatus')) $('#fxStatus').textContent = 'Резервные курсы 2026';
+  }
+
+  // Attempt live rate fetch with 6s timeout
+  try {
+    const ctrl = new AbortController();
+    const timeout = setTimeout(() => ctrl.abort(), 6000);
+    const live = await fetch('https://open.er-api.com/v6/latest/USD', {signal: ctrl.signal}).then(r => r.json());
+    clearTimeout(timeout);
+    if (live && live.rates && live.rates.RUB) {
+      rates = live.rates;
+      if ($('#fxStatus')) {
+        $('#fxStatus').textContent = `$1 = ${new Intl.NumberFormat('ru-RU', {maximumFractionDigits: 2}).format(rates.RUB)} ₽`;
+      }
+      render();
+      renderCollections();
+      if (selected) renderDetail();
+    }
+  } catch {}
+}
+
+// Initialize Entire App
+async function init() {
+  try {
+    let rawData, rawPhotos, rawGalleries, rawPlaces, rawCoords, rawRoutes, extraObs;
+    [rawData, rawPhotos, rawGalleries, rawPlaces, rawCoords, rawRoutes, extraObs] = await Promise.all([
+      fetch('./data.json').then(r => r.json()),
+      fetch('./photos.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+      fetch('./galleries.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+      fetch('./places.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+      fetch('./city-coordinates.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+      fetch('./visa-routes.json').then(r => r.ok ? r.json() : {}).catch(() => ({})),
+      fetch('./observed.json').then(r => r.ok ? r.json() : {}).catch(() => ({}))
+    ]);
+
+    countries = rawData;
+    photos = rawPhotos;
+    galleries = rawGalleries;
+    places = rawPlaces;
+    cityCoordinates = rawCoords;
+    visaRoutes = rawRoutes;
+    observed = extraObs;
+
+    // Attach routes and enriched data to countries and cities
+    countries.forEach(c => {
+      c.routes = visaRoutes[c.id] || [];
+      c.cities.forEach(ct => {
+        ct.gallery = galleries[ct.id] || (photos[ct.id] ? [photos[ct.id]] : []);
+        ct.places = places[ct.id] || [];
+        ct.coords = cityCoordinates[ct.id] || {lat: 0, lng: 0};
+      });
+    });
+
+    // Parse URL params
+    const params = new URLSearchParams(location.search);
+    if (['USD', 'RUB', 'EUR'].includes(params.get('currency'))) {
+      f.currency = params.get('currency');
+    }
+    for (const k of Object.keys(defaultFilters)) {
+      if (!params.has(k) || k === 'saved') continue;
+      const v = params.get(k);
+      if (k === 'tags') f.tags = v.split(',').filter(t => t in tagNames);
+      else if (typeof defaultFilters[k] === 'boolean') f[k] = v === 'true';
+      else f[k] = v;
+    }
+
+    // Populate Datalist
+    if ($('#places')) {
+      const suggestions = [...new Set(countries.flatMap(c => [c.name, c.region, ...c.cities.map(ct => ct.name)]))];
+      $('#places').innerHTML = suggestions.map(s => `<option value="${esc(s)}"></option>`).join('');
+    }
+
+    // Populate Lifestyle Cards in Filter Workspace
+    const lifestyleEl = $('#lifestyleFilters');
+    if (lifestyleEl) {
+      const tagIcons = {
+        sea: 'sea',
+        beach: 'beach',
+        work: 'work',
+        metro: 'metro',
+        malls: 'malls',
+        clubs: 'clubs',
+        mountains: 'mountains'
+      };
+      const tagDescriptions = {
+        sea: 'Близость к морскому побережью',
+        beach: 'Песчаные или галечные пляжи',
+        work: 'Коворкинги и кафе для ноутбука',
+        metro: 'Быстрый внеуличный транспорт',
+        malls: 'Крупные ТЦ, моллы и шопинг',
+        clubs: 'Игровые интернет-клубы',
+        mountains: 'Горы, трекинг и чистый воздух'
+      };
+
+      lifestyleEl.innerHTML = Object.entries(tagNames).map(([tagKey, tagTitle]) => `
+        <div class="preference-card ${f.tags.includes(tagKey) ? 'active' : ''}" data-tag="${tagKey}">
+          <div class="pref-icon-circle">
+            ${icon(tagIcons[tagKey] || 'spark')}
+          </div>
+          <div class="pref-text">
+            <span class="pref-title">${esc(tagTitle)}</span>
+            <span class="pref-desc">${esc(tagDescriptions[tagKey] || '')}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    hydrateIcons(document.body);
+    syncInputs();
+    render();
+    renderCollections();
+    loadExchangeRates();
+
+    // Check if initial country requested in URL
+    if (params.get('country')) {
+      openCountry(params.get('country'), params.get('city'));
+    }
+  } catch (err) {
+    console.error('Initialization error:', err);
+    if ($('#countryGrid')) {
+      $('#countryGrid').innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: 50px;">
+          <h3>Не удалось загрузить каталог</h3>
+          <p>Пожалуйста, перезагрузите страницу.</p>
+          <button class="button button-gold mt-3" onclick="location.reload()">Обновить</button>
+        </div>
+      `;
+    }
+  }
+}
+
+// Global Event Listeners
+document.addEventListener('click', e => {
+  // Card Multi-photo navigation (Prev / Next buttons on card)
+  const navBtn = e.target.closest('.card-nav-btn');
+  if (navBtn) {
+    e.stopPropagation();
+    e.preventDefault();
+    const cId = navBtn.dataset.country;
+    const dir = navBtn.dataset.navDir;
+    const country = countries.find(c => c.id === cId);
+    if (!country) return;
+
+    const city = country.cities[0];
+    const photosList = getCityPhotos(city);
+    const count = photosList.length;
+    if (count <= 1) return;
+
+    const cur = cardPhotoIdx[cId] || 0;
+    const nextIdx = dir === 'next' ? (cur + 1) % count : (cur - 1 + count) % count;
+    cardPhotoIdx[cId] = nextIdx;
+
+    // Update slides & dots for this card only
+    const cardEl = navBtn.closest('.country-card');
+    if (cardEl) {
+      cardEl.querySelectorAll('.card-carousel-slide').forEach((slide, i) => {
+        slide.classList.toggle('active', i === nextIdx);
+      });
+      cardEl.querySelectorAll('.card-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === nextIdx);
+      });
+      const counterTag = cardEl.querySelector('.card-counter-tag');
+      if (counterTag) counterTag.textContent = `${nextIdx + 1} / ${count}`;
+    }
+    return;
+  }
+
+  // Card dot navigation
+  const dotEl = e.target.closest('.card-dot');
+  if (dotEl) {
+    e.stopPropagation();
+    const targetIdx = Number(dotEl.dataset.dot);
+    const dotsContainer = dotEl.closest('[data-dots-country]');
+    const cId = dotsContainer?.dataset.dotsCountry;
+    if (cId !== undefined && !isNaN(targetIdx)) {
+      cardPhotoIdx[cId] = targetIdx;
+      const cardEl = dotEl.closest('.country-card');
+      if (cardEl) {
+        cardEl.querySelectorAll('.card-carousel-slide').forEach((slide, i) => {
+          slide.classList.toggle('active', i === targetIdx);
+        });
+        cardEl.querySelectorAll('.card-dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === targetIdx);
+        });
+      }
+    }
+    return;
+  }
+
+  // Bookmark / Save country button
+  const saveBtn = e.target.closest('.card-bookmark-btn');
+  if (saveBtn) {
+    e.stopPropagation();
+    const cId = saveBtn.dataset.saveId;
+    if (saved.includes(cId)) {
+      saved = saved.filter(x => x !== cId);
+      toast('Удалено из избранного');
+    } else {
+      saved.push(cId);
+      toast('Добавлено в избранное');
+    }
+    writeStorage('gd-saved', saved);
+    render();
+    return;
+  }
+
+  // Open country detail modal from card
+  const openTrigger = e.target.closest('[data-open-country]');
+  if (openTrigger) {
+    const cId = openTrigger.dataset.openCountry;
+    const ctId = openTrigger.dataset.openCity;
+    openCountry(cId, ctId);
+    return;
+  }
+
+  // Click directly on country card image to open
+  const cardMedia = e.target.closest('.card-media-wrap');
+  if (cardMedia) {
+    const cardEl = cardMedia.closest('.country-card');
+    if (cardEl) {
+      const cId = cardEl.dataset.countryId;
+      openCountry(cId);
+    }
+    return;
+  }
+
+  // Hero destination button (Montenegro)
+  if (e.target.closest('#heroOpen')) {
+    openCountry('montenegro');
+    return;
+  }
+
+  // Lifestyle preference card toggle
+  const prefCard = e.target.closest('.preference-card');
+  if (prefCard) {
+    const tag = prefCard.dataset.tag;
+    if (f.tags.includes(tag)) {
+      f.tags = f.tags.filter(t => t !== tag);
+    } else {
+      f.tags.push(tag);
+    }
+    prefCard.classList.toggle('active', f.tags.includes(tag));
+    visible = 9;
+    render();
+    return;
+  }
+
+  // Quick duration chips in Lifestyle pane
+  const dChip = e.target.closest('.d-chip');
+  if (dChip) {
+    const [amt, unit] = dChip.dataset.setDuration.split(',');
+    f.durationAmount = amt;
+    f.durationUnit = unit;
+    if ($('#durationAmount')) $('#durationAmount').value = amt;
+    if ($('#durationUnit')) $('#durationUnit').value = unit;
+    $$('.d-chip').forEach(c => c.classList.remove('active'));
+    dChip.classList.add('active');
+    visible = 9;
+    render();
+    toast(`Выбран срок: ${amt} ${unit === 'years' ? 'лет' : 'мес.'}`);
+    return;
+  }
+
+  // Remove active filter chip
+  const removeBtn = e.target.closest('[data-remove]');
+  if (removeBtn) {
+    const key = removeBtn.dataset.remove;
+    if (key.startsWith('tag:')) {
+      const tag = key.slice(4);
+      f.tags = f.tags.filter(t => t !== tag);
+    } else if (key === 'duration') {
+      f.durationAmount = '';
+      if ($('#durationAmount')) $('#durationAmount').value = '';
+    } else if (['income', 'maxRent', 'savings'].includes(key)) {
+      f[key] = '';
+      if ($('#' + key)) $('#' + key).value = '';
+    } else if (key === 'matchMode') {
+      f.matchMode = 'all';
+    } else {
+      f[key] = defaultFilters[key];
+    }
+    syncInputs();
+    visible = 9;
+    render();
+    return;
+  }
+
+  // Match Mode toggle (ANY vs ALL)
+  const matchBtn = e.target.closest('.match-mode-card .segment-btn');
+  if (matchBtn) {
+    f.matchMode = matchBtn.dataset.match;
+    $$('.match-mode-card .segment-btn').forEach(b => b.classList.toggle('active', b === matchBtn));
+    const explanationEl = $('#matchExplanation');
+    if (explanationEl) {
+      explanationEl.textContent = f.matchMode === 'any'
+        ? 'Показываем страны, где есть хотя бы одно из выбранных условий.'
+        : 'Ищем города, где есть абсолютно все выбранные удобства одновременно.';
+    }
+    visible = 9;
+    render();
+    toast(f.matchMode === 'any' ? 'Режим: совпадение ХОТЯ БЫ ОДНОГО условия' : 'Режим: совпадение ВСЕХ условий');
+    return;
+  }
+
+  // Housing type pills
+  const hPill = e.target.closest('.h-pill');
+  if (hPill) {
+    f.housing = hPill.dataset.housing;
+    $$('.h-pill').forEach(b => b.classList.toggle('active', b === hPill));
+    visible = 9;
+    render();
+    return;
+  }
+
+  // Visa route type pills
+  const vPill = e.target.closest('.v-pill');
+  if (vPill) {
+    f.routeType = vPill.dataset.routeType;
+    $$('.v-pill').forEach(b => b.classList.toggle('active', b === vPill));
+    visible = 9;
+    render();
+    return;
+  }
+
+  // Top Mode tabs / Presets
+  const modePill = e.target.closest('.mode-pill');
+  if (modePill) {
+    const preset = modePill.dataset.preset;
+    $$('.mode-pill').forEach(b => b.classList.toggle('active', b === modePill));
+    if (preset === 'all') resetFilters();
+    else applyPreset(preset);
+    return;
+  }
+
+  // Collection card click
+  const colCard = e.target.closest('.collection-card');
+  if (colCard) {
+    const preset = colCard.dataset.preset;
+    applyPreset(preset);
+    return;
+  }
+
+  // Region chips
+  const regionBtn = e.target.closest('.region-chips-scroll .chip-btn');
+  if (regionBtn) {
+    $$('.region-chips-scroll .chip-btn').forEach(b => b.classList.remove('active'));
+    regionBtn.classList.add('active');
+    if (regionBtn.dataset.region !== undefined) {
+      f.region = regionBtn.dataset.region;
+    } else if (regionBtn.dataset.preset) {
+      applyPreset(regionBtn.dataset.preset);
+      return;
+    }
+    visible = 9;
+    render();
+    return;
+  }
+
+  // Filter toggle button (Expand / Collapse)
+  if (e.target.closest('#filterToggle')) {
+    const panel = $('#filterWorkspace');
+    const toggleBtn = $('#filterToggle');
+    if (panel) {
+      const isCollapsed = panel.classList.toggle('collapsed');
+      toggleBtn?.setAttribute('aria-expanded', String(!isCollapsed));
+    }
+    return;
+  }
+
+  // Workspace tab switcher (lifestyle, housing, visa, language)
+  const wTab = e.target.closest('.w-tab');
+  if (wTab) {
+    const targetTab = wTab.dataset.filterTab;
+    $$('.w-tab').forEach(t => t.classList.toggle('active', t === wTab));
+    $$('.w-pane').forEach(p => {
+      p.hidden = p.id !== 'pane-' + targetTab;
+      p.classList.toggle('active', p.id === 'pane-' + targetTab);
+    });
+    return;
+  }
+
+  // Saved bookmark toggle in header
+  if (e.target.closest('#savedToggle')) {
+    f.saved = !f.saved;
+    $('#savedToggle')?.classList.toggle('active', f.saved);
+    $('#savedToggle')?.setAttribute('aria-pressed', String(f.saved));
+    visible = 9;
+    render();
+    $('#destinations')?.scrollIntoView({behavior: 'smooth'});
+    toast(f.saved ? 'Показаны избранные направления' : 'Показаны все направления');
+    return;
+  }
+
+  // Compare checkbox change
+  const compBox = e.target.closest('[data-compare-id]');
+  if (compBox) {
+    const cId = compBox.dataset.compareId;
+    if (compBox.checked) {
+      if (compare.length >= 4) {
+        compBox.checked = false;
+        toast('Максимум 4 страны для одновременного сравнения');
+        return;
+      }
+      if (!compare.includes(cId)) compare.push(cId);
+    } else {
+      compare = compare.filter(x => x !== cId);
+    }
+    render();
+    return;
+  }
+
+  // Compare Dock buttons
+  if (e.target.closest('#dockCompare') || e.target.closest('#compareOpen')) {
+    showCompareModal();
+    return;
+  }
+  if (e.target.closest('#clearCompare')) {
+    compare = [];
+    render();
+    return;
+  }
+
+  // Reset all filters button
+  if (e.target.closest('#resetFilters')) {
+    resetFilters();
+    return;
+  }
+
+  // Apply filters button
+  if (e.target.closest('#applyFilters')) {
+    $('#destinations')?.scrollIntoView({behavior: 'smooth'});
+    return;
+  }
+
+  // Load more
+  if (e.target.closest('#loadMore')) {
+    visible += 9;
+    render();
+    return;
+  }
+
+  // Footer & methodology modals
+  if (e.target.closest('#methodOpen')) {
+    showMethodology();
+    return;
+  }
+  if (e.target.closest('#photoCredits')) {
+    showPhotoCredits();
+    return;
+  }
+  if (e.target.closest('#closeInfo')) {
+    $('#infoDialog')?.close();
+    return;
+  }
+  if (e.target.closest('#startAgain')) {
+    resetFilters();
+    $('#planner')?.scrollIntoView({behavior: 'smooth'});
+    return;
+  }
+});
+
+// Search Form Submit
+$('#searchForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  f.search = $('#search')?.value || '';
+  f.durationAmount = $('#durationAmount')?.value || '';
+  f.durationUnit = $('#durationUnit')?.value || 'months';
+  f.people = Number($('#people')?.value) || 1;
+  visible = 9;
+  render();
+  $('#destinations')?.scrollIntoView({behavior: 'smooth'});
+});
+
+// Input Changes
+for (const id of ['income', 'maxRent', 'savings', 'durationAmount', 'durationUnit', 'people', 'region', 'climate', 'bureaucracy', 'citizenship', 'sort']) {
+  $('#' + id)?.addEventListener('change', e => {
+    f[id] = e.target.value;
+    visible = 9;
+    render();
+  });
+}
+
+for (const id of ['reserve', 'allowRenewal', 'visaFree', 'verifiedOnly', 'russian', 'english']) {
+  $('#' + id)?.addEventListener('change', e => {
+    f[id] = e.target.checked;
+    visible = 9;
+    render();
+  });
+}
+
+$('#search')?.addEventListener('input', () => {
+  f.search = $('#search').value;
+  visible = 9;
+  render();
+});
+
+$('#currency')?.addEventListener('change', updateCurrency);
+
+// Run initialization
 init();
